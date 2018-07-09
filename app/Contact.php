@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Contact extends Model
 {
     use SoftDeletes;
-
+    protected $table = 'sft_contacts';
     protected $fillable = ['first_name', 'last_name', 'phone', 'extension', 'email', 'archive', 'customer_id'];
     protected $hidden = [];
     public static $searchable = [

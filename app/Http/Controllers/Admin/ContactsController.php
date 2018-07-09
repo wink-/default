@@ -38,14 +38,14 @@ class ContactsController extends Controller
                 $template = 'restoreTemplate';
             }
             $query->select([
-                'contacts.id',
-                'contacts.customer_id',
-                'contacts.first_name',
-                'contacts.last_name',
-                'contacts.phone',
-                'contacts.extension',
-                'contacts.email',
-                'contacts.archive',
+                'sft_contacts.id',
+                'sft_contacts.customer_id',
+                'sft_contacts.first_name',
+                'sft_contacts.last_name',
+                'sft_contacts.phone',
+                'sft_contacts.extension',
+                'sft_contacts.email',
+                'sft_contacts.archive',
             ]);
             $table = Datatables::of($query);
 

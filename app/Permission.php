@@ -13,7 +13,7 @@ class Permission extends Model
 {
     protected $fillable = ['title'];
     protected $hidden = [];
-    
+
     
     public static function boot()
     {

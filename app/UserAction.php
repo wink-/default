@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
 */
 class UserAction extends Model
 {
+    
+    protected $table = 'pluto_user_actions';
     protected $fillable = ['action', 'action_model', 'action_id', 'user_id'];
     protected $hidden = [];
     
