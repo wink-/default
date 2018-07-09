@@ -286,9 +286,10 @@ class QuotesController extends Controller
         if (! Gate::allows('quote_edit')) {
             return abort(401);
         }
-        $request = $this->saveFiles($request);
+
         $quote = Quote::findOrFail($id);
         $quote->update($request->all());
+        $request = $this->saveFiles($request, $quote->id);
 
 
 
