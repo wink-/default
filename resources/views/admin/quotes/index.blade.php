@@ -73,6 +73,7 @@
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
+            window.dtDefaultOptions.order = [[ 1, "desc" ]];
             processAjaxTables();
         });
     </script>
