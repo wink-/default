@@ -12,7 +12,7 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('customer_id', trans('global.quotes.fields.customer').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('customer_id', 'Customer*', ['class' => 'control-label']) !!}
                     {!! Form::select('customer_id', $customers, old('customer_id'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('customer_id'))
@@ -24,7 +24,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('contact_id', trans('global.quotes.fields.contact').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('contact_id', 'Contact', ['class' => 'control-label']) !!}
                     {!! Form::select('contact_id', $contacts, old('contact_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('contact_id'))
@@ -36,7 +36,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('partnumber', trans('global.quotes.fields.partnumber').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('partnumber', 'Part Number*', ['class' => 'control-label']) !!}
                     {!! Form::text('partnumber', old('partnumber'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('partnumber'))
@@ -48,7 +48,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('partdescription', trans('global.quotes.fields.partdescription').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('partdescription', 'Part Description', ['class' => 'control-label']) !!}
                     {!! Form::text('partdescription', old('partdescription'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('partdescription'))
@@ -60,7 +60,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('process_id', trans('global.quotes.fields.process').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('process_id', 'Process*', ['class' => 'control-label']) !!}
                     {!! Form::select('process_id', $processes, old('process_id'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('process_id'))
@@ -72,7 +72,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('specification', trans('global.quotes.fields.specification').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('specification', 'Specification', ['class' => 'control-label']) !!}
                     {!! Form::text('specification', old('specification'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('specification'))
@@ -84,7 +84,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('material', trans('global.quotes.fields.material').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('material', 'Material*', ['class' => 'control-label']) !!}
                     {!! Form::text('material', old('material'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('material'))
@@ -96,7 +96,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('method', trans('global.quotes.fields.method').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('method', 'Method*', ['class' => 'control-label']) !!}
                     {!! Form::select('method', $enum_method, old('method'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('method'))
@@ -108,7 +108,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('quantity_minimum', trans('global.quotes.fields.quantity-minimum').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('quantity_minimum', 'Quantity Min*', ['class' => 'control-label']) !!}
                     {!! Form::number('quantity_minimum', old('quantity_minimum'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('quantity_minimum'))
@@ -120,7 +120,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('quantity_maximum', trans('global.quotes.fields.quantity-maximum').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('quantity_maximum', 'Quantity Max', ['class' => 'control-label']) !!}
                     {!! Form::number('quantity_maximum', old('quantity_maximum'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('quantity_maximum'))
@@ -132,7 +132,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('price', trans('global.quotes.fields.price').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('price', 'Price*', ['class' => 'control-label']) !!}
                     {!! Form::text('price', old('price'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('price'))
@@ -144,7 +144,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('units', trans('global.quotes.fields.units').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('units', 'Units*', ['class' => 'control-label']) !!}
                     {!! Form::select('units', $enum_units, old('units'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('units'))
@@ -168,7 +168,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('quantity_price_break', trans('global.quotes.fields.quantity-price-break').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('quantity_price_break', 'Quantity Price Break', ['class' => 'control-label']) !!}
                     {!! Form::number('quantity_price_break', old('quantity_price_break'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('quantity_price_break'))
@@ -180,7 +180,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('price_break', trans('global.quotes.fields.price-break').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('price_break', 'Price Break ', ['class' => 'control-label']) !!}
                     {!! Form::text('price_break', old('price_break'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('price_break'))
@@ -192,7 +192,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('thickness_minimum', trans('global.quotes.fields.thickness-minimum').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('thickness_minimum', 'Thickness Min', ['class' => 'control-label']) !!}
                     {!! Form::text('thickness_minimum', old('thickness_minimum'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('thickness_minimum'))
@@ -204,7 +204,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('thickness_maximum', trans('global.quotes.fields.thickness-maximum').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('thickness_maximum', 'Thickness Max', ['class' => 'control-label']) !!}
                     {!! Form::text('thickness_maximum', old('thickness_maximum'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('thickness_maximum'))
@@ -216,7 +216,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('weight', trans('global.quotes.fields.weight').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('weight', 'Weight', ['class' => 'control-label']) !!}
                     {!! Form::text('weight', old('weight'), ['class' => 'form-control', 'placeholder' => 'Weight Each in pounds']) !!}
                     <p class="help-block">Weight Each in pounds</p>
                     @if($errors->has('weight'))
@@ -228,7 +228,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('surface_area', trans('global.quotes.fields.surface-area').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('surface_area', 'Surface Area', ['class' => 'control-label']) !!}
                     {!! Form::text('surface_area', old('surface_area'), ['class' => 'form-control', 'placeholder' => 'square inches']) !!}
                     <p class="help-block">square inches</p>
                     @if($errors->has('surface_area'))
@@ -240,7 +240,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('baking_time_pre', trans('global.quotes.fields.baking-time-pre').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('baking_time_pre', 'Pre Bake Time', ['class' => 'control-label']) !!}
                     {!! Form::text('baking_time_pre', old('baking_time_pre'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('baking_time_pre'))
@@ -252,7 +252,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('baking_temp_pre', trans('global.quotes.fields.baking-temp-pre').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('baking_temp_pre', 'Pre Bake Temp', ['class' => 'control-label']) !!}
                     {!! Form::text('baking_temp_pre', old('baking_temp_pre'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('baking_temp_pre'))
@@ -264,7 +264,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('baking_time_post', trans('global.quotes.fields.baking-time-post').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('baking_time_post', 'Post Bake Time', ['class' => 'control-label']) !!}
                     {!! Form::text('baking_time_post', old('baking_time_post'), ['class' => 'form-control', 'placeholder' => 'Hours']) !!}
                     <p class="help-block">Hours</p>
                     @if($errors->has('baking_time_post'))
@@ -276,7 +276,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('baking_temp_post', trans('global.quotes.fields.baking-temp-post').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('baking_temp_post', 'Post Bake Temp', ['class' => 'control-label']) !!}
                     {!! Form::text('baking_temp_post', old('baking_temp_post'), ['class' => 'form-control', 'placeholder' => 'In Fahrenheit']) !!}
                     <p class="help-block">In Fahrenheit</p>
                     @if($errors->has('baking_temp_post'))
@@ -288,7 +288,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('bake_notes', trans('global.quotes.fields.bake-notes').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('bake_notes', 'Baking Notes', ['class' => 'control-label']) !!}
                     {!! Form::text('bake_notes', old('bake_notes'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('bake_notes'))
@@ -300,7 +300,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('blasting', trans('global.quotes.fields.blasting').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('blasting', 'Blasting', ['class' => 'control-label']) !!}
                     {!! Form::hidden('blasting', 0) !!}
                     {!! Form::checkbox('blasting', 1, old('blasting', false), []) !!}
                     <p class="help-block"></p>
@@ -313,7 +313,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('blast_notes', trans('global.quotes.fields.blast-notes').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('blast_notes', 'Blast Note', ['class' => 'control-label']) !!}
                     {!! Form::text('blast_notes', old('blast_notes'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('blast_notes'))
@@ -325,7 +325,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('masking', trans('global.quotes.fields.masking').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('masking', 'Masking', ['class' => 'control-label']) !!}
                     {!! Form::hidden('masking', 0) !!}
                     {!! Form::checkbox('masking', 1, old('masking', false), []) !!}
                     <p class="help-block"></p>
@@ -338,7 +338,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('mask_notes', trans('global.quotes.fields.mask-notes').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('mask_notes', 'Mask Notes', ['class' => 'control-label']) !!}
                     {!! Form::text('mask_notes', old('mask_notes'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('mask_notes'))
@@ -350,7 +350,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('testing', trans('global.quotes.fields.testing').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('testing', 'Testing', ['class' => 'control-label']) !!}
                     {!! Form::hidden('testing', 0) !!}
                     {!! Form::checkbox('testing', 1, old('testing', false), []) !!}
                     <p class="help-block"></p>
@@ -363,7 +363,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('testing_note', trans('global.quotes.fields.testing-note').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('testing_note', 'Test Notes', ['class' => 'control-label']) !!}
                     {!! Form::text('testing_note', old('testing_note'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('testing_note'))
@@ -375,7 +375,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('print', trans('global.quotes.fields.print').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('print', 'Print', ['class' => 'control-label']) !!}
                     {!! Form::hidden('print', old('print')) !!}
                     {!! Form::file('print', ['class' => 'form-control']) !!}
                     {!! Form::hidden('print_max_size', 12) !!}
@@ -389,7 +389,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('notes', trans('global.quotes.fields.notes').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('notes', 'Notes', ['class' => 'control-label']) !!}
                     {!! Form::textarea('notes', old('notes'), ['class' => 'form-control ', 'placeholder' => 'Customer Can See']) !!}
                     <p class="help-block">Customer Can See</p>
                     @if($errors->has('notes'))
@@ -401,7 +401,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('comments', trans('global.quotes.fields.comments').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('comments', 'Comments', ['class' => 'control-label']) !!}
                     {!! Form::textarea('comments', old('comments'), ['class' => 'form-control ', 'placeholder' => 'Internal Use Only']) !!}
                     <p class="help-block">Internal Use Only</p>
                     @if($errors->has('comments'))
@@ -413,7 +413,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('user_id', trans('global.quotes.fields.user').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('user_id', 'User', ['class' => 'control-label']) !!}
                     {!! Form::select('user_id', $users, old('user_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('user_id'))
@@ -427,7 +427,7 @@
         </div>
     </div>
 
-    {!! Form::submit(trans('global.app_save'), ['class' => 'btn btn-danger']) !!}
+    {!! Form::submit('Save', ['class' => 'btn btn-danger']) !!}
     {!! Form::close() !!}
 @stop
 

@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property integer $quantity_maximum
  * @property decimal $price
  * @property enum $units
- * @property decimal $mininum_lot_charge
+ * @property decimal $minimum_lot_charge
  * @property integer $quantity_price_break
  * @property decimal $price_break
  * @property string $thickness_minimum
@@ -51,7 +51,7 @@ class Quote extends Model
 
     protected $table = 'sft_quotes';
 
-    protected $fillable = ['partnumber', 'partdescription', 'specification', 'material', 'method', 'quantity_minimum', 'quantity_maximum', 'price', 'units', 'mininum_lot_charge', 'quantity_price_break', 'price_break', 'thickness_minimum', 'thickness_maximum', 'weight', 'surface_area', 'baking_time_pre', 'baking_temp_pre', 'baking_time_post', 'baking_temp_post', 'bake_notes', 'blasting', 'blast_notes', 'masking', 'mask_notes', 'testing', 'testing_note', 'print', 'notes', 'comments', 'archive', 'revision', 'customer_id', 'contact_id', 'process_id', 'user_id'];
+    protected $fillable = ['partnumber', 'partdescription', 'specification', 'material', 'method', 'quantity_minimum', 'quantity_maximum', 'price', 'units', 'minimum_lot_charge', 'quantity_price_break', 'price_break', 'thickness_minimum', 'thickness_maximum', 'weight', 'surface_area', 'baking_time_pre', 'baking_temp_pre', 'baking_time_post', 'baking_temp_post', 'bake_notes', 'blasting', 'blast_notes', 'masking', 'mask_notes', 'testing', 'testing_note', 'print', 'notes', 'comments', 'archive', 'revision', 'customer_id', 'contact_id', 'process_id', 'user_id'];
     protected $hidden = [];
     public static $searchable = [
         'partnumber',
@@ -126,9 +126,9 @@ class Quote extends Model
      * Set attribute to money format
      * @param $input
      */
-    public function setMininumLotChargeAttribute($input)
+    public function setMinimumLotChargeAttribute($input)
     {
-        $this->attributes['mininum_lot_charge'] = $input ? $input : null;
+        $this->attributes['minimum_lot_charge'] = $input ? $input : null;
     }
 
     /**
