@@ -1,0 +1,320 @@
+@extends('layouts.app')
+
+@section('content')
+    <h3 class="page-title">@lang('global.customer.title')</h3>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            @lang('global.app_view')
+        </div>
+
+        <div class="panel-body table-responsive">
+            <div class="row">
+                <div class="col-md-6">
+                    <table class="table table-bordered table-striped">
+                        <tr>
+                            <th>@lang('global.customer.fields.code')</th>
+                            <td field-key='code'>{{ $customer->code }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.name')</th>
+                            <td field-key='name'>{{ $customer->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.physical-address')</th>
+                            <td field-key='physical_address'>{{ $customer->physical_address }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.address-extension')</th>
+                            <td field-key='address_extension'>{{ $customer->address_extension }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.city')</th>
+                            <td field-key='city'>{{ $customer->city }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.state')</th>
+                            <td field-key='state'>{{ $customer->state }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.zip')</th>
+                            <td field-key='zip'>{{ $customer->zip }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.company-phone')</th>
+                            <td field-key='company_phone'>{{ $customer->company_phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.fax')</th>
+                            <td field-key='fax'>{{ $customer->fax }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.email')</th>
+                            <td field-key='email'>{{ $customer->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.contact1')</th>
+                            <td field-key='contact1'>{{ $customer->contact1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.extension1')</th>
+                            <td field-key='extension1'>{{ $customer->extension1 }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.contact2')</th>
+                            <td field-key='contact2'>{{ $customer->contact2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.phone2')</th>
+                            <td field-key='phone2'>{{ $customer->phone2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.extension2')</th>
+                            <td field-key='extension2'>{{ $customer->extension2 }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.note')</th>
+                            <td field-key='note'>{!! $customer->note !!}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-address')</th>
+                            <td field-key='billing_address'>{{ $customer->billing_address }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-city')</th>
+                            <td field-key='billing_city'>{{ $customer->billing_city }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-state')</th>
+                            <td field-key='billing_state'>{{ $customer->billing_state }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-zip')</th>
+                            <td field-key='billing_zip'>{{ $customer->billing_zip }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-phone')</th>
+                            <td field-key='billing_phone'>{{ $customer->billing_phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-fax')</th>
+                            <td field-key='billing_fax'>{{ $customer->billing_fax }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.billing-email')</th>
+                            <td field-key='billing_email'>{{ $customer->billing_email }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-address')</th>
+                            <td field-key='ship_to_address'>{{ $customer->ship_to_address }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-city')</th>
+                            <td field-key='ship_to_city'>{{ $customer->ship_to_city }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-state')</th>
+                            <td field-key='ship_to_state'>{{ $customer->ship_to_state }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-zip')</th>
+                            <td field-key='ship_to_zip'>{{ $customer->ship_to_zip }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-phone')</th>
+                            <td field-key='ship_to_phone'>{{ $customer->ship_to_phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-fax')</th>
+                            <td field-key='ship_to_fax'>{{ $customer->ship_to_fax }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.ship-to-email')</th>
+                            <td field-key='ship_to_email'>{{ $customer->ship_to_email }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.tax-id')</th>
+                            <td field-key='tax_id'>{{ $customer->tax_id }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.cod')</th>
+                            <td field-key='cod'>{{ Form::checkbox("cod", 1, $customer->cod == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.archive')</th>
+                            <td field-key='archive'>{{ Form::checkbox("archive", 1, $customer->archive == 1 ? true : false, ["disabled"]) }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('global.customer.fields.revision')</th>
+                            <td field-key='revision'>{{ $customer->revision }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div><!-- Nav tabs -->
+<ul class="nav nav-tabs" role="tablist">
+    
+<li role="presentation" class="active"><a href="#contacts" aria-controls="contacts" role="tab" data-toggle="tab">Contacts</a></li>
+<li role="presentation" class=""><a href="#quotes" aria-controls="quotes" role="tab" data-toggle="tab">Quotes</a></li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+    
+<div role="tabpanel" class="tab-pane active" id="contacts">
+<table class="table table-bordered table-striped {{ count($contacts) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.contacts.fields.customer')</th>
+                        <th>@lang('global.contacts.fields.first-name')</th>
+                        <th>@lang('global.contacts.fields.last-name')</th>
+                        <th>@lang('global.contacts.fields.phone')</th>
+                        <th>@lang('global.contacts.fields.extension')</th>
+                        <th>@lang('global.contacts.fields.email')</th>
+                        @if( request('show_deleted') == 1 )
+                        <th>&nbsp;</th>
+                        @else
+                        <th>&nbsp;</th>
+                        @endif
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($contacts) > 0)
+            @foreach ($contacts as $contact)
+                <tr data-entry-id="{{ $contact->id }}">
+                    <td field-key='customer'>{{ $contact->customer->code or '' }}</td>
+                                <td field-key='first_name'>{{ $contact->first_name }}</td>
+                                <td field-key='last_name'>{{ $contact->last_name }}</td>
+                                <td field-key='phone'>{{ $contact->phone }}</td>
+                                <td field-key='extension'>{{ $contact->extension }}</td>
+                                <td field-key='email'>{{ $contact->email }}</td>
+                                @if( request('show_deleted') == 1 )
+                                <td>
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.contacts.restore', $contact->id])) !!}
+                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::close() !!}
+                                                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.contacts.perma_del', $contact->id])) !!}
+                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                                                </td>
+                                @else
+                                <td>
+                                    @can('contact_view')
+                                    <a href="{{ route('admin.contacts.show',[$contact->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('contact_edit')
+                                    <a href="{{ route('admin.contacts.edit',[$contact->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('contact_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.contacts.destroy', $contact->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="12">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="quotes">
+<table class="table table-bordered table-striped {{ count($quotes) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.quotes.fields.customer')</th>
+                        <th>@lang('global.quotes.fields.partnumber')</th>
+                        <th>@lang('global.quotes.fields.process')</th>
+                        <th>@lang('global.quotes.fields.quantity-minimum')</th>
+                        <th>@lang('global.quotes.fields.quantity-maximum')</th>
+                        <th>@lang('global.quotes.fields.price')</th>
+                        <th>@lang('global.quotes.fields.miminum-lot-charge')</th>
+                        @if( request('show_deleted') == 1 )
+                        <th>&nbsp;</th>
+                        @else
+                        <th>&nbsp;</th>
+                        @endif
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($quotes) > 0)
+            @foreach ($quotes as $quote)
+                <tr data-entry-id="{{ $quote->id }}">
+                    <td field-key='customer'>{{ $quote->customer->name or '' }}</td>
+                                <td field-key='partnumber'>{{ $quote->partnumber }}</td>
+                                <td field-key='process'>{{ $quote->process->name or '' }}</td>
+                                <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
+                                <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>
+                                <td field-key='price'>{{ $quote->price }}</td>
+                                <td field-key='miminum_lot_charge'>{{ $quote->miminum_lot_charge }}</td>
+                                @if( request('show_deleted') == 1 )
+                                <td>
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'POST',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.quotes.restore', $quote->id])) !!}
+                                    {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                                    {!! Form::close() !!}
+                                                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.quotes.perma_del', $quote->id])) !!}
+                                    {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                                                </td>
+                                @else
+                                <td>
+                                    @can('quote_view')
+                                    <a href="{{ route('admin.quotes.show',[$quote->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('quote_edit')
+                                    <a href="{{ route('admin.quotes.edit',[$quote->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('quote_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.quotes.destroy', $quote->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="41">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+</div>
+
+            <p>&nbsp;</p>
+
+            <a href="{{ route('admin.customers.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+        </div>
+    </div>
+@stop
