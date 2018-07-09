@@ -42,7 +42,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.processes.fields.code')</th>
-                            <td field-key='code'>{{ isset($quote->process) ? $quote->process->code : '' }}</td>
+                            <td field-key='code'>{{  $quote->process->code or  '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.specification')</th>
@@ -73,7 +73,7 @@
                             <td field-key='units'>{{ $quote->units }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.quotes.fields.minimum-lot-charge')</th>
+                            <th>Minimum Lot Charge</th>
                             <td field-key='minimum_lot_charge'>{{ $quote->minimum_lot_charge }}</td>
                         </tr>
                         <tr>

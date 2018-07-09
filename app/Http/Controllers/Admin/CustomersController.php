@@ -289,8 +289,8 @@ class CustomersController extends Controller
         if (! Gate::allows('customer_view')) {
             return abort(401);
         }
-        $contacts = \App\Contact::where('customer_id', $id)->get();$quotes = \App\Quote::where('customer_id', $id)->get();
-
+        $contacts = \App\Contact::where('customer_id', $id)->get();
+        $quotes = \App\Quote::where('customer_id', $id)->get();
         $customer = Customer::findOrFail($id);
 
         return view('admin.customers.show', compact('customer', 'contacts', 'quotes'));

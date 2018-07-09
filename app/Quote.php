@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property tinyInteger $masking
  * @property string $mask_notes
  * @property tinyInteger $testing
- * @property string $testing_note
+ * @property string $testing_notes
  * @property string $print
  * @property text $notes
  * @property text $comments

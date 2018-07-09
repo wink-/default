@@ -155,10 +155,12 @@
                             <td field-key='testing_note'>{{ $quote->testing_note }}</td>
                             @endisset
                         </tr>
+                    
                         <tr>
                             <th>Quoted By</th>
-                            <td field-key='user'>{{ $quote->user->name or '' }}</td>
+                            <td field-key='user'>{{  $quote->user->name or 'sales@surfacefinishtech.com' }}</td>
                         </tr>
+
                     </table>
           @isset($quote->notes)                    
           <div class ="row">
