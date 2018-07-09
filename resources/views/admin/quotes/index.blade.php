@@ -5,8 +5,7 @@
     <h3 class="page-title">@lang('global.quotes.title')</h3>
     @can('quote_create')
     <p>
-        <a href="{{ route('admin.quotes.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
+        <a href="{{ route('admin.quotes.create') }}" class="btn btn-success">Add New</a>        
     </p>
     @endcan
 

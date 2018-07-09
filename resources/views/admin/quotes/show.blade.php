@@ -5,7 +5,8 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <a href="{{ route('admin.quotes.index') }}" class="btn btn-primary">Back To Quotes Index</a>             
+            <a href="{{ route('admin.quotes.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Index</a>
+            <a href="{{ route('admin.quotes.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>            
             <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}" class="btn btn-info"><i class="fa fa-print"></i> Quote</a>
         </div>
 
@@ -15,19 +16,11 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.quotes.fields.customer')</th>
-                            <td field-key='customer'>{{ $quote->customer->name or '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('global.customer.fields.code')</th>
-                            <td field-key='code'>{{ isset($quote->customer) ? $quote->customer->code : '' }}</td>
+                            <td field-key='customer'><a href="{{action('Admin\CustomersController@show', $quote->customer->id)}}">{{ $quote->customer->name or '' }}</a> &nbsp;&nbsp;&nbsp;&nbsp;<b>Code</b> &nbsp;{{ $quote->customer->code or '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.contact')</th>
-                            <td field-key='contact'>{{ $quote->contact->last_name or '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('global.contacts.fields.first-name')</th>
-                            <td field-key='first_name'>{{ isset($quote->contact) ? $quote->contact->first_name : '' }}</td>
+                            <td field-key='contact'>{{ $quote->contact->first_name or '' }} {{ $quote->contact->last_name or '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.partnumber')</th>
@@ -40,10 +33,6 @@
                         <tr>
                             <th>@lang('global.quotes.fields.process')</th>
                             <td field-key='process'>{{ $quote->process->name or '' }}</td>
-                        </tr>
-                        <tr>
-                            <th>@lang('global.processes.fields.code')</th>
-                            <td field-key='code'>{{  $quote->process->code or  '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.specification')</th>
