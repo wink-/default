@@ -145,8 +145,15 @@
                             <td field-key='testing_note'>{{ $quote->testing_note }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.quotes.fields.print')</th>
-                            <td field-key='print'>@if($quote->print)<a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>@endif</td>
+                            <th>Print</th>
+                            <td field-key='print'>
+                              @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
+                                <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
+                              @else
+                                No Print
+                              @endif
+                                </td>                          
+
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.notes')</th>
