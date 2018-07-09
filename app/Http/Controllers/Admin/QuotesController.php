@@ -243,10 +243,8 @@ class QuotesController extends Controller
 
         $quote = Quote::create($request->all());  
         $request = $this->saveFiles($request, $quote->id);
-
-
-
-        return redirect()->route('admin.quotes.index');
+        //return redirect()->route('admin.quotes.index');
+        return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
     }
 
 
@@ -293,7 +291,8 @@ class QuotesController extends Controller
 
 
 
-        return redirect()->route('admin.quotes.index');
+        //return redirect()->route('admin.quotes.index');
+        return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
     }
 
 

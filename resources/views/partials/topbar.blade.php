@@ -3,11 +3,10 @@
     <a href="{{ url('/admin/home') }}" class="logo"
        style="font-size: 16px;">
         <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini">
-           @lang('global.global_title')</span>
+        <span class="logo-mini">PLUTO</span>
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
-           @lang('global.global_title')</span>
+          PLUTO
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">

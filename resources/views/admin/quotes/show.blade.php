@@ -5,7 +5,8 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            View <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}">(click for printable quote)</a>
+            <a href="{{ route('admin.quotes.index') }}" class="btn btn-primary">Back To Quotes Index</a>             
+            <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}" class="btn btn-info"><i class="fa fa-print"></i> Quote</a>
         </div>
 
         <div class="panel-body table-responsive">
@@ -173,7 +174,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.quotes.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+            <a href="{{ route('admin.quotes.index') }}" class="btn btn-default">Back To Quotes Index</a>
         </div>
     </div>
 @stop

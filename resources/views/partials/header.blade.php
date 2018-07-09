@@ -3,7 +3,7 @@
         <div class="navbar-header">
             <a href="{{ url('/admin/home') }}"
                class="navbar-brand">
-                @trans('global.global_title')
+                PLUTO
             </a>
         </div>
         <a href="javascript:;"
