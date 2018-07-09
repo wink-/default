@@ -86,9 +86,9 @@
                         <tr>
                             <th>Price</th>
                             <td field-key='price'>${{ $quote->price }} {{ $quote->units }} 
-                              @isset($quote->mininum_lot_charge) 
+                              @isset($quote->minimum_lot_charge) 
                                 <th>Minimum Lot</th>
-                                <td> ${{$quote->mininum_lot_charge}}</td>
+                                <td> ${{$quote->minimum_lot_charge}}</td>
                               @endisset</td>
                         </tr>
                         @isset($quote->quantity_price_break)
