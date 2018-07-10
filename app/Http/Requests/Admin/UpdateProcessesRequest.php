@@ -24,7 +24,7 @@ class UpdateProcessesRequest extends FormRequest
     {
         return [
             
-            'code' => 'required|unique:processes,code,'.$this->route('process'),
+            'code' => 'required|unique:sft_processes,code,'.$this->route('process'),
             'name' => 'required',
         ];
     }

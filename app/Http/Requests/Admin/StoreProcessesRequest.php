@@ -23,7 +23,7 @@ class StoreProcessesRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|unique:processes,code,'.$this->route('process'),
+            'code' => 'required|unique:sft_processes,code,'.$this->route('process'),
             'name' => 'required',
         ];
     }

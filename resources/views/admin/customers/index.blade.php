@@ -2,29 +2,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.customer.title')</h3>
-    @can('customer_create')
-    <p>
-        <a href="{{ route('admin.customers.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
-
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.customers.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.customers.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
     
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('global.app_list')
+            <ul class="list-inline">
+                <li><h3>Customers</h3></li>
+                @can('customer_create')
+                <li><a href="{{ route('admin.customers.create') }}" class="btn btn-success">Add New</a></li>
+                @endcan
+            </ul>
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('customer_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped display compact ajaxTable @can('customer_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('customer_delete')
@@ -45,8 +36,15 @@
                     </tr>
                 </thead>
             </table>
-        </div>
+        </div>     
     </div>
+    <p>
+        <ul class="list-inline">
+            <li><a href="{{ route('admin.customers.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li><a href="{{ route('admin.customers.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+        </ul>
+    </p>    
+
 @stop
 
 @section('javascript') 
@@ -65,8 +63,7 @@
                 {data: 'physical_address', name: 'physical_address'},
                 {data: 'city', name: 'city'},
                 {data: 'state', name: 'state'},
-                {data: 'company_phone', name: 'company_phone'},
-                
+                {data: 'company_phone', name: 'company_phone'},                
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
             processAjaxTables();

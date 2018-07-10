@@ -2,29 +2,20 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.contacts.title')</h3>
-    @can('contact_create')
-    <p>
-        <a href="{{ route('admin.contacts.create') }}" class="btn btn-success">@lang('global.app_add_new')</a>
-        
-    </p>
-    @endcan
 
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.contacts.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.contacts.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
-    
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('global.app_list')
+        <ul class="list-inline">            
+        <li><h3 class="page-title">Contacts</h3></li>
+        @can('contact_create')
+            <li><a href="{{ route('admin.contacts.create') }}" class="btn btn-success">Add New</a></li>
+        @endcan
+        </ul>
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('contact_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped display compact ajaxTable @can('contact_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('contact_delete')
@@ -48,6 +39,13 @@
             </table>
         </div>
     </div>
+    <p>
+        <ul class="list-inline">
+            <li><a href="{{ route('admin.contacts.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li><a href="{{ route('admin.contacts.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+        </ul>
+    </p>
+
 @stop
 
 @section('javascript') 

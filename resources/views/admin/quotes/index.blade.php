@@ -1,29 +1,20 @@
 @inject('request', 'Illuminate\Http\Request')
 @extends('layouts.app')
 
-@section('content')
-    <h3 class="page-title">@lang('global.quotes.title')</h3>
-    @can('quote_create')
-    <p>
-        <a href="{{ route('admin.quotes.create') }}" class="btn btn-success">Add New</a>        
-    </p>
-    @endcan
-
-    <p>
-        <ul class="list-inline">
-            <li><a href="{{ route('admin.quotes.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
-            <li><a href="{{ route('admin.quotes.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
-        </ul>
-    </p>
-    
+@section('content')    
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            @lang('global.app_list')
+            <ul class="list-inline">
+                <li><h3 class="page-title">Quotes</h3></li>
+                @can('quote_create')
+                <li><a href="{{ route('admin.quotes.create') }}" class="btn btn-success">Add New</a></li>
+                @endcan
+            </ul>
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('quote_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped display compact ajaxTable @can('quote_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
                         @can('quote_delete')
@@ -47,6 +38,12 @@
             </table>
         </div>
     </div>
+    <p>
+        <ul class="list-inline">
+            <li><a href="{{ route('admin.quotes.index') }}" style="{{ request('show_deleted') == 1 ? '' : 'font-weight: 700' }}">@lang('global.app_all')</a></li> |
+            <li><a href="{{ route('admin.quotes.index') }}?show_deleted=1" style="{{ request('show_deleted') == 1 ? 'font-weight: 700' : '' }}">@lang('global.app_trash')</a></li>
+        </ul>
+    </p>    
 @stop
 
 @section('javascript') 

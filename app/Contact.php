@@ -41,7 +41,64 @@ class Contact extends Model
     {
         $this->attributes['customer_id'] = $input ? $input : null;
     }
-    
+    /**
+     * Get the first name and last name
+     * Accessor
+     * @param  string  $value
+     * @return string
+     */    
+    public function getFullNameAttribute($value)
+    {
+       return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+    }
+
+    /**
+     * Get the first name.
+     * Accessor
+     * @param  string  $value
+     * @return string
+     */
+    public function getFirstNameAttribute($value)
+    {
+        return ucfirst($value);
+    }
+    /**
+     * Get the last name.
+     * Accessor
+     * @param  string  $value
+     * @return string
+     */
+    public function getLastNameAttribute($value)
+    {
+        return ucfirst($value);
+    }    
+     
+    /**
+     * Set the first name.
+     * Mutator
+     * @param  string  $value
+     * @return string
+     */
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = strtolower($value);
+    }
+
+     
+    /**
+     * Set the last name.
+     * Mutator
+     * @param  string  $value
+     * @return string
+     */
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = strtolower($value);
+    }
+
+    /**
+    * Relationships
+    */
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id')->withTrashed();

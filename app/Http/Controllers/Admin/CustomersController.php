@@ -22,8 +22,6 @@ class CustomersController extends Controller
         if (! Gate::allows('customer_access')) {
             return abort(401);
         }
-
-
         
         if (request()->ajax()) {
             $query = Customer::query();
@@ -76,6 +74,8 @@ class CustomersController extends Controller
                 'sft_customers.destination_code',
                 'sft_customers.carrier_code',
             ]);
+
+            
             $table = Datatables::of($query);
 
             $table->setRowAttr([

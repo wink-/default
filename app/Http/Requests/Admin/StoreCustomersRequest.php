@@ -23,7 +23,7 @@ class StoreCustomersRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'min:3|max:10|required|unique:customers,code,'.$this->route('customer'),
+            'code' => 'min:3|max:10|required|unique:sft_customers,code,'.$this->route('customer'),
             'name' => 'required',
         ];
     }
