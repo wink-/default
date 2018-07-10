@@ -136,14 +136,13 @@
                         </tr>
                         <tr>
                             <th>Print</th>
-                            <td field-key='print'>
-                              @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
-                                <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
-                              @else
-                                No Print
-                              @endif
-                                </td>                          
-
+                                <td field-key='print'>
+                                  @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
+                                    <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
+                                  @else
+                                    No Print
+                                  @endif
+                                </td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.notes')</th>
@@ -160,10 +159,11 @@
                     </table>
                 </div>
             </div>
-
-            <p>&nbsp;</p>
-
-            <a href="{{ route('admin.quotes.index') }}" class="btn btn-default">Back To Quotes Index</a>
+            <div >
+                <a href="{{ route('admin.quotes.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Index</a>
+                <a href="{{ route('admin.quotes.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>            
+                <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}" class="btn btn-info"><i class="fa fa-print"></i> Quote</a>
+            </div>
         </div>
     </div>
 @stop

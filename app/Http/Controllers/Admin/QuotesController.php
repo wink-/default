@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Quote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreQuotesRequest;
@@ -240,10 +241,9 @@ class QuotesController extends Controller
         if (! Gate::allows('quote_create')) {
             return abort(401);
         }
-
-        $quote = Quote::create($request->all());  
+        $request->request->add(['user_id' => Auth::User()->id]);
+        $quote = Quote::create($request->all());
         $request = $this->saveFiles($request, $quote->id);
-        //return redirect()->route('admin.quotes.index');
         return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
     }
 
