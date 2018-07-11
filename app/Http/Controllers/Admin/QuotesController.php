@@ -256,7 +256,7 @@ class QuotesController extends Controller
         // $request->request->add(['value_min' => $value_min]); 
         // $request->request->add(['user_id' => Auth::User()->id]);
 
-        $quote = Quote::create($request->all());
+        // $quote = Quote::create($request->all());
         $request = $this->saveFiles($request, $quote->id);
         return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
     }
