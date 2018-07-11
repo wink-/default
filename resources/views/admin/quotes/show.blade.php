@@ -15,7 +15,7 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>@lang('global.quotes.fields.customer')</th>
+                            <th>Customer</th>
                             <td field-key='customer'><a href="{{action('Admin\CustomersController@show', $quote->customer->id)}}">{{ $quote->customer->name or '' }}</a> &nbsp;&nbsp;&nbsp;&nbsp;<b>Code</b> &nbsp;{{ $quote->customer->code or '' }}</td>
                         </tr>
                         <tr>

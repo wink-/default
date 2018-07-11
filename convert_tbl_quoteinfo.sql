@@ -459,3 +459,12 @@ update sft_quotes
 set process_id = 220 where sft_quotes.`process` = "Zinc-Nickel Black RoHS";
 update sft_quotes
 set process_id = 226 where sft_quotes.`process` = "Oil";
+
+
+
+##
+SELECT sum(value_min) 
+FROM (SELECT value_min FROM `sft_quotes` ORDER BY id DESC LIMIT 10) t1;
+
+SELECT sum(quantity_minimum) 
+FROM (SELECT quantity_minimum FROM `sft_quotes` ORDER BY id DESC LIMIT 10) t1;

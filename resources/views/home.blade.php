@@ -7,7 +7,9 @@
                 <div class="panel-heading">@lang('global.app_dashboard')</div>
 
                 <div class="panel-body">
-                    @lang('global.app_dashboard_text')
+                    @can('view_money')
+                    
+                    @endcan
                 </div>
             </div>
         </div>
