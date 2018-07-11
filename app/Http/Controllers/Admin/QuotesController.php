@@ -241,7 +241,7 @@ class QuotesController extends Controller
         if (! Gate::allows('quote_create')) {
             return abort(401);
         }
-/*        if ($request->units == 'M') {
+        if ($request->units == 'M') {
             $value_min = $request->price * $request->quantity_minimum * 0.001;
         }
         if ($request->units != 'M') {
@@ -253,9 +253,9 @@ class QuotesController extends Controller
         if ($value_min < $request->minimum_lot_charge) {
             $value_min = $request->minimum_lot_charge;
         }
-        $request->request->add(['value_min' => $value_min]); */
+        $request->request->add(['value_min' => $value_min]); 
         $request->request->add(['user_id' => Auth::User()->id]);
-        dd($request->all());
+
         $quote = Quote::create($request->all());
         $request = $this->saveFiles($request, $quote->id);
         return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
