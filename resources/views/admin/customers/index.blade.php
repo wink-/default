@@ -22,12 +22,12 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.customer.fields.code')</th>
-                        <th>@lang('global.customer.fields.name')</th>
-                        <th>@lang('global.customer.fields.physical-address')</th>
-                        <th>@lang('global.customer.fields.city')</th>
-                        <th>@lang('global.customer.fields.state')</th>
-                        <th>@lang('global.customer.fields.company-phone')</th>
+                        <th>Code</th>
+                        <th>Name</th>
+                        <th>Physical Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Company Phone</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
