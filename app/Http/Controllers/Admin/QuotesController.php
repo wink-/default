@@ -220,10 +220,10 @@ class QuotesController extends Controller
             return abort(401);
         }
         
-        $customers = \App\Customer::get()->pluck('name', 'id')->prepend('Please Select');
+        $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $contacts = \App\Contact::get()->pluck('full_name', 'id')->prepend('Please Select');
-        $processes = \App\Process::get()->pluck('name', 'id')->prepend('Please Select');
-        $users = \App\User::get()->pluck('name', 'id')->prepend('Please Select');
+        $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
             
@@ -241,21 +241,7 @@ class QuotesController extends Controller
         if (! Gate::allows('quote_create')) {
             return abort(401);
         }
-/*        if ($request->units == 'M') {
-            $value_min = $request->price * $request->quantity_minimum * 0.001;
-        }
-        if ($request->units != 'M') {
-            $value_min = $request->price * $request->quantity_minimum;
-        }
-        if ($request->units == 'lot') {
-            $value_min = $request->price;
-        }
-        if ($value_min < $request->minimum_lot_charge) {
-            $value_min = $request->minimum_lot_charge;
-        }
-        $request->request->add(['value_min' => $value_min]); */
         $request->request->add(['user_id' => Auth::User()->id]);
-        dd($request->all());
         $quote = Quote::create($request->all());
         $request = $this->saveFiles($request, $quote->id);
         return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
@@ -274,10 +260,10 @@ class QuotesController extends Controller
             return abort(401);
         }
         
-        $customers = \App\Customer::get()->pluck('name', 'id')->prepend('Please Select');
-        $contacts = \App\Contact::get()->pluck('last_name', 'id')->prepend('Please Select');
-        $processes = \App\Process::get()->pluck('name', 'id')->prepend('Please Select');
-        $users = \App\User::get()->pluck('name', 'id')->prepend('Please Select');
+        $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $contacts = \App\Contact::get()->pluck('last_name', 'id')->prepend(trans('global.app_please_select'), '');
+        $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
             
