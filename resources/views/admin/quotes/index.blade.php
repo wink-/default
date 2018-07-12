@@ -10,6 +10,7 @@
                 @can('quote_create')
                 <li><a href="{{ route('admin.quotes.create') }}" class="btn btn-success">Add New</a></li>
                 @endcan
+                <li class="pull-right">Quoted Today <b>${{$quoted[0]}}</b>, Past 30 Days <b>${{$quoted[1]}}</b>, Max Today <b>${{$quoted[2]}}</b>, Max 30 Days <b>${{$quoted[3]}}</b></li>
             </ul>
         </div>
 

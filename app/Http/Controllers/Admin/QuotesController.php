@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Carbon\Carbon;
 use App\Quote;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -206,7 +206,13 @@ class QuotesController extends Controller
             return $table->make(true);
         }
 
-        return view('admin.quotes.index');
+        $quotes = \App\Quote::where('created_at', '>', Carbon::today()->subDays(30))->get();
+        $quoted = [$quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_min'), 
+                   $quotes->sum('value_min'),
+                   $quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_max'),
+                   $quotes->sum('value_max')];
+
+        return view('admin.quotes.index', compact('quoted'));
     }
 
     /**
