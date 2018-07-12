@@ -26,7 +26,7 @@
                     <p>
                       <b>
                         <small>215 Judson Street, Elmira NY 14903</small> <br>
-                        <small>P: 607-732-2909 F:607-733-:6119</small> <br>
+                        <small>P: 607-732-2909 F:607-733-6119</small> <br>
                         <small>www.surfacefinishtech.com</small> <br>
                       </b>
                     </p>
