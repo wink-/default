@@ -43,7 +43,7 @@
                       <b>
                         <small>Quote Date: {{$quote->created_at->format('M, d, Y')}}</small>
                         @if($quote->updated_at > $quote->created_at)
-                        <small>Quote Updated: {{$quote->updated_at->format('M, d, Y')}}</small>
+                        <br><small>Quote Updated: {{$quote->updated_at->format('M, d, Y')}}</small>
                         @endif
                         <br>
                         <small> {{$quote->customer->name}}</small><br>
@@ -54,12 +54,10 @@
                     </p>
                   </div>
                 </div>
-        </div>
-      </div>
+              </div>
+            </div>
 
                     <table class="table table-bordered table-condensed">
-
-
                         <tr>
                             <th>Part Number</th>
                             <td field-key='partnumber'>{{ $quote->partnumber }}</td>
@@ -115,13 +113,11 @@
                         @if (isset($quote->baking_time_pre) or isset($quote->baking_temp_pre))
                         <tr>
                             <th>Pre-Plate Bake </th>
-                            <td field-key='baking_time_pre'>{{ $quote->baking_time_pre }} F for {{ $quote->baking_time_pre }} hours</td>
-
+                            <td field-key='baking_time_pre'>{{ $quote->baking_temp_pre }} F for {{ $quote->baking_time_pre }} hours</td>
                         @endif
                         @if (isset($quote->baking_time_post) or isset($quote->baking_temp_post))
-
                             <th>Post-Plate Bake </th>
-                            <td field-key='baking_time_post'>{{ $quote->baking_time_post }} F for {{ $quote->baking_time_post }} hours</td>
+                            <td field-key='baking_time_post'>{{ $quote->baking_temp_post }} F for {{ $quote->baking_time_post }} hours</td>
                         </tr>
                         @endif
                         @isset($quote->bake_notes)
