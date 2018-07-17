@@ -239,12 +239,12 @@
     <thead>
         <tr>
             <th>@lang('global.quotes.fields.customer')</th>
-                        <th>@lang('global.quotes.fields.partnumber')</th>
-                        <th>@lang('global.quotes.fields.process')</th>
-                        <th>@lang('global.quotes.fields.quantity-minimum')</th>
-                        <th>@lang('global.quotes.fields.quantity-maximum')</th>
-                        <th>@lang('global.quotes.fields.price')</th>
-                        <th>@lang('global.quotes.fields.miminum-lot-charge')</th>
+                        <th>Part Number</th>
+                        <th>Process</th>
+                        <th>Min Qty</th>
+                        <th>Max Qty</th>
+                        <th>Price</th>
+                        <th>Min Lot</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -263,7 +263,7 @@
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>
                                 <td field-key='price'>{{ $quote->price }}</td>
-                                <td field-key='miminum_lot_charge'>{{ $quote->miminum_lot_charge }}</td>
+                                <td field-key='miminum_lot_charge'>{{ $quote->minimum_lot_charge }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     {!! Form::open(array(
@@ -314,7 +314,7 @@
 
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.customers.index') }}" class="btn btn-default">@lang('global.app_back_to_list')</a>
+            <a href="{{ route('admin.customers.index') }}" class="btn btn-default">Back To Index</a>
         </div>
     </div>
 @stop
