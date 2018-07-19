@@ -29,6 +29,7 @@
                         <th>Qty Max</th>
                         <th>Price</th>
                         <th>Min Lot Charge</th>
+                        <th>Date</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -67,7 +68,7 @@
                 {data: 'quantity_maximum', name: 'quantity_maximum'},
                 {data: 'price', name: 'price'},
                 {data: 'minimum_lot_charge', name: 'minimum_lot_charge'},
-                
+                {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
             window.dtDefaultOptions.order = [[ 1, "desc" ]];

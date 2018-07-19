@@ -84,6 +84,7 @@ class QuotesController extends Controller
                 'sft_quotes.user_id',
                 'sft_quotes.archive',
                 'sft_quotes.revision',
+                'sft_quotes.created_at',
             ]);
             $table = Datatables::of($query);
 
@@ -199,6 +200,9 @@ class QuotesController extends Controller
             });
             $table->editColumn('revision', function ($row) {
                 return $row->revision ? $row->revision : '';
+            });
+            $table->editColumn('created_at', function ($row) {
+                return $row->created_at->format('Y-m-d');
             });
 
             $table->rawColumns(['actions','massDelete','blasting','masking','testing','print','archive']);
