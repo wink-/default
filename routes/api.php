@@ -10,4 +10,6 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 
         Route::resource('quotes', 'QuotesController', ['except' => ['create', 'edit']]);
 
+        Route::resource('parts', 'PartsController', ['except' => ['create', 'edit']]);
+
 });

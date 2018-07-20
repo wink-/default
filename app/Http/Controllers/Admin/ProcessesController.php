@@ -167,6 +167,7 @@ class ProcessesController extends Controller
             return abort(401);
         }
         $quotes = \App\Quote::where('process_id', $id)->get();
+        //$parts = \App\Part::where('process_id', $id)->get();
 
         $process = Process::findOrFail($id);
 

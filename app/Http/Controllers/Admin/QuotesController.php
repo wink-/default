@@ -233,11 +233,10 @@ class QuotesController extends Controller
         $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $contacts = \App\Contact::get()->pluck('full_name', 'id')->prepend('Please Select');
         $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
-        $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
             
-        return view('admin.quotes.create', compact('enum_method', 'enum_units', 'customers', 'contacts', 'processes', 'users'));
+        return view('admin.quotes.create', compact('enum_method', 'enum_units', 'customers', 'contacts', 'processes'));
     }
 
     /**
@@ -316,13 +315,12 @@ class QuotesController extends Controller
         $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $contacts = \App\Contact::get()->pluck('last_name', 'id')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
-        $users = \App\User::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
             
         $quote = Quote::findOrFail($id);
 
-        return view('admin.quotes.edit', compact('quote', 'enum_method', 'enum_units', 'customers', 'contacts', 'processes', 'users'));
+        return view('admin.quotes.edit', compact('quote', 'enum_method', 'enum_units', 'customers', 'contacts', 'processes'));
     }
 
     /**

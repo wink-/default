@@ -1,18 +1,221 @@
 <?php
 
 return [
-		'user-management' => [		'title' => 'User Management',		'fields' => [		],	],
-		'permissions' => [		'title' => 'Permissions',		'fields' => [			'title' => 'Title',		],	],
-		'roles' => [		'title' => 'Roles',		'fields' => [			'title' => 'Title',			'permission' => 'Permissions',		],	],
-		'users' => [		'title' => 'Users',		'fields' => [			'name' => 'Name',			'email' => 'Email',			'password' => 'Password',			'role' => 'Role',			'remember-token' => 'Remember token',		],	],
-		'user-actions' => [		'title' => 'User actions',		'created_at' => 'Time',		'fields' => [			'user' => 'User',			'action' => 'Action',			'action-model' => 'Action model',			'action-id' => 'Action id',		],	],
-		'quote' => [		'title' => 'Quote Management',		'fields' => [		],	],
-		'customers' => [		'title' => 'Customer Management',		'fields' => [		],	],
-		'customer' => [		'title' => 'Customers',		'fields' => [			'code' => 'Customer Code',			'name' => 'Customer Name',			'physical-address' => 'Physical Address',			'address-extension' => 'Address Extension',			'city' => 'City',			'state' => 'State',			'zip' => 'Zip',			'company-phone' => 'Company Phone',			'fax' => 'Company Fax',			'email' => 'Company Email',			'contact1' => 'CONTACT1',			'extension1' => 'EXTENSION1',			'contact2' => 'CONTACT2',			'phone2' => 'PHONE2',			'extension2' => 'EXTENSION2',			'note' => 'Note',			'billing-address' => 'Billing Address',			'billing-city' => 'Billing City',			'billing-state' => 'Billing State',			'billing-zip' => 'Billing Zip',			'billing-phone' => 'Billing Phone',			'billing-fax' => 'Billing Fax',			'billing-email' => 'Billing Email',			'ship-to-address' => 'Ship To Address',			'ship-to-city' => 'Ship To City',			'ship-to-state' => 'Ship To State',			'ship-to-zip' => 'Ship To Zip',			'ship-to-phone' => 'Ship To Phone',			'ship-to-fax' => 'Ship To Fax',			'ship-to-email' => 'Ship To Email',			'tax-id' => 'Tax ID',			'cod' => 'COD',			'archive' => 'Archive',			'revision' => 'Revision',			'ship-to-address-code' => 'Ship To Address Code',			'destination-code' => 'Destination Code',			'carrier-code' => 'Carrier Code',		],	],
-		'contacts' => [		'title' => 'Contacts',		'fields' => [			'customer' => 'Customer',			'first-name' => 'First Name',			'last-name' => 'Last Name',			'phone' => 'Phone',			'extension' => 'Extension',			'email' => 'Email',			'archive' => 'Archive',		],	],
-		'process' => [		'title' => 'Process Management',		'fields' => [		],	],
-		'processes' => [		'title' => 'Processes',		'fields' => [			'code' => 'Code',			'name' => 'Process Name',			'minimum-lot-charge' => 'Minimum Charge',			'compliant-rohs' => 'RoHS Compliant',			'compliant-reach' => 'Reach Compliant',			'archive' => 'Archive',			'revision' => 'Revision',		],	],
-		'quotes' => [		'title' => 'Quotes',		'fields' => [			'customer' => 'Customer',			'contact' => 'Contact',			'partnumber' => 'Part Number',			'partdescription' => 'Part Description',			'process' => 'Process',			'specification' => 'Specification',			'material' => 'Material',			'method' => 'Method',			'quantity-minimum' => 'Minimum Quantity',			'quantity-maximum' => 'Maximum Quantity',			'price' => 'Price',			'units' => 'Units',			'miminum-lot-charge' => 'Miminum Charge',			'quantity-price-break' => 'Price Break Quantity',			'price-break' => 'Price Break',			'thickness-minimum' => 'Minimum Thickness',			'thickness-maximum' => 'Thickness Maximum',			'weight' => 'Weight',			'surface-area' => 'Surface Area',			'baking-time-pre' => 'Pre-Plate Bake Time',			'baking-temp-pre' => 'Pre-Plate Bake Temp.',			'baking-time-post' => 'Post Plate Bake Time',			'baking-temp-post' => 'Post Plate Bake Temp.',			'bake-notes' => 'Bake Notes',			'blasting' => 'Blasting',			'blast-notes' => 'Blast Notes',			'masking' => 'Masking',			'mask-notes' => 'Masking Notes',			'testing' => 'Testing',			'testing-note' => 'Testing  Note',			'print' => 'Print',			'notes' => 'Notes',			'comments' => 'Comments',			'user' => 'User',			'archive' => 'Archive',			'revision' => 'Revision',		],	],
+	
+	'user-management' => [
+		'title' => 'User Management',
+		'fields' => [
+		],
+	],
+	
+	'permissions' => [
+		'title' => 'Permissions',
+		'fields' => [
+			'title' => 'Title',
+		],
+	],
+	
+	'roles' => [
+		'title' => 'Roles',
+		'fields' => [
+			'title' => 'Title',
+			'permission' => 'Permissions',
+		],
+	],
+	
+	'users' => [
+		'title' => 'Users',
+		'fields' => [
+			'name' => 'Name',
+			'email' => 'Email',
+			'password' => 'Password',
+			'role' => 'Role',
+			'remember-token' => 'Remember token',
+		],
+	],
+	
+	'user-actions' => [
+		'title' => 'User actions',
+		'created_at' => 'Time',
+		'fields' => [
+			'user' => 'User',
+			'action' => 'Action',
+			'action-model' => 'Action model',
+			'action-id' => 'Action id',
+		],
+	],
+	
+	'quote' => [
+		'title' => 'Quote Management',
+		'fields' => [
+		],
+	],
+	
+	'customers' => [
+		'title' => 'Customer Management',
+		'fields' => [
+		],
+	],
+	
+	'customer' => [
+		'title' => 'Customers',
+		'fields' => [
+			'code' => 'Customer Code',
+			'name' => 'Customer Name',
+			'physical-address' => 'Physical Address',
+			'address-extension' => 'Address Extension',
+			'city' => 'City',
+			'state' => 'State',
+			'zip' => 'Zip',
+			'company-phone' => 'Company Phone',
+			'fax' => 'Company Fax',
+			'email' => 'Company Email',
+			'contact1' => 'CONTACT1',
+			'extension1' => 'EXTENSION1',
+			'contact2' => 'CONTACT2',
+			'phone2' => 'PHONE2',
+			'extension2' => 'EXTENSION2',
+			'note' => 'Note',
+			'billing-address' => 'Billing Address',
+			'billing-city' => 'Billing City',
+			'billing-state' => 'Billing State',
+			'billing-zip' => 'Billing Zip',
+			'billing-phone' => 'Billing Phone',
+			'billing-fax' => 'Billing Fax',
+			'billing-email' => 'Billing Email',
+			'ship-to-address' => 'Ship To Address',
+			'ship-to-city' => 'Ship To City',
+			'ship-to-state' => 'Ship To State',
+			'ship-to-zip' => 'Ship To Zip',
+			'ship-to-phone' => 'Ship To Phone',
+			'ship-to-fax' => 'Ship To Fax',
+			'ship-to-email' => 'Ship To Email',
+			'tax-id' => 'Tax ID',
+			'cod' => 'COD',
+			'archive' => 'Archive',
+			'revision' => 'Revision',
+			'ship-to-address-code' => 'Ship To Address Code',
+			'destination-code' => 'Destination Code',
+			'carrier-code' => 'Carrier Code',
+		],
+	],
+	
+	'contacts' => [
+		'title' => 'Contacts',
+		'fields' => [
+			'customer' => 'Customer',
+			'first-name' => 'First Name',
+			'last-name' => 'Last Name',
+			'phone' => 'Phone',
+			'extension' => 'Extension',
+			'email' => 'Email',
+			'archive' => 'Archive',
+		],
+	],
+	
+	'process' => [
+		'title' => 'Process Management',
+		'fields' => [
+		],
+	],
+	
+	'processes' => [
+		'title' => 'Processes',
+		'fields' => [
+			'code' => 'Code',
+			'name' => 'Process Name',
+			'minimum-lot-charge' => 'Minimum Charge',
+			'compliant-rohs' => 'RoHS Compliant',
+			'compliant-reach' => 'Reach Compliant',
+			'archive' => 'Archive',
+			'revision' => 'Revision',
+		],
+	],
+	
+	'quotes' => [
+		'title' => 'Quotes',
+		'fields' => [
+			'customer' => 'Customer',
+			'contact' => 'Contact',
+			'partnumber' => 'Part Number',
+			'partdescription' => 'Part Description',
+			'process' => 'Process',
+			'specification' => 'Specification',
+			'material' => 'Material',
+			'method' => 'Method',
+			'quantity-minimum' => 'Minimum Quantity',
+			'quantity-maximum' => 'Maximum Quantity',
+			'price' => 'Price',
+			'units' => 'Units',
+			'miminum-lot-charge' => 'Miminum Charge',
+			'quantity-price-break' => 'Price Break Quantity',
+			'price-break' => 'Price Break',
+			'thickness-minimum' => 'Minimum Thickness',
+			'thickness-maximum' => 'Thickness Maximum',
+			'weight' => 'Weight',
+			'surface-area' => 'Surface Area',
+			'baking-time-pre' => 'Pre-Plate Bake Time',
+			'baking-temp-pre' => 'Pre-Plate Bake Temp.',
+			'baking-time-post' => 'Post Plate Bake Time',
+			'baking-temp-post' => 'Post Plate Bake Temp.',
+			'bake-notes' => 'Bake Notes',
+			'blasting' => 'Blasting',
+			'blast-notes' => 'Blast Notes',
+			'masking' => 'Masking',
+			'mask-notes' => 'Masking Notes',
+			'testing' => 'Testing',
+			'testing-note' => 'Testing  Note',
+			'print' => 'Print',
+			'notes' => 'Notes',
+			'comments' => 'Comments',
+			'user' => 'User',
+			'archive' => 'Archive',
+			'revision' => 'Revision',
+		],
+	],
+	
+	'parts' => [
+		'title' => 'Parts',
+		'fields' => [
+			'number' => 'Number',
+			'description' => 'Description',
+			'customer' => 'Customer',
+			'process' => 'Process',
+			'method-code' => 'Method code',
+			'price' => 'Price',
+			'price-code' => 'Price code',
+			'certify' => 'Certify',
+			'specification' => 'Specification',
+			'bake' => 'Bake',
+			'procedure-code' => 'Procedure code',
+			'material' => 'Material',
+			'material-name' => 'Material name',
+			'material-condition' => 'Material condition',
+			'thickness-minimum' => 'Thickness Minimum',
+			'thickness-maximum' => 'Thickness maximum',
+			'thickness-unit-code' => 'Thickness unit code',
+			'surface-area' => 'Surface area',
+			'surface-area-unit-code' => 'Surface area unit code',
+			'weight' => 'Weight',
+			'weight-unit-code' => 'Weight unit code',
+			'length' => 'Length',
+			'width' => 'Width',
+			'height' => 'Height',
+			'dimension-unit-code' => 'Dimension unit code',
+			'material-thickness' => 'Material thickness',
+			'material-thickness-unit-code' => 'Material thickness unit code',
+			'special-requirement' => 'Special requirement',
+			'note' => 'Note',
+			'quality-check-1' => 'Quality check 1',
+			'quality-check-2' => 'Quality check 2',
+			'quality-check-3' => 'Quality check 3',
+			'quality-check-4' => 'Quality check 4',
+			'quality-check-5' => 'Quality check 5',
+			'quality-check-6' => 'Quality check 6',
+			'archive' => 'Archive',
+			'revision' => 'Revision',
+		],
+	],
 	'app_create' => 'Create',
 	'app_save' => 'Save',
 	'app_edit' => 'Edit',

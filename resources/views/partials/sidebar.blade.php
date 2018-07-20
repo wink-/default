@@ -36,15 +36,22 @@
             <li>
                 <a href="{{ route('admin.quotes.index') }}">
                     <i class="fa fa-tablet"></i>
-                    <span>@lang('global.quotes.title')</span>
+                    <span>Quotes</span>
                 </a>
             </li>
             @endcan
+            @can('part_access')
+            <li>
+                <a href="{{ route('admin.parts.index') }}">
+                    <i class="fa fa-gears"></i>
+                    <span>Parts</span>
+                </a>
+            </li>@endcan            
             @can('process_access')
             <li>
                 <a href="{{ route('admin.processes.index') }}">
                     <i class="fa fa-gears"></i>
-                    <span>@lang('global.processes.title')</span>
+                    <span>Processes</span>
                 </a>
             </li>
             @endcan                       
@@ -93,12 +100,6 @@
                     
                 </ul>
             </li>@endcan
-            
-
-            
-
-            
-
 
 
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">

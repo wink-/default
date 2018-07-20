@@ -214,7 +214,7 @@
                                     <a href="{{ route('admin.contacts.edit',[$contact->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
                                     @can('contact_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -290,7 +290,7 @@
                                     <a href="{{ route('admin.quotes.edit',[$quote->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
                                     @endcan
                                     @can('quote_delete')
-{!! Form::open(array(
+                                    {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
@@ -310,6 +310,100 @@
     </tbody>
 </table>
 </div>
+{{-- Show all parts for the customer
+<div role="tabpanel" class="tab-pane " id="parts">
+<table class="table table-bordered table-striped {{ count($parts) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.parts.fields.number')</th>
+                        <th>@lang('global.parts.fields.description')</th>
+                        <th>@lang('global.parts.fields.customer')</th>
+                        <th>@lang('global.parts.fields.process')</th>
+                        <th>@lang('global.parts.fields.method-code')</th>
+                        <th>@lang('global.parts.fields.price')</th>
+                        <th>@lang('global.parts.fields.certify')</th>
+                        <th>@lang('global.parts.fields.specification')</th>
+                        <th>@lang('global.parts.fields.bake')</th>
+                        <th>@lang('global.parts.fields.procedure-code')</th>
+                        <th>@lang('global.parts.fields.material')</th>
+                        <th>@lang('global.parts.fields.material-name')</th>
+                        <th>@lang('global.parts.fields.material-condition')</th>
+                        <th>@lang('global.parts.fields.thickness-minimum')</th>
+                        <th>@lang('global.parts.fields.thickness-maximum')</th>
+                        <th>@lang('global.parts.fields.thickness-unit-code')</th>
+                        <th>@lang('global.parts.fields.surface-area')</th>
+                        <th>@lang('global.parts.fields.surface-area-unit-code')</th>
+                        <th>@lang('global.parts.fields.weight')</th>
+                        <th>@lang('global.parts.fields.weight-unit-code')</th>
+                        <th>@lang('global.parts.fields.length')</th>
+                        <th>@lang('global.parts.fields.width')</th>
+                        <th>@lang('global.parts.fields.height')</th>
+                        <th>@lang('global.parts.fields.dimension-unit-code')</th>
+                        <th>@lang('global.parts.fields.material-thickness')</th>
+                        <th>@lang('global.parts.fields.material-thickness-unit-code')</th>
+                        <th>&nbsp;</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($parts) > 0)
+            @foreach ($parts as $part)
+                <tr data-entry-id="{{ $part->id }}">
+                    <td field-key='number'>{{ $part->number }}</td>
+                                <td field-key='description'>{{ $part->description }}</td>
+                                <td field-key='customer'>{{ $part->customer->code or '' }}</td>
+                                <td field-key='process'>{{ $part->process->code or '' }}</td>
+                                <td field-key='method_code'>{{ $part->method_code }}</td>
+                                <td field-key='price'>{{ $part->price }}</td>
+                                <td field-key='certify'>{{ Form::checkbox("certify", 1, $part->certify == 1 ? true : false, ["disabled"]) }}</td>
+                                <td field-key='specification'>{{ $part->specification }}</td>
+                                <td field-key='bake'>{{ Form::checkbox("bake", 1, $part->bake == 1 ? true : false, ["disabled"]) }}</td>
+                                <td field-key='procedure_code'>{{ $part->procedure_code }}</td>
+                                <td field-key='material'>{{ $part->material }}</td>
+                                <td field-key='material_name'>{{ $part->material_name }}</td>
+                                <td field-key='material_condition'>{{ $part->material_condition }}</td>
+                                <td field-key='thickness_minimum'>{{ $part->thickness_minimum }}</td>
+                                <td field-key='thickness_maximum'>{{ $part->thickness_maximum }}</td>
+                                <td field-key='thickness_unit_code'>{{ $part->thickness_unit_code }}</td>
+                                <td field-key='surface_area'>{{ $part->surface_area }}</td>
+                                <td field-key='surface_area_unit_code'>{{ $part->surface_area_unit_code }}</td>
+                                <td field-key='weight'>{{ $part->weight }}</td>
+                                <td field-key='weight_unit_code'>{{ $part->weight_unit_code }}</td>
+                                <td field-key='length'>{{ $part->length }}</td>
+                                <td field-key='width'>{{ $part->width }}</td>
+                                <td field-key='height'>{{ $part->height }}</td>
+                                <td field-key='dimension_unit_code'>{{ $part->dimension_unit_code }}</td>
+                                <td field-key='material_thickness'>{{ $part->material_thickness }}</td>
+                                <td field-key='material_thickness_unit_code'>{{ $part->material_thickness_unit_code }}</td>
+                                                                <td>
+                                    @can('part_view')
+                                    <a href="{{ route('admin.parts.show',[$part->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('part_edit')
+                                    <a href="{{ route('admin.parts.edit',[$part->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('part_delete')
+{!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.parts.destroy', $part->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="42">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div> --}}
 </div>
 
             <p>&nbsp;</p>
