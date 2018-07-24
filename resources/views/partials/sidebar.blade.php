@@ -54,7 +54,15 @@
                     <span>Processes</span>
                 </a>
             </li>
-            @endcan                       
+            @endcan
+            @can('workorder_access')
+            <li>
+                <a href="{{ route('admin.workorders.index') }}">
+                    <i class="fa fa-tablet"></i>
+                    <span>Workorders</span>
+                </a>
+            </li>
+            @endcan
             
             @can('user_management_access')
             <li class="treeview">

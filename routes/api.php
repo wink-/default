@@ -12,4 +12,6 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 
         Route::resource('parts', 'PartsController', ['except' => ['create', 'edit']]);
 
+        Route::resource('workorders', 'WorkordersController', ['except' => ['create', 'edit']]);
+
 });
