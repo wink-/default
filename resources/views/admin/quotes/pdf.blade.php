@@ -41,9 +41,9 @@
                   <div class="panel-body">
                     <p>
                       <b>
-                        <small>Quote Date: {{$quote->created_at->format('M, d, Y')}}</small>
+                        <small>Quote Date: {{$quote->created_at->format('Y-m-d')}}</small>
                         @if($quote->updated_at > $quote->created_at)
-                        <br><small>Quote Updated: {{$quote->updated_at->format('M, d, Y')}}</small>
+                        <br><small>Quote Updated: {{$quote->updated_at->format('Y-m-d')}}</small>
                         @endif
                         <br>
                         <small> {{$quote->customer->name}}</small><br>
