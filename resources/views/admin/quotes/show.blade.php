@@ -4,10 +4,17 @@
     <h3 class="page-title">Quote Number {{ $quote->id }} </h3>
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <a href="{{ route('admin.quotes.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Index</a>
-            <a href="{{ route('admin.quotes.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>            
-            <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}" class="btn btn-info"><i class="fa fa-print"></i> Quote</a>
+        <div class="panel-heading ">
+            <div class="btn-grp">
+                <a href="{{ route('admin.quotes.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Index</a>
+                @can('quote_create')
+                <a href="{{ route('admin.quotes.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
+                @endcan
+                @can('quote_edit')
+                <a href="{{ route('admin.quotes.edit', ['id' => $quote->id]) }}" class="btn btn-info"><i class="fa fa-plus"></i> Edit</a> 
+                @endcan
+                <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}" class="btn btn-warning"><i class="fa fa-print"></i> Print</a>            
+            </div>
         </div>
 
         <div class="panel-body table-responsive">

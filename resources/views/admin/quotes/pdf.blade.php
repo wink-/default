@@ -11,7 +11,11 @@
 <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
-       
+      @media print {
+        a[href]:after {
+        content: none !important;
+        }
+      }    
     </style>
     <title>Surface Finish Technologies Quote {{$quote->id}}</title>
   </head>
@@ -20,7 +24,7 @@
         <div class="col-xs-5">
           <div class="panel panel-default">
                   <div class="panel-heading">
-                    <b><a href="#">SURFACE FINISH TECHNOLOGIES</a></b>
+                    <b><a href="{{ route('admin.quotes.index') }}">SURFACE FINISH TECHNOLOGIES</a></b>
                   </div>
                   <div class="panel-body">
                     <p>
@@ -36,7 +40,7 @@
         <div class="col-xs-5 col-xs-offset-2 text-right">
           <div class="panel panel-default">
                   <div class="panel-heading">
-                    <b><a href="#">SFT QUOTATION NUMBER {{$quote->id}}</a></b>
+                    <b><a href="{{ route('admin.quotes.edit', ['id' => $quote->id]) }}">SFT QUOTATION NUMBER {{$quote->id}}</a></b>
                   </div>
                   <div class="panel-body">
                     <p>

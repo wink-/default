@@ -1,11 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('global.customer.title')</h3>
-
+    
+    <h3 class="page-title">Customer: {{ $customer->name }}</h3>
     <div class="panel panel-default">
+
         <div class="panel-heading">
-            @lang('global.app_view')
+            <a href="{{ route('admin.customers.index') }}" class="btn btn-primary"><i class="fa fa-list"></i> Index</a>
+            @can('customer_create')
+            <a href="{{ route('admin.customers.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Add New</a>
+            @endcan
+            @can('customer_edit')
+            <a href="{{ route('admin.customers.edit', ['id' => $customer->id]) }}" class="btn btn-info"><i class="fa fa-plus"></i> Edit</a> 
+            @endcan
         </div>
 
         <div class="panel-body table-responsive">
@@ -16,10 +23,7 @@
                             <th>@lang('global.customer.fields.code')</th>
                             <td field-key='code'>{{ $customer->code }}</td>
                         </tr>
-                        <tr>
-                            <th>@lang('global.customer.fields.name')</th>
-                            <td field-key='name'>{{ $customer->name }}</td>
-                        </tr>
+
                         <tr>
                             <th>@lang('global.customer.fields.physical-address')</th>
                             <td field-key='physical_address'>{{ $customer->physical_address }}</td>

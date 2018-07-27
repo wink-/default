@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://thor.gon'),
 
     /*
     |--------------------------------------------------------------------------
@@ -186,6 +186,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Spatie\MediaLibrary\MediaLibraryServiceProvider::class,
         
         /*
          * Application Service Providers...

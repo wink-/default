@@ -1,0 +1,32 @@
+<?php
+namespace App\Http\Requests\Admin;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class UpdateDiscrepantMaterialsRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            
+            'quantity_rejected' => 'max:2147483647|nullable|numeric',
+            'rejection_date' => 'nullable|date_format:'.config('app.date_format').' H:i:s',
+            'corrective_action_due_date' => 'nullable|date_format:'.config('app.date_format').' H:i:s',
+        ];
+    }
+}

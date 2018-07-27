@@ -296,7 +296,8 @@ class QuotesController extends Controller
         $request->request->add(['user_id' => Auth::User()->id]);
         $quote = Quote::create($request->all());
         $request = $this->saveFiles($request, $quote->id);
-        return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
+        //return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
+        return redirect()->route('admin.quotes.print', ['id' => $quote->id]);        
     }
 
 
@@ -343,7 +344,8 @@ class QuotesController extends Controller
 
 
         //return redirect()->route('admin.quotes.index');
-        return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
+        //return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
+        return redirect()->route('admin.quotes.print', ['id' => $quote->id]);
     }
 
 
