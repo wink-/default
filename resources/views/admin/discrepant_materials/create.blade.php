@@ -51,7 +51,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('rejection_date', trans('global.discrepant-material.fields.rejection-date').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('rejection_date', old('rejection_date'), ['class' => 'form-control datetime', 'placeholder' => '']) !!}
+                    {!! Form::text('rejection_date', old('rejection_date'), ['class' => 'form-control date', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('rejection_date'))
                         <p class="help-block">
@@ -75,7 +75,7 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('corrective_action_due_date', trans('global.discrepant-material.fields.corrective-action-due-date').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('corrective_action_due_date', old('corrective_action_due_date'), ['class' => 'form-control datetime', 'placeholder' => '']) !!}
+                    {!! Form::text('corrective_action_due_date', old('corrective_action_due_date'), ['class' => 'form-control date1', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('corrective_action_due_date'))
                         <p class="help-block">
@@ -138,12 +138,15 @@
             moment.updateLocale('{{ App::getLocale() }}', {
                 week: { dow: 1 } // Monday is the first day of the week
             });
-            
-            $('.datetime').datetimepicker({
-                format: "{{ config('app.datetime_format_moment') }}",
+            $('.date').datetimepicker({
+                format: "{{ config('app.date_format_moment') }}",
                 locale: "{{ App::getLocale() }}",
-                sideBySide: false,
             });
+            $('.date1').datetimepicker({
+                format: "{{ config('app.date_format_moment') }}",
+                locale: "{{ App::getLocale() }}",
+            });
+
             
         });
     </script>

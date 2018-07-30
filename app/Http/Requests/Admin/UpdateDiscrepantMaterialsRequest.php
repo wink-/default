@@ -25,8 +25,8 @@ class UpdateDiscrepantMaterialsRequest extends FormRequest
         return [
             
             'quantity_rejected' => 'max:2147483647|nullable|numeric',
-            'rejection_date' => 'nullable|date_format:'.config('app.date_format').' H:i:s',
-            'corrective_action_due_date' => 'nullable|date_format:'.config('app.date_format').' H:i:s',
+            'rejection_date' => 'nullable|date_format:'.config('app.date_format'),
+            'corrective_action_due_date' => 'nullable|date_format:'.config('app.date_format'),
             'form' => 'mimes:pdf',            
         ];
     }
