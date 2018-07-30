@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use DB;
+use Flash;
 use App\Workorder;
 use App\Process;
 use App\Customer;
@@ -134,6 +136,16 @@ class DiscrepantMaterialsController extends Controller
             return abort(401);
         }
         $wo = Workorder::where('number', '=', $request->workorder)->first();
+        if (!$wo) {
+            $wo = DB::table('sft_work_orders_history')->where('number', '=', $request->workorder)->first();
+        }
+
+        if (!$wo) {
+            
+            Flash::error('Workorder '.$request->workorder. ' Not Found');
+            return redirect(route('admin.discrepant_materials.create'));
+        }
+
         $customer = Customer::where('code', '=', $wo->customer_code)->first();
         $process = Process::where('code', '=', $wo->process_code)->first();
   
@@ -199,6 +211,15 @@ class DiscrepantMaterialsController extends Controller
             return abort(401);
         }
         $wo = Workorder::where('number', '=', $request->workorder)->first();
+        if (!$wo) {
+            $wo = DB::table('sft_work_orders_history')->where('number', '=', $request->workorder)->first();
+        }
+
+        if (!$wo) {
+            
+            Flash::error('Workorder '.$request->workorder. ' Not Found');
+            return redirect(route('admin.discrepant_materials.create'));
+        }        
         $customer = Customer::where('code', '=', $wo->customer_code)->first();
         $process = Process::where('code', '=', $wo->process_code)->first();
   

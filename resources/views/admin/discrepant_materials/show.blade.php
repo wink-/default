@@ -77,8 +77,15 @@
                             @endforeach</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.discrepant-material.fields.form')</th>
-                            <td field-key='form'>@if($discrepant_material->form)<a href="{{ asset(env('UPLOAD_PATH').'/' . $discrepant_material->form) }}" target="_blank">Download file</a>@endif</td>
+                            <th>Print</th>
+                            <td field-key='print'>
+                              @if(file_exists( public_path().'/dmr/customer_dmr_form_'.$discrepant_material->id.'.pdf' ))
+                                <a href="{{ asset(env('UPLOAD_PATH').'/dmr/customer_dmr_form_' . $discrepant_material->id.'.pdf') }}" target="_blank">Download File</a>
+                              @else
+                                No Form
+                              @endif
+                            </td>
+
                         </tr>                        {{--   --}}
                     </table>
                 </div>

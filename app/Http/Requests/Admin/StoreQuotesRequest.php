@@ -34,6 +34,7 @@ class StoreQuotesRequest extends FormRequest
             'units' => 'required',
             //'mininum_lot_charge' => 'required',
             'quantity_price_break' => 'max:2147483647|nullable|numeric',
+            'print' => 'mimes:pdf',
         ];
     }
 }

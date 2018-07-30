@@ -143,13 +143,13 @@
                         </tr>
                         <tr>
                             <th>Print</th>
-                                <td field-key='print'>
-                                  @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
-                                    <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
-                                  @else
-                                    No Print
-                                  @endif
-                                </td>
+                            <td field-key='print'>
+                              @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
+                                <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
+                              @else
+                                No Print
+                              @endif
+                            </td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.notes')</th>
