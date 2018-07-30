@@ -167,11 +167,13 @@ class ProcessesController extends Controller
             return abort(401);
         }
         $quotes = \App\Quote::where('process_id', $id)->get();
+        $discrepant_materials = \App\DiscrepantMaterial::where('process_id', $id)->get();
+
         //$parts = \App\Part::where('process_id', $id)->get();
 
         $process = Process::findOrFail($id);
 
-        return view('admin.processes.show', compact('process', 'quotes'));
+        return view('admin.processes.show', compact('process', 'quotes', 'discrepant_materials'));
     }
 
 

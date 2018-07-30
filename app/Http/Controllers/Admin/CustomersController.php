@@ -291,10 +291,11 @@ class CustomersController extends Controller
         }
         $contacts = \App\Contact::where('customer_id', $id)->get();
         $quotes = \App\Quote::where('customer_id', $id)->get();
+        $discrepant_materials = \App\DiscrepantMaterial::where('customer_id', $id)->get();
         //$parts = \App\Part::where('customer_id', $id)->get();        
         $customer = Customer::findOrFail($id);
 
-        return view('admin.customers.show', compact('customer', 'contacts', 'quotes'));
+        return view('admin.customers.show', compact('customer', 'contacts', 'quotes', 'discrepant_materials'));
     }
 
 

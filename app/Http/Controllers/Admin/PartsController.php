@@ -293,9 +293,10 @@ class PartsController extends Controller
         if (! Gate::allows('part_view')) {
             return abort(401);
         }
+        $discrepant_materials = \App\DiscrepantMaterial::where('process_id', $id)->get();
         $part = Part::findOrFail($id);
 
-        return view('admin.parts.show', compact('part'));
+        return view('admin.parts.show', compact('part', 'discrepant_materials'));
     }
 
 

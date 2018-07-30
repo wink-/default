@@ -40,14 +40,91 @@
                 </div>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-    
-<li role="presentation" class="active"><a href="#quotes" aria-controls="quotes" role="tab" data-toggle="tab">Quotes</a></li>
+<li role="presentation" class="active"><a href="#discrepant_material" aria-controls="discrepant_material" role="tab" data-toggle="tab">Discrepant Material Report</a></li> 
+<li role="presentation" class=""><a href="#quotes" aria-controls="quotes" role="tab" data-toggle="tab">Quotes</a></li>
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-    
-<div role="tabpanel" class="tab-pane active" id="quotes">
+<div role="tabpanel" class="tab-pane active" id="discrepant_material">
+<table class="table table-bordered table-striped {{ count($discrepant_materials) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('global.discrepant-material.fields.workorder')</th>
+            <th>@lang('global.discrepant-material.fields.part-number')</th>
+            <th>@lang('global.discrepant-material.fields.customer-code')</th>
+            <th>@lang('global.discrepant-material.fields.process')</th>
+            <th>@lang('global.discrepant-material.fields.quantity-rejected')</th>
+            <th>@lang('global.discrepant-material.fields.rejection-date')</th>
+            <th>@lang('global.discrepant-material.fields.rejection-type')</th>
+            <th>@lang('global.discrepant-material.fields.corrective-action-due-date')</th>
+            @if( request('show_deleted') == 1 )
+            <th>&nbsp;</th>
+            @else
+            <th>&nbsp;</th>
+            @endif
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($discrepant_materials) > 0)
+            @foreach ($discrepant_materials as $discrepant_material)
+                <tr data-entry-id="{{ $discrepant_material->id }}">
+                    <td field-key='workorder'>{{ $discrepant_material->workorder or '' }}</td>
+                    <td field-key='part_number'>{{ $discrepant_material->part_number }}</td>
+                    <td field-key='customer_code'>{{ $discrepant_material->customer_code }}</td>
+                    <td field-key='process_code'>{{ $discrepant_material->process_code }}</td>
+                    <td field-key='quantity_rejected'>{{ $discrepant_material->quantity_rejected }}</td>
+                    <td field-key='rejection_date'>{{ $discrepant_material->rejection_date }}</td>
+                    <td field-key='rejection_type'>{{ $discrepant_material->rejection_type }}</td>
+                    <td field-key='corrective_action_due_date'>{{ $discrepant_material->corrective_action_due_date }}</td>
+                    @if( request('show_deleted') == 1 )
+                        <td>
+                            {!! Form::open(array(
+                                'style' => 'display: inline-block;',
+                                'method' => 'POST',
+                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                'route' => ['admin.discrepant_materials.restore', $discrepant_material->id])) !!}
+                            {!! Form::submit(trans('global.app_restore'), array('class' => 'btn btn-xs btn-success')) !!}
+                            {!! Form::close() !!}
+                                                            {!! Form::open(array(
+                                'style' => 'display: inline-block;',
+                                'method' => 'DELETE',
+                                'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                'route' => ['admin.discrepant_materials.perma_del', $discrepant_material->id])) !!}
+                            {!! Form::submit(trans('global.app_permadel'), array('class' => 'btn btn-xs btn-danger')) !!}
+                            {!! Form::close() !!}
+                        </td>
+                    @else
+                                <td>
+                                    @can('quality_view')
+                                    <a href="{{ route('admin.discrepant_materials.show',[$discrepant_material->id]) }}" class="btn btn-xs btn-primary">@lang('global.app_view')</a>
+                                    @endcan
+                                    @can('quality_edit')
+                                    <a href="{{ route('admin.discrepant_materials.edit',[$discrepant_material->id]) }}" class="btn btn-xs btn-info">@lang('global.app_edit')</a>
+                                    @endcan
+                                    @can('quality_delete')
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("global.app_are_you_sure")."');",
+                                        'route' => ['admin.discrepant_materials.destroy', $discrepant_material->id])) !!}
+                                    {!! Form::submit(trans('global.app_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                                @endif
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="19">@lang('global.app_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>    
+<div role="tabpanel" class="tab-pane " id="quotes">
 <table class="table table-bordered table-striped {{ count($quotes) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
@@ -57,7 +134,7 @@
                         <th>@lang('global.quotes.fields.quantity-minimum')</th>
                         <th>@lang('global.quotes.fields.quantity-maximum')</th>
                         <th>@lang('global.quotes.fields.price')</th>
-                        <th>@lang('global.quotes.fields.miminum-lot-charge')</th>
+                        <th>Minimum Lot</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -76,7 +153,7 @@
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>
                                 <td field-key='price'>{{ $quote->price }}</td>
-                                <td field-key='miminum_lot_charge'>{{ $quote->miminum_lot_charge }}</td>
+                                <td field-key='miminum_lot_charge'>{{ $quote->minimum_lot_charge }}</td>
                                 @if( request('show_deleted') == 1 )
                                 <td>
                                     {!! Form::open(array(

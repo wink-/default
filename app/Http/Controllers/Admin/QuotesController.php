@@ -336,6 +336,50 @@ class QuotesController extends Controller
         if (! Gate::allows('quote_edit')) {
             return abort(401);
         }
+        switch ($request->units) {
+            case "each":
+                $value_min = $request->quantity_minimum * $request->price;
+                $value_max = $request->quantity_maximum * $request->price;
+                break;
+            case "sets":
+                $value_min = $request->quantity_minimum * $request->price;
+                $value_max = $request->quantity_maximum * $request->price;
+                break;
+            case "pound":
+                $value_min = $request->quantity_minimum * $request->price;
+                $value_max = $request->quantity_maximum * $request->price;
+                break;
+            case "foot":
+                $value_min = $request->quantity_minimum * $request->price;
+                $value_max = $request->quantity_maximum * $request->price;
+                break;                
+            case "inch":
+                $value_min = $request->quantity_minimum * $request->price;
+                $value_max = $request->quantity_maximum * $request->price;
+                break;
+            case "thousand":
+                $value_min = $request->quantity_minimum * $request->price * 0.001;
+                $value_max = $request->quantity_maximum * $request->price * 0.001;
+                break;
+            case "lot":
+                $value_min = $request->price;
+                $value_max = $request->price;
+                break;                
+        }
+
+        if ($value_min < $request->minimum_lot_charge) {
+            $value_min = $request->minimum_lot_charge;
+        }
+        if ($value_max < $request->minimum_lot_charge) {
+            $value_max = $request->minimum_lot_charge;
+            if ($value_max < $value_min) {
+                $value_max = $value_min;
+            }
+        }
+
+        $request->request->add(['value_min' => $value_min]);
+        $request->request->add(['value_max' => $value_max]);
+        $request->request->add(['user_id' => Auth::User()->id]);        
 
         $quote = Quote::findOrFail($id);
         $quote->update($request->all());

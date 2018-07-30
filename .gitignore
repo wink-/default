@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/quotes
+/public/dmr
 /storage/*.key
 /vendor
 /.idea

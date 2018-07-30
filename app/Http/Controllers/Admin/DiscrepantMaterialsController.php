@@ -146,12 +146,14 @@ class DiscrepantMaterialsController extends Controller
         $request->request->add(['process_id' => $process->id]);
         $request->request->add(['process_code' => $wo->process_code]);
         $request->request->add(['part_id' => $wo->part_id]);
-        $request->request->add(['part_number' => $wo->part_number]);        
-                
-        $request = $this->saveFiles($request);
+        $request->request->add(['part_number' => $wo->part_number]);    
+
 
         $discrepant_material = DiscrepantMaterial::create($request->all());
 
+        if($request->hasFile('form')) {
+            $request = $this->saveFiles($request, '/dmr', 'customer_dmr_form_'.$discrepant_material->id.'.'.$request->form->extension());
+        }
 
         foreach ($request->input('picture_id', []) as $index => $id) {
             $model          = config('laravel-medialibrary.media_model');
@@ -211,9 +213,12 @@ class DiscrepantMaterialsController extends Controller
         $request->request->add(['part_id' => $wo->part_id]);
         $request->request->add(['part_number' => $wo->part_number]); 
         
-        $request = $this->saveFiles($request);
+
         $discrepant_material = DiscrepantMaterial::findOrFail($id);
         $discrepant_material->update($request->all());
+        if($request->hasFile('form')) {
+            $request = $this->saveFiles($request, '/dmr', 'customer_dmr_form_'.$discrepant_material->id.'.'.$request->form->extension());
+        }        
 
 
         $media = [];
