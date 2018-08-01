@@ -63,7 +63,7 @@
                 </a>
             </li>
             @endcan
-
+            @can('quality_access')
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i>
@@ -73,17 +73,21 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    @can('quality_access')
                     <li>
                         <a href="{{ route('admin.discrepant_materials.index') }}">
                             <i class="fa fa-gears"></i>
                             <span>@lang('global.discrepant-material.title')</span>
                         </a>
-                    </li>@endcan
-                    
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.corrective_actions.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span>@lang('global.corrective-actions.title')</span>
+                        </a>
+                    </li>
                 </ul>
             </li>
-                      
+            @endcan 
             @can('user_management_access')
             <li class="treeview">
                 <a href="#">

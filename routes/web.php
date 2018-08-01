@@ -59,6 +59,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('discrepant_materials_mass_destroy', ['uses' => 'Admin\DiscrepantMaterialsController@massDestroy', 'as' => 'discrepant_materials.mass_destroy']);
     Route::post('discrepant_materials_restore/{id}', ['uses' => 'Admin\DiscrepantMaterialsController@restore', 'as' => 'discrepant_materials.restore']);
     Route::delete('discrepant_materials_perma_del/{id}', ['uses' => 'Admin\DiscrepantMaterialsController@perma_del', 'as' => 'discrepant_materials.perma_del']);
+
+    Route::resource('corrective_actions', 'Admin\CorrectiveActionsController');
+    Route::post('corrective_actions_mass_destroy', ['uses' => 'Admin\CorrectiveActionsController@massDestroy', 'as' => 'corrective_actions.mass_destroy']);
+    Route::post('corrective_actions_restore/{id}', ['uses' => 'Admin\CorrectiveActionsController@restore', 'as' => 'corrective_actions.restore']);
+    Route::delete('corrective_actions_perma_del/{id}', ['uses' => 'Admin\CorrectiveActionsController@perma_del', 'as' => 'corrective_actions.perma_del']);
+    
     Route::post('/spatie/media/upload', 'Admin\SpatieMediaController@create')->name('media.upload');
     Route::post('/spatie/media/remove', 'Admin\SpatieMediaController@destroy')->name('media.remove');
 
