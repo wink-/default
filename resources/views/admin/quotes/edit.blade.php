@@ -157,7 +157,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('minimum_lot_charge', trans('global.quotes.fields.minimum-lot-charge').'*', ['class' => 'control-label']) !!}
+                    {!! Form::label('minimum_lot_charge', 'Minimum Lot Charge*', ['class' => 'control-label']) !!}
                     {!! Form::text('minimum_lot_charge', old('minimum_lot_charge'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('minimum_lot_charge'))
@@ -193,7 +193,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('thickness_minimum', trans('global.quotes.fields.thickness-minimum').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('thickness_minimum', 'Thickness Min', ['class' => 'control-label']) !!}
                     {!! Form::text('thickness_minimum', old('thickness_minimum'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('thickness_minimum'))
@@ -205,7 +205,7 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('thickness_maximum', trans('global.quotes.fields.thickness-maximum').'', ['class' => 'control-label']) !!}
+                    {!! Form::label('thickness_maximum', 'Thickness Max', ['class' => 'control-label']) !!}
                     {!! Form::text('thickness_maximum', old('thickness_maximum'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('thickness_maximum'))

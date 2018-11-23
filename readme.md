@@ -7,6 +7,8 @@ Configure picture uploads for DMRS
 Fix print page for quote views
 Make quote create form more compact
 
+20181123
+Tied DMRS and CARS together.
 
 ~~done Fix editing DMR's. ~~
 ~~done Fix upload locations for DMR's~~

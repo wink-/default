@@ -15,10 +15,10 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped display compact ajaxTable @can('quote_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped display compact ajaxTable @can('mass_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        @can('quote_delete')
+                        @can('mass_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
                         <th>Quote #</th>
@@ -50,12 +50,12 @@
 
 @section('javascript') 
     <script>
-        @can('quote_delete')
+        @can('mass_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.quotes.mass_destroy') }}'; @endif
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.quotes.index') !!}?show_deleted={{ request('show_deleted') }}';
-            window.dtDefaultOptions.columns = [@can('quote_delete')
+            window.dtDefaultOptions.columns = [@can('mass_delete')
                 @if ( request('show_deleted') != 1 )
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
@@ -71,7 +71,7 @@
                 {data: 'created_at', name: 'created_at'},
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];
-            window.dtDefaultOptions.order = [[ 1, "desc" ]];
+            window.dtDefaultOptions.order = [[ 0, "desc" ]];
             processAjaxTables();
         });
     </script>

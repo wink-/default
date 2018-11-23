@@ -80,6 +80,7 @@ class ProcessesController extends Controller
 
             $table->rawColumns(['actions','massDelete','compliant_rohs','compliant_reach','archive']);
 
+
             return $table->make(true);
         }
 

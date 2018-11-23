@@ -18,10 +18,10 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped display compact ajaxTable @can('workorder_delete') dt-select @endcan">
+            <table class="table table-bordered table-striped display compact ajaxTable @can('mass_delete') dt-select @endcan">
                 <thead>
                     <tr>
-                        @can('workorder_delete')
+                        @can('mass_delete')
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
 
@@ -57,12 +57,12 @@
 
 @section('javascript') 
     <script>
-        @can('workorder_delete')
+        @can('mass_delete')
             window.route_mass_crud_entries_destroy = '{{ route('admin.workorders.mass_destroy') }}';
         @endcan
         $(document).ready(function () {
             window.dtDefaultOptions.ajax = '{!! route('admin.workorders.index') !!}';
-            window.dtDefaultOptions.columns = [@can('workorder_delete')
+            window.dtDefaultOptions.columns = [@can('wmass_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan{data: 'number', name: 'number'},
                 {data: 'customer.code', name: 'customer.code'},
