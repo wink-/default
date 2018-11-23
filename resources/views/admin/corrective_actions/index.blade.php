@@ -24,10 +24,10 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('quality_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped ajaxTable @can('mass_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        @can('quality_delete')
+                        @can('mass_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
@@ -49,9 +49,9 @@
     </div>
 @stop
 
-@section('javascript') 
+@section('javascript')
     <script>
-        @can('quality_delete')
+        @can('mass_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.corrective_actions.mass_destroy') }}'; @endif
         @endcan
         $(document).ready(function () {
