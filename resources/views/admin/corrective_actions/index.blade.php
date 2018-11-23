@@ -24,16 +24,19 @@
         </div>
 
         <div class="panel-body table-responsive">
-            <table class="table table-bordered table-striped ajaxTable @can('corrective_action_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
+            <table class="table table-bordered table-striped ajaxTable @can('quality_delete') @if ( request('show_deleted') != 1 ) dt-select @endif @endcan">
                 <thead>
                     <tr>
-                        @can('corrective_action_delete')
+                        @can('quality_delete')
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                        <th>@lang('global.corrective-actions.fields.discrepant-material')</th>
-                        <th>@lang('global.corrective-actions.fields.complete')</th>
-                        <th>@lang('global.corrective-actions.fields.completed-at')</th>
+                        <th>DMR #</th>
+                        <th>Customer</th>
+                        <th>Part Number</th>
+                        <th>Process</th>
+                        <th>Complete</th>
+                        <th>Completed At</th>
                         @if( request('show_deleted') == 1 )
                         <th>&nbsp;</th>
                         @else
@@ -48,7 +51,7 @@
 
 @section('javascript') 
     <script>
-        @can('corrective_action_delete')
+        @can('quality_delete')
             @if ( request('show_deleted') != 1 ) window.route_mass_crud_entries_destroy = '{{ route('admin.corrective_actions.mass_destroy') }}'; @endif
         @endcan
         $(document).ready(function () {
@@ -58,7 +61,10 @@
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endif
                 @endcan
-                {data: 'discrepant_material.part_number', name: 'discrepant_material.part_number'},
+                {data: 'discrepant_material_id', name: 'discrepant_material_id'},
+                {data: 'customer', name: 'customer'},
+                {data: 'part_number', name: 'part_number'},
+                {data: 'process', name: 'process'},
                 {data: 'complete', name: 'complete'},
                 {data: 'completed_at', name: 'completed_at'},
                 

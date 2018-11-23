@@ -29,6 +29,8 @@ class CorrectiveAction extends Model
     public static $searchable = [
     ];
     
+
+    
     public static function boot()
     {
         parent::boot();
@@ -75,9 +77,11 @@ class CorrectiveAction extends Model
         }
     }
     
+   
+
     public function discrepant_material()
     {
-        return $this->belongsTo(DiscrepantMaterial::class, 'discrepant_material_id')->withTrashed();
+        return $this->belongsTo('App\DiscrepantMaterial', 'discrepant_material_id', 'id');
     }
     
 }

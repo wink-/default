@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\CorrectiveAction;
+use App\DiscrepantMaterial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
@@ -42,13 +43,13 @@ class CorrectiveActionsController extends Controller
             }
             $query->select([
                 'pluto_corrective_actions.id',
-/*                'pluto_corrective_actions.discrepant_material_id',
+                'pluto_corrective_actions.discrepant_material_id',
                 'pluto_corrective_actions.description_of_non_conformance',
                 'pluto_corrective_actions.containment',
                 'pluto_corrective_actions.interim_action',
                 'pluto_corrective_actions.preventative_action',
                 'pluto_corrective_actions.root_cause',
-                'pluto_corrective_actions.verification',*/
+                'pluto_corrective_actions.verification',
                 'pluto_corrective_actions.complete',
                 'pluto_corrective_actions.completed_at',
                 'pluto_corrective_actions.supporting_document',
@@ -66,9 +67,18 @@ class CorrectiveActionsController extends Controller
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('discrepant_material.part_number', function ($row) {
-                return $row->discrepant_material ? $row->discrepant_material->id : '';
+            $table->editColumn('part_number', function ($row) {
+               //return $row->discrepant_material ? $row->discrepant_material->part_number : '';
+                $url = '<a href="'.route('admin.parts.show', ['id' => $row->discrepant_material->part_id]).'">'.$row->discrepant_material->part_number.'</a>';
+
+                return $row->discrepant_material ? $url : '';
             });
+            $table->editColumn('customer', function ($row) {
+                return $row->discrepant_material ? $row->discrepant_material->customer_code : '';
+            });
+            $table->editColumn('process', function ($row) {
+                return $row->discrepant_material ? $row->discrepant_material->process_code : '';
+            });             
             $table->editColumn('description_of_non_conformance', function ($row) {
                 return $row->description_of_non_conformance ? $row->description_of_non_conformance : '';
             });
@@ -97,7 +107,7 @@ class CorrectiveActionsController extends Controller
                 if($row->supporting_document) { return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->supporting_document) .'" target="_blank">Download file</a>'; };
             });
 
-            $table->rawColumns(['actions','massDelete','complete','supporting_document']);
+            $table->rawColumns(['actions','massDelete','complete','supporting_document', 'part_number']);
 
             return $table->make(true);
         }
@@ -117,8 +127,9 @@ class CorrectiveActionsController extends Controller
         }
         
         //$discrepant_materials = \App\DiscrepantMaterial::get()->pluck('part_number', 'id')->prepend('Please Select');
-        $discrepant_materials = \App\DiscrepantMaterial::where('corrective_action_due_date')->pluck('workorder', 'id')->prepend('Please Select');
-
+        //$discrepant_materials = DiscrepantMaterial::where('corrective_action_due_date')->pluck('workorder', 'id');
+        $discrepant_materials = DiscrepantMaterial::where('corrective_action_due_date', '>', 0)->where('corrective_action_completed', '=', 0)->pluck('workorder', 'id');
+        
         return view('admin.corrective_actions.create', compact('discrepant_materials'));
     }
 
@@ -133,8 +144,21 @@ class CorrectiveActionsController extends Controller
         if (! Gate::allows('quality_create')) {
             return abort(401);
         }
-        $request = $this->saveFiles($request);
+
         $corrective_action = CorrectiveAction::create($request->all());
+
+
+        if($request->hasFile('supporting_document')) {
+            $request = $this->saveFiles($request, '/quality/corrective_actions', 'car_support_form_'.$corrective_action->id.'.'.$request->supporting_document->extension());
+        }
+
+        $request = $this->saveFiles($request);
+
+        if ($corrective_action->complete) {
+            $discrepant_material = DiscrepantMaterial::findOrFail($corrective_action->discrepant_material_id);
+            $discrepant_material->corrective_action_completed = $corrective_action->id;
+            $discrepant_material->save();
+        }
 
 
 
@@ -154,7 +178,7 @@ class CorrectiveActionsController extends Controller
             return abort(401);
         }
         
-        $discrepant_materials = \App\DiscrepantMaterial::get()->pluck('part_number', 'id')->prepend(trans('global.app_please_select'), '');
+        $discrepant_materials = \App\DiscrepantMaterial::get()->pluck('workorder', 'id');
 
         $corrective_action = CorrectiveAction::findOrFail($id);
 
@@ -176,6 +200,12 @@ class CorrectiveActionsController extends Controller
         $request = $this->saveFiles($request);
         $corrective_action = CorrectiveAction::findOrFail($id);
         $corrective_action->update($request->all());
+
+        if ($corrective_action->complete) {
+            $discrepant_material = DiscrepantMaterial::findOrFail($corrective_action->discrepant_material_id);
+            $discrepant_material->corrective_action_completed = $corrective_action->id;
+            $discrepant_material->save();
+        }
 
 
 

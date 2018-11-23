@@ -14,7 +14,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.corrective-actions.fields.discrepant-material')</th>
-                            <td field-key='discrepant_material'>{{ $corrective_action->discrepant_material->part_number or '' }}</td>
+                            <td field-key='discrepant_material'>{{ $corrective_action->discrepant_material->id or '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.corrective-actions.fields.description-of-non-conformance')</th>
@@ -48,9 +48,14 @@
                             <th>@lang('global.corrective-actions.fields.completed-at')</th>
                             <td field-key='completed_at'>{{ $corrective_action->completed_at }}</td>
                         </tr>
-                        <tr>
-                            <th>@lang('global.corrective-actions.fields.supporting-document')</th>
-                            <td field-key='supporting_document'>@if($corrective_action->supporting_document)<a href="{{ asset(env('UPLOAD_PATH').'/' . $corrective_action->supporting_document) }}" target="_blank">Download file</a>@endif</td>
+                        <tr>                            
+                            <th>Supporting Document</th>
+                            <td field-key='print'>
+                              @if(file_exists( public_path().'/quality/corrective_actions/car_support_form_'.$corrective_action->id.'.pdf' ))
+                                <a href="{{ asset(env('UPLOAD_PATH').'/quality/corrective_actions/car_support_form_' . $corrective_action->id.'.pdf') }}" target="_blank">Download File</a>
+                              @else
+                                No Form
+                              @endif
                         </tr>
                     </table>
                 </div>
