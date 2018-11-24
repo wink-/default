@@ -159,5 +159,4 @@ class Part extends Model
     {
         return $this->belongsTo(Process::class, 'process_code', 'code')->withTrashed();
     }
-    
 }

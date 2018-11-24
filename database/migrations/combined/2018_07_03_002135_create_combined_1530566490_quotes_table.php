@@ -12,7 +12,7 @@ class CreateCombined1530566490QuotesTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('quotes')) {
+        if (! Schema::hasTable('quotes')) {
             Schema::create('quotes', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('partnumber')->nullable();

@@ -78,5 +78,4 @@ class ProcessTest extends DuskTestCase
                 ->assertNotChecked("archive");
         });
     }
-
 }

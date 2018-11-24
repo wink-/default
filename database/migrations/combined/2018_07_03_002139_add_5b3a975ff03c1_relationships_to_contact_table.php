@@ -12,12 +12,11 @@ class Add5b3a975ff03c1RelationshipsToContactTable extends Migration
      */
     public function up()
     {
-        Schema::table('contacts', function(Blueprint $table) {
+        Schema::table('contacts', function (Blueprint $table) {
             if (!Schema::hasColumn('contacts', 'customer_id')) {
                 $table->integer('customer_id')->unsigned()->nullable();
                 $table->foreign('customer_id', '180019_5b3a68ccbaca3')->references('id')->on('customers')->onDelete('cascade');
-                }
-                
+            }
         });
     }
 
@@ -28,13 +27,12 @@ class Add5b3a975ff03c1RelationshipsToContactTable extends Migration
      */
     public function down()
     {
-        Schema::table('contacts', function(Blueprint $table) {
-            if(Schema::hasColumn('contacts', 'customer_id')) {
+        Schema::table('contacts', function (Blueprint $table) {
+            if (Schema::hasColumn('contacts', 'customer_id')) {
                 $table->dropForeign('180019_5b3a68ccbaca3');
                 $table->dropIndex('180019_5b3a68ccbaca3');
                 $table->dropColumn('customer_id');
             }
-            
         });
     }
 }

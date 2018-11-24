@@ -46,10 +46,10 @@ class Contact extends Model
      * Accessor
      * @param  string  $value
      * @return string
-     */    
+     */
     public function getFullNameAttribute($value)
     {
-       return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
     }
 
     /**
@@ -71,7 +71,7 @@ class Contact extends Model
     public function getLastNameAttribute($value)
     {
         return ucfirst($value);
-    }    
+    }
      
     /**
      * Set the first name.
@@ -103,5 +103,4 @@ class Contact extends Model
     {
         return $this->belongsTo(Customer::class, 'customer_id')->withTrashed();
     }
-    
 }

@@ -94,5 +94,4 @@ class CorrectiveActionTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

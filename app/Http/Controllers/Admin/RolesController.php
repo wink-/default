@@ -120,10 +120,12 @@ class RolesController extends Controller
         }
         
         $permissions = \App\Permission::get()->pluck('title', 'id');
-$users = \App\User::whereHas('role',
-                    function ($query) use ($id) {
+        $users = \App\User::whereHas(
+            'role',
+            function ($query) use ($id) {
                         $query->where('id', $id);
-                    })->get();
+            }
+        )->get();
 
         $role = Role::findOrFail($id);
 
@@ -166,5 +168,4 @@ $users = \App\User::whereHas('role',
             }
         }
     }
-
 }

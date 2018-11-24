@@ -335,5 +335,4 @@ class PartsController extends Controller
             }
         }
     }
-
 }

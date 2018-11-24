@@ -119,5 +119,4 @@ class DiscrepantMaterialTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

@@ -120,7 +120,8 @@ class UsersController extends Controller
         }
         
         $roles = \App\Role::get()->pluck('title', 'id');
-$user_actions = \App\UserAction::where('user_id', $id)->get();$quotes = \App\Quote::where('user_id', $id)->get();
+        $user_actions = \App\UserAction::where('user_id', $id)->get();
+        $quotes = \App\Quote::where('user_id', $id)->get();
 
         $user = User::findOrFail($id);
 
@@ -163,5 +164,4 @@ $user_actions = \App\UserAction::where('user_id', $id)->get();$quotes = \App\Quo
             }
         }
     }
-
 }

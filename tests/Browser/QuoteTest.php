@@ -172,5 +172,4 @@ class QuoteTest extends DuskTestCase
                 ->assertSeeIn("td[field-key='user']", $quote->user->name);
         });
     }
-
 }

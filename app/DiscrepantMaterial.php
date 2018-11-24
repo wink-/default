@@ -170,5 +170,4 @@ class DiscrepantMaterial extends Model implements HasMedia
     {
         return $this->belongsTo(Process::class, 'process_code', 'code')->withTrashed();
     }
-    
 }

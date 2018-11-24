@@ -62,5 +62,4 @@ class PermissionTest extends DuskTestCase
                 ->assertSeeIn("td[field-key='title']", $permission->title);
         });
     }
-
 }

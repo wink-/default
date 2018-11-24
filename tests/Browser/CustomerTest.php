@@ -161,5 +161,4 @@ class CustomerTest extends DuskTestCase
                 ->assertSeeIn("td[field-key='revision']", $customer->revision);
         });
     }
-
 }

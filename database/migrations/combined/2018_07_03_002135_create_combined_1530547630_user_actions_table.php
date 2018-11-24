@@ -12,7 +12,7 @@ class CreateCombined1530547630UserActionsTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('user_actions')) {
+        if (! Schema::hasTable('user_actions')) {
             Schema::create('user_actions', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('action');
@@ -20,7 +20,6 @@ class CreateCombined1530547630UserActionsTable extends Migration
                 $table->integer('action_id')->nullable();
                 
                 $table->timestamps();
-                
             });
         }
     }

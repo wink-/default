@@ -222,5 +222,4 @@ class PartTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

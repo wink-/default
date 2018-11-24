@@ -89,5 +89,4 @@ class ContactTest extends DuskTestCase
                 ->assertNotChecked("archive");
         });
     }
-
 }

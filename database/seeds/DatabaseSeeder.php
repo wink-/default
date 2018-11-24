@@ -21,6 +21,5 @@ class DatabaseSeeder extends Seeder
         $this->call(UserActionSeed::class);
         $this->call(RoleSeedPivot::class);
         $this->call(UserSeedPivot::class);
-
     }
 }

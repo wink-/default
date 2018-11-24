@@ -28,11 +28,10 @@ class ProcessesController extends Controller
         if (request()->ajax()) {
             $query = Process::query();
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('process_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('process_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }

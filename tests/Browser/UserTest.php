@@ -16,8 +16,8 @@ class UserTest extends DuskTestCase
         $user = factory('App\User')->make();
 
         $relations = [
-            factory('App\Role')->create(), 
-            factory('App\Role')->create(), 
+            factory('App\Role')->create(),
+            factory('App\Role')->create(),
         ];
 
         $this->browse(function (Browser $browser) use ($admin, $user, $relations) {
@@ -45,8 +45,8 @@ class UserTest extends DuskTestCase
         $user2 = factory('App\User')->make();
 
         $relations = [
-            factory('App\Role')->create(), 
-            factory('App\Role')->create(), 
+            factory('App\Role')->create(),
+            factory('App\Role')->create(),
         ];
 
         $this->browse(function (Browser $browser) use ($admin, $user, $user2, $relations) {
@@ -73,8 +73,8 @@ class UserTest extends DuskTestCase
         $user = factory('App\User')->create();
 
         $relations = [
-            factory('App\Role')->create(), 
-            factory('App\Role')->create(), 
+            factory('App\Role')->create(),
+            factory('App\Role')->create(),
         ];
 
         $user->role()->attach([$relations[0]->id, $relations[1]->id]);
@@ -89,5 +89,4 @@ class UserTest extends DuskTestCase
                 ->assertSeeIn("tr:last-child td[field-key='role'] span:last-child", $relations[1]->title);
         });
     }
-
 }

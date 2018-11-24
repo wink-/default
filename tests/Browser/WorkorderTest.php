@@ -162,5 +162,4 @@ class WorkorderTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

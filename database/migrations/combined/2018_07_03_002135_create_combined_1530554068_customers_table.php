@@ -12,7 +12,7 @@ class CreateCombined1530554068CustomersTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('customers')) {
+        if (! Schema::hasTable('customers')) {
             Schema::create('customers', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('code')->nullable();

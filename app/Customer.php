@@ -72,5 +72,4 @@ class Customer extends Model
     {
         $this->attributes['revision'] = $input ? $input : null;
     }
-    
 }
