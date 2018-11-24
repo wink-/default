@@ -71,7 +71,7 @@
 
                         <tr>
                             <th>Process</th>
-                            <td field-key='process'>{{ $quote->process->name or '' }}</td>
+                            <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                             <th>Specification</th>
                             <td field-key='specification'>{{ $quote->specification ? $quote->specification : 'None' }}</td>
                         </tr>
@@ -158,7 +158,7 @@
                     
                         <tr>
                             <th>Quoted By</th>
-                            <td field-key='user'>{{  $quote->user->name or 'sales@surfacefinishtech.com' }}</td>
+                            <td field-key='user'>{{  $quote->user->name ?? 'sales@surfacefinishtech.com' }}</td>
                         </tr>
 
                     </table>

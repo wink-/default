@@ -22,7 +22,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.parts.fields.customer')</th>
-                            <td field-key='customer'>{{ $part->customer->code or '' }}</td>
+                            <td field-key='customer'>{{ $part->customer->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.customer.fields.name')</th>
@@ -30,7 +30,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.parts.fields.process')</th>
-                            <td field-key='process'>{{ $part->process->code or '' }}</td>
+                            <td field-key='process'>{{ $part->process->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.processes.fields.name')</th>
@@ -201,7 +201,7 @@
         @if (count($discrepant_materials) > 0)
             @foreach ($discrepant_materials as $discrepant_material)
                 <tr data-entry-id="{{ $discrepant_material->id }}">
-                    <td field-key='workorder'>{{ $discrepant_material->workorder or '' }}</td>
+                    <td field-key='workorder'>{{ $discrepant_material->workorder ?? '' }}</td>
                     <td field-key='part_number'>{{ $discrepant_material->part_number }}</td>
                     <td field-key='customer_code'>{{ $discrepant_material->customer_code }}</td>
                     <td field-key='process_code'>{{ $discrepant_material->process_code }}</td>

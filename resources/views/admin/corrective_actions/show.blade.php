@@ -14,7 +14,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.corrective-actions.fields.discrepant-material')</th>
-                            <td field-key='discrepant_material'>{{ $corrective_action->discrepant_material->id or '' }}</td>
+                            <td field-key='discrepant_material'>{{ $corrective_action->discrepant_material->id ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.corrective-actions.fields.description-of-non-conformance')</th>

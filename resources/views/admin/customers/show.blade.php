@@ -187,7 +187,7 @@
         @if (count($contacts) > 0)
             @foreach ($contacts as $contact)
                 <tr data-entry-id="{{ $contact->id }}">
-                    <td field-key='customer'>{{ $contact->customer->code or '' }}</td>
+                    <td field-key='customer'>{{ $contact->customer->code ?? '' }}</td>
                                 <td field-key='first_name'>{{ $contact->first_name }}</td>
                                 <td field-key='last_name'>{{ $contact->last_name }}</td>
                                 <td field-key='phone'>{{ $contact->phone }}</td>
@@ -262,9 +262,9 @@
         @if (count($quotes) > 0)
             @foreach ($quotes as $quote)
                 <tr data-entry-id="{{ $quote->id }}">
-                    <td field-key='customer'>{{ $quote->customer->name or '' }}</td>
+                    <td field-key='customer'>{{ $quote->customer->name ?? '' }}</td>
                                 <td field-key='partnumber'>{{ $quote->partnumber }}</td>
-                                <td field-key='process'>{{ $quote->process->name or '' }}</td>
+                                <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>
                                 <td field-key='price'>{{ $quote->price }}</td>
@@ -339,7 +339,7 @@
         @if (count($discrepant_materials) > 0)
             @foreach ($discrepant_materials as $discrepant_material)
                 <tr data-entry-id="{{ $discrepant_material->id }}">
-                    <td field-key='workorder'>{{ $discrepant_material->workorder or '' }}</td>
+                    <td field-key='workorder'>{{ $discrepant_material->workorder ?? '' }}</td>
                     <td field-key='part_number'>{{ $discrepant_material->part_number }}</td>
                     <td field-key='customer_code'>{{ $discrepant_material->customer_code }}</td>
                     <td field-key='process_code'>{{ $discrepant_material->process_code }}</td>
@@ -435,8 +435,8 @@
                 <tr data-entry-id="{{ $part->id }}">
                     <td field-key='number'>{{ $part->number }}</td>
                                 <td field-key='description'>{{ $part->description }}</td>
-                                <td field-key='customer'>{{ $part->customer->code or '' }}</td>
-                                <td field-key='process'>{{ $part->process->code or '' }}</td>
+                                <td field-key='customer'>{{ $part->customer->code ?? '' }}</td>
+                                <td field-key='process'>{{ $part->process->code ?? '' }}</td>
                                 <td field-key='method_code'>{{ $part->method_code }}</td>
                                 <td field-key='price'>{{ $part->price }}</td>
                                 <td field-key='certify'>{{ Form::checkbox("certify", 1, $part->certify == 1 ? true : false, ["disabled"]) }}</td>

@@ -23,11 +23,11 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.quotes.fields.customer')</th>
-                            <td field-key='customer'><a href="{{action('Admin\CustomersController@show', $quote->customer->id)}}">{{ $quote->customer->name or '' }}</a> &nbsp;&nbsp;&nbsp;&nbsp;<b>Code</b> &nbsp;{{ $quote->customer->code or '' }}</td>
+                            <td field-key='customer'><a href="{{action('Admin\CustomersController@show', $quote->customer->id)}}">{{ $quote->customer->name ?? '' }}</a> &nbsp;&nbsp;&nbsp;&nbsp;<b>Code</b> &nbsp;{{ $quote->customer->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.contact')</th>
-                            <td field-key='contact'>{{ $quote->contact->first_name or '' }} {{ $quote->contact->last_name or '' }}</td>
+                            <td field-key='contact'>{{ $quote->contact->first_name ?? '' }} {{ $quote->contact->last_name ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.partnumber')</th>
@@ -39,7 +39,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.process')</th>
-                            <td field-key='process'>{{ $quote->process->name or '' }}</td>
+                            <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.specification')</th>
@@ -161,7 +161,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.user')</th>
-                            <td field-key='user'>{{ $quote->user->name or '' }}</td>
+                            <td field-key='user'>{{ $quote->user->name ?? '' }}</td>
                         </tr>
                     </table>
                 </div>

@@ -36,8 +36,8 @@
                         @foreach ($user_actions as $user_action)
                             <tr data-entry-id="{{ $user_action->id }}">
                                 
-                                <td>{{ $user_action->created_at or '' }}</td>
-                                <td field-key='user'>{{ $user_action->user->name or '' }}</td>
+                                <td>{{ $user_action->created_at ?? '' }}</td>
+                                <td field-key='user'>{{ $user_action->user->name ?? '' }}</td>
                                 <td field-key='action'>{{ $user_action->action }}</td>
                                 <td field-key='action_model'>{{ $user_action->action_model }}</td>
                                 <td field-key='action_id'>{{ $user_action->action_id }}</td>

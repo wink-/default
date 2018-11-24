@@ -18,7 +18,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.workorders.fields.customer')</th>
-                            <td field-key='customer'>{{ $workorder->customer->code or '' }}</td>
+                            <td field-key='customer'>{{ $workorder->customer->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.customer.fields.name')</th>
@@ -26,7 +26,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.workorders.fields.part')</th>
-                            <td field-key='part'>{{ $workorder->part->number or '' }}</td>
+                            <td field-key='part'>{{ $workorder->part->number ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.workorders.fields.part-number')</th>
@@ -34,7 +34,7 @@
                         </tr>
                         <tr>
                             <th>@lang('global.workorders.fields.process')</th>
-                            <td field-key='process'>{{ $workorder->process->code or '' }}</td>
+                            <td field-key='process'>{{ $workorder->process->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.workorders.fields.price')</th>
