@@ -21,5 +21,4 @@ class Permission extends Model
 
         Permission::observe(new \App\Observers\UserActionsObserver);
     }
-    
 }

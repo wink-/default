@@ -14,12 +14,12 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.discrepant-material.fields.workorder')</th>
-                            <td field-key='workorder'>{{ $discrepant_material->workorder or '' }}</td>
+                            <td field-key='workorder'>{{ $discrepant_material->workorder ?? '' }}</td>
                         </tr>
                         
                         <tr>
                             <th>@lang('global.discrepant-material.fields.part')</th>
-                            <td field-key='part'>{{ $discrepant_material->part->number or '' }}</td>
+                            <td field-key='part'>{{ $discrepant_material->part->number ?? '' }}</td>
                         </tr>
 
                         <tr>
@@ -29,7 +29,7 @@
 
                         <tr>
                             <th>@lang('global.discrepant-material.fields.customer')</th>
-                            <td field-key='customer'>{{ $discrepant_material->customer->name or '' }}</td>
+                            <td field-key='customer'>{{ $discrepant_material->customer->name ?? '' }}</td>
                         </tr>
                        
                         <tr>
@@ -39,7 +39,7 @@
 
                         <tr>
                             <th>@lang('global.discrepant-material.fields.process')</th>
-                            <td field-key='process'>{{ $discrepant_material->process->code or '' }}</td>
+                            <td field-key='process'>{{ $discrepant_material->process->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.discrepant-material.fields.process-code')</th>

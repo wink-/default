@@ -14,7 +14,7 @@
                     <table class="table table-bordered table-striped">
                         <tr>
                             <th>@lang('global.contacts.fields.customer')</th>
-                            <td field-key='customer'>{{ $contact->customer->code or '' }}</td>
+                            <td field-key='customer'>{{ $contact->customer->code ?? '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.customer.fields.name')</th>
@@ -78,9 +78,9 @@
         @if (count($quotes) > 0)
             @foreach ($quotes as $quote)
                 <tr data-entry-id="{{ $quote->id }}">
-                    <td field-key='customer'>{{ $quote->customer->name or '' }}</td>
+                    <td field-key='customer'>{{ $quote->customer->name ?? '' }}</td>
                                 <td field-key='partnumber'>{{ $quote->partnumber }}</td>
-                                <td field-key='process'>{{ $quote->process->name or '' }}</td>
+                                <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>
                                 <td field-key='price'>{{ $quote->price }}</td>

@@ -11,11 +11,11 @@ trait FileUploadTrait
     /**
      * File upload trait used in controllers to upload files
      */
-    public function saveFiles(Request $request, string $location = NULL, string $filename = NULL)
+    public function saveFiles(Request $request, string $location = null, string $filename = null)
     {
 
-		//$uploadPath = public_path(env('UPLOAD_PATH'));
-		$uploadPath = public_path(env('UPLOAD_PATH').$location);
+        //$uploadPath = public_path(env('UPLOAD_PATH'));
+        $uploadPath = public_path(env('UPLOAD_PATH').$location);
         $thumbPath = public_path(env('UPLOAD_PATH').$location.'/thumb');
         if (! file_exists($uploadPath)) {
             mkdir($uploadPath, 0775);
@@ -53,9 +53,9 @@ trait FileUploadTrait
                     $image->save($uploadPath . '/' . $filename);
                     $finalRequest = new Request(array_merge($finalRequest->all(), [$key => $filename]));
                 } else {
-                    if (!$filename) {                    
+                    if (!$filename) {
                         $filename = time() . '-' . $request->file($key)->getClientOriginalName();
-                    }                    
+                    }
                     $request->file($key)->move($uploadPath, $filename);
                     $finalRequest = new Request(array_merge($finalRequest->all(), [$key => $filename]));
                 }

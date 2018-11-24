@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use DB;
 use Flash;
 use App\Workorder;
@@ -35,11 +36,10 @@ class DiscrepantMaterialsController extends Controller
         if (request()->ajax()) {
             $query = DiscrepantMaterial::query();
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('quality_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('quality_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -141,7 +141,6 @@ class DiscrepantMaterialsController extends Controller
         }
 
         if (!$wo) {
-            
             Flash::error('Workorder '.$request->workorder. ' Not Found');
             return redirect(route('admin.discrepant_materials.create'));
         }
@@ -158,12 +157,12 @@ class DiscrepantMaterialsController extends Controller
         $request->request->add(['process_id' => $process->id]);
         $request->request->add(['process_code' => $wo->process_code]);
         $request->request->add(['part_id' => $wo->part_id]);
-        $request->request->add(['part_number' => $wo->part_number]);    
+        $request->request->add(['part_number' => $wo->part_number]);
 
 
         $discrepant_material = DiscrepantMaterial::create($request->all());
 
-        if($request->hasFile('form')) {
+        if ($request->hasFile('form')) {
             $request = $this->saveFiles($request, '/dmr', 'customer_dmr_form_'.$discrepant_material->id.'.'.$request->form->extension());
         }
 
@@ -216,10 +215,9 @@ class DiscrepantMaterialsController extends Controller
         }
 
         if (!$wo) {
-            
             Flash::error('Workorder '.$request->workorder. ' Not Found');
             return redirect(route('admin.discrepant_materials.create'));
-        }        
+        }
         $customer = Customer::where('code', '=', $wo->customer_code)->first();
         $process = Process::where('code', '=', $wo->process_code)->first();
   
@@ -232,14 +230,14 @@ class DiscrepantMaterialsController extends Controller
         $request->request->add(['process_id' => $process->id]);
         $request->request->add(['process_code' => $wo->process_code]);
         $request->request->add(['part_id' => $wo->part_id]);
-        $request->request->add(['part_number' => $wo->part_number]); 
+        $request->request->add(['part_number' => $wo->part_number]);
         
 
         $discrepant_material = DiscrepantMaterial::findOrFail($id);
         $discrepant_material->update($request->all());
-        if($request->hasFile('form')) {
+        if ($request->hasFile('form')) {
             $request = $this->saveFiles($request, '/dmr', 'customer_dmr_form_'.$discrepant_material->id.'.'.$request->form->extension());
-        }        
+        }
 
 
         $media = [];

@@ -2,7 +2,7 @@
 
 $factory->define(App\CorrectiveAction::class, function (Faker\Generator $faker) {
     return [
-        "discrepant_material_id" => factory('App\DiscrepantMaterial')->create(),
+        "discrepant_material_id" => factory(\App\DiscrepantMaterial::class)->create(),
         "description_of_non_conformance" => $faker->name,
         "containment" => $faker->name,
         "interim_action" => $faker->name,

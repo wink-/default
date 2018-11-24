@@ -51,5 +51,4 @@ class Process extends Model
     {
         $this->attributes['revision'] = $input ? $input : null;
     }
-    
 }

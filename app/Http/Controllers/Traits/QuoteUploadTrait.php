@@ -14,8 +14,8 @@ trait QuoteUploadTrait
     public function saveFiles(Request $request, $filename)
     {
 
-		$uploadPath = public_path(env('UPLOAD_PATH').'/quotes');
-		$thumbPath = public_path(env('UPLOAD_PATH').'/thumb');
+        $uploadPath = public_path(env('UPLOAD_PATH').'/quotes');
+        $thumbPath = public_path(env('UPLOAD_PATH').'/thumb');
         if (! file_exists($uploadPath)) {
             mkdir($uploadPath, 0775);
             mkdir($thumbPath, 0775);
@@ -52,7 +52,7 @@ trait QuoteUploadTrait
                     $finalRequest = new Request(array_merge($finalRequest->all(), [$key => $filename]));
                 } else {
                     //$filename = time() . '-' . $request->file($key)->getClientOriginalName();
-                    //$filename = $quote->id;                    
+                    //$filename = $quote->id;
                     $request->file($key)->move($uploadPath, $filename.'.pdf');
                     $finalRequest = new Request(array_merge($finalRequest->all(), [$key => $filename]));
                 }

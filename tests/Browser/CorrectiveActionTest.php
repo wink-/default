@@ -12,7 +12,7 @@ class CorrectiveActionTest extends DuskTestCase
     public function testCreateCorrectiveAction()
     {
         $admin = \App\User::find(1);
-        $corrective_action = factory('App\CorrectiveAction')->make();
+        $corrective_action = factory(\App\CorrectiveAction::class)->make();
 
         
 
@@ -42,8 +42,8 @@ class CorrectiveActionTest extends DuskTestCase
     public function testEditCorrectiveAction()
     {
         $admin = \App\User::find(1);
-        $corrective_action = factory('App\CorrectiveAction')->create();
-        $corrective_action2 = factory('App\CorrectiveAction')->make();
+        $corrective_action = factory(\App\CorrectiveAction::class)->create();
+        $corrective_action2 = factory(\App\CorrectiveAction::class)->make();
 
         
 
@@ -73,7 +73,7 @@ class CorrectiveActionTest extends DuskTestCase
     public function testShowCorrectiveAction()
     {
         $admin = \App\User::find(1);
-        $corrective_action = factory('App\CorrectiveAction')->create();
+        $corrective_action = factory(\App\CorrectiveAction::class)->create();
 
         
 
@@ -94,5 +94,4 @@ class CorrectiveActionTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

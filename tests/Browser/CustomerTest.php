@@ -13,7 +13,7 @@ class CustomerTest extends DuskTestCase
     public function testCreateCustomer()
     {
         $admin = \App\User::find(1);
-        $customer = factory('App\Customer')->make();
+        $customer = factory(\App\Customer::class)->make();
 
         
 
@@ -60,8 +60,8 @@ class CustomerTest extends DuskTestCase
     public function testEditCustomer()
     {
         $admin = \App\User::find(1);
-        $customer = factory('App\Customer')->create();
-        $customer2 = factory('App\Customer')->make();
+        $customer = factory(\App\Customer::class)->create();
+        $customer2 = factory(\App\Customer::class)->make();
 
         
 
@@ -116,7 +116,7 @@ class CustomerTest extends DuskTestCase
     public function testShowCustomer()
     {
         $admin = \App\User::find(1);
-        $customer = factory('App\Customer')->create();
+        $customer = factory(\App\Customer::class)->create();
 
         
 
@@ -161,5 +161,4 @@ class CustomerTest extends DuskTestCase
                 ->assertSeeIn("td[field-key='revision']", $customer->revision);
         });
     }
-
 }

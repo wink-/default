@@ -13,7 +13,7 @@ class ProcessTest extends DuskTestCase
     public function testCreateProcess()
     {
         $admin = \App\User::find(1);
-        $process = factory('App\Process')->make();
+        $process = factory(\App\Process::class)->make();
 
         
 
@@ -36,8 +36,8 @@ class ProcessTest extends DuskTestCase
     public function testEditProcess()
     {
         $admin = \App\User::find(1);
-        $process = factory('App\Process')->create();
-        $process2 = factory('App\Process')->make();
+        $process = factory(\App\Process::class)->create();
+        $process2 = factory(\App\Process::class)->make();
 
         
 
@@ -61,7 +61,7 @@ class ProcessTest extends DuskTestCase
     public function testShowProcess()
     {
         $admin = \App\User::find(1);
-        $process = factory('App\Process')->create();
+        $process = factory(\App\Process::class)->create();
 
         
 
@@ -78,5 +78,4 @@ class ProcessTest extends DuskTestCase
                 ->assertNotChecked("archive");
         });
     }
-
 }

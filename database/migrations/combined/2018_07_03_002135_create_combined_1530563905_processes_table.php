@@ -12,7 +12,7 @@ class CreateCombined1530563905ProcessesTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('processes')) {
+        if (! Schema::hasTable('processes')) {
             Schema::create('processes', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('code');

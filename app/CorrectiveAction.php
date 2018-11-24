@@ -81,7 +81,6 @@ class CorrectiveAction extends Model
 
     public function discrepant_material()
     {
-        return $this->belongsTo('App\DiscrepantMaterial', 'discrepant_material_id', 'id');
+        return $this->belongsTo(\App\DiscrepantMaterial::class, 'discrepant_material_id', 'id');
     }
-    
 }

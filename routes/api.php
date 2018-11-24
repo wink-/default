@@ -14,8 +14,7 @@ Route::group(['prefix' => '/v1', 'namespace' => 'Api\V1', 'as' => 'api.'], funct
 
         Route::resource('workorders', 'WorkordersController', ['except' => ['create', 'edit']]);
         
-        Route::resource('discrepant_materials', 'DiscrepantMaterialsController', ['except' => ['create', 'edit']]);     
+        Route::resource('discrepant_materials', 'DiscrepantMaterialsController', ['except' => ['create', 'edit']]);
 
         Route::resource('corrective_actions', 'CorrectiveActionsController', ['except' => ['create', 'edit']]);
-
 });

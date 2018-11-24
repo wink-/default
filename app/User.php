@@ -36,8 +36,9 @@ class User extends Authenticatable
      */
     public function setPasswordAttribute($input)
     {
-        if ($input)
+        if ($input) {
             $this->attributes['password'] = app('hash')->needsRehash($input) ? Hash::make($input) : $input;
+        }
     }
     
     
@@ -51,6 +52,6 @@ class User extends Authenticatable
 
     public function sendPasswordResetNotification($token)
     {
-       $this->notify(new ResetPassword($token));
+        $this->notify(new ResetPassword($token));
     }
 }

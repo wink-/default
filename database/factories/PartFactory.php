@@ -4,8 +4,8 @@ $factory->define(App\Part::class, function (Faker\Generator $faker) {
     return [
         "number" => $faker->name,
         "description" => $faker->name,
-        "customer_id" => factory('App\Customer')->create(),
-        "process_id" => factory('App\Process')->create(),
+        "customer_id" => factory(\App\Customer::class)->create(),
+        "process_id" => factory(\App\Process::class)->create(),
         "method_code" => $faker->name,
         "price" => $faker->randomNumber(2),
         "price_code" => $faker->name,

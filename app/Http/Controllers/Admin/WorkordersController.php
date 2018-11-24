@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use Carbon\Carbon;
 use App\Workorder;
 use Illuminate\Http\Request;
@@ -321,5 +322,4 @@ class WorkordersController extends Controller
             }
         }
     }
-
 }

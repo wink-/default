@@ -57,8 +57,8 @@
         @if (count($user_actions) > 0)
             @foreach ($user_actions as $user_action)
                 <tr data-entry-id="{{ $user_action->id }}">
-                    <td>{{ $user_action->created_at or '' }}</td>
-                                <td field-key='user'>{{ $user_action->user->name or '' }}</td>
+                    <td>{{ $user_action->created_at ?? '' }}</td>
+                                <td field-key='user'>{{ $user_action->user->name ?? '' }}</td>
                                 <td field-key='action'>{{ $user_action->action }}</td>
                                 <td field-key='action_model'>{{ $user_action->action_model }}</td>
                                 <td field-key='action_id'>{{ $user_action->action_id }}</td>
@@ -96,9 +96,9 @@
         @if (count($quotes) > 0)
             @foreach ($quotes as $quote)
                 <tr data-entry-id="{{ $quote->id }}">
-                    <td field-key='customer'>{{ $quote->customer->name or '' }}</td>
+                    <td field-key='customer'>{{ $quote->customer->name ?? '' }}</td>
                                 <td field-key='partnumber'>{{ $quote->partnumber }}</td>
-                                <td field-key='process'>{{ $quote->process->name or '' }}</td>
+                                <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>
                                 <td field-key='price'>{{ $quote->price }}</td>

@@ -12,7 +12,7 @@ class WorkorderTest extends DuskTestCase
     public function testCreateWorkorder()
     {
         $admin = \App\User::find(1);
-        $workorder = factory('App\Workorder')->make();
+        $workorder = factory(\App\Workorder::class)->make();
 
         
 
@@ -64,8 +64,8 @@ class WorkorderTest extends DuskTestCase
     public function testEditWorkorder()
     {
         $admin = \App\User::find(1);
-        $workorder = factory('App\Workorder')->create();
-        $workorder2 = factory('App\Workorder')->make();
+        $workorder = factory(\App\Workorder::class)->create();
+        $workorder2 = factory(\App\Workorder::class)->make();
 
         
 
@@ -117,7 +117,7 @@ class WorkorderTest extends DuskTestCase
     public function testShowWorkorder()
     {
         $admin = \App\User::find(1);
-        $workorder = factory('App\Workorder')->create();
+        $workorder = factory(\App\Workorder::class)->create();
 
         
 
@@ -162,5 +162,4 @@ class WorkorderTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

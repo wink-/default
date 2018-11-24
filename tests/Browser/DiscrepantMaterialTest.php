@@ -12,7 +12,7 @@ class DiscrepantMaterialTest extends DuskTestCase
     public function testCreateDiscrepantMaterial()
     {
         $admin = \App\User::find(1);
-        $discrepant_material = factory('App\DiscrepantMaterial')->make();
+        $discrepant_material = factory(\App\DiscrepantMaterial::class)->make();
 
         
 
@@ -53,8 +53,8 @@ class DiscrepantMaterialTest extends DuskTestCase
     public function testEditDiscrepantMaterial()
     {
         $admin = \App\User::find(1);
-        $discrepant_material = factory('App\DiscrepantMaterial')->create();
-        $discrepant_material2 = factory('App\DiscrepantMaterial')->make();
+        $discrepant_material = factory(\App\DiscrepantMaterial::class)->create();
+        $discrepant_material2 = factory(\App\DiscrepantMaterial::class)->make();
 
         
 
@@ -95,7 +95,7 @@ class DiscrepantMaterialTest extends DuskTestCase
     public function testShowDiscrepantMaterial()
     {
         $admin = \App\User::find(1);
-        $discrepant_material = factory('App\DiscrepantMaterial')->create();
+        $discrepant_material = factory(\App\DiscrepantMaterial::class)->create();
 
         
 
@@ -119,5 +119,4 @@ class DiscrepantMaterialTest extends DuskTestCase
                 ->logout();
         });
     }
-
 }

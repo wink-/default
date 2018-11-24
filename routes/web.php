@@ -1,5 +1,7 @@
 <?php
-Route::get('/', function () { return redirect('/admin/home'); });
+Route::get('/', function () {
+    return redirect('/admin/home');
+});
 
 // Authentication Routes...
 $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
@@ -68,7 +70,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('/spatie/media/upload', 'Admin\SpatieMediaController@create')->name('media.upload');
     Route::post('/spatie/media/remove', 'Admin\SpatieMediaController@destroy')->name('media.remove');
 
-    Route::get('/downloadPDF/{id}','Admin\QuotesController@downloadPDF')->name('quotes.print');
+    Route::get('/downloadPDF/{id}', 'Admin\QuotesController@downloadPDF')->name('quotes.print');
 
     Route::get('search', 'MegaSearchController@search')->name('mega-search');
 });

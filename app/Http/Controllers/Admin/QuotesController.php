@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use Carbon\Carbon;
 use App\Quote;
 use Illuminate\Http\Request;
@@ -38,11 +39,10 @@ class QuotesController extends Controller
             $query->with("process");
             $query->with("user");
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('quote_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('quote_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -184,7 +184,9 @@ class QuotesController extends Controller
                 return $row->testing_note ? $row->testing_note : '';
             });
             $table->editColumn('print', function ($row) {
-                if($row->print) { return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print) .'" target="_blank">Download file</a>'; };
+                if ($row->print) {
+                    return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print) .'" target="_blank">Download file</a>';
+                };
             });
             $table->editColumn('notes', function ($row) {
                 return $row->notes ? $row->notes : '';
@@ -211,7 +213,7 @@ class QuotesController extends Controller
         }
 
         $quotes = \App\Quote::where('created_at', '>', Carbon::today()->subDays(30))->get();
-        $quoted = [$quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_min'), 
+        $quoted = [$quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_min'),
                    $quotes->sum('value_min'),
                    $quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_max'),
                    $quotes->sum('value_max')];
@@ -266,7 +268,7 @@ class QuotesController extends Controller
             case "foot":
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
-                break;                
+                break;
             case "inch":
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
@@ -278,7 +280,7 @@ class QuotesController extends Controller
             case "lot":
                 $value_min = $request->price;
                 $value_max = $request->price;
-                break;                
+                break;
         }
 
         if ($value_min < $request->minimum_lot_charge) {
@@ -297,7 +299,7 @@ class QuotesController extends Controller
         $quote = Quote::create($request->all());
         $request = $this->saveFiles($request, $quote->id);
         //return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
-        return redirect()->route('admin.quotes.print', ['id' => $quote->id]);        
+        return redirect()->route('admin.quotes.print', ['id' => $quote->id]);
     }
 
 
@@ -352,7 +354,7 @@ class QuotesController extends Controller
             case "foot":
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
-                break;                
+                break;
             case "inch":
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
@@ -364,7 +366,7 @@ class QuotesController extends Controller
             case "lot":
                 $value_min = $request->price;
                 $value_max = $request->price;
-                break;                
+                break;
         }
 
         if ($value_min < $request->minimum_lot_charge) {
@@ -379,7 +381,7 @@ class QuotesController extends Controller
 
         $request->request->add(['value_min' => $value_min]);
         $request->request->add(['value_max' => $value_max]);
-        $request->request->add(['user_id' => Auth::User()->id]);        
+        $request->request->add(['user_id' => Auth::User()->id]);
 
         $quote = Quote::findOrFail($id);
         $quote->update($request->all());
@@ -415,13 +417,13 @@ class QuotesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function downloadPDF($id){
-      $quote = Quote::find($id);
-      PDF::setOptions(['defaultPaperSize' => "letter"]);
-      $pdf = PDF::loadView('admin.quotes.pdf', compact('quote'));
-      return view('admin.quotes.pdf', compact('quote'));
+    public function downloadPDF($id)
+    {
+        $quote = Quote::find($id);
+        PDF::setOptions(['defaultPaperSize' => "letter"]);
+        $pdf = PDF::loadView('admin.quotes.pdf', compact('quote'));
+        return view('admin.quotes.pdf', compact('quote'));
       //return $pdf->download('Surface Finish Quote '.$quote->id.'.pdf');
-
     }
 
     /**

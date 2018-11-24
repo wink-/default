@@ -29,11 +29,10 @@ class ContactsController extends Controller
             $query = Contact::query();
             $query->with("customer");
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('contact_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('contact_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -177,7 +176,8 @@ class ContactsController extends Controller
             return abort(401);
         }
         
-        $customers = \App\Customer::get()->pluck('code', 'id')->prepend(trans('global.app_please_select'), '');$quotes = \App\Quote::where('contact_id', $id)->get();
+        $customers = \App\Customer::get()->pluck('code', 'id')->prepend(trans('global.app_please_select'), '');
+        $quotes = \App\Quote::where('contact_id', $id)->get();
 
         $contact = Contact::findOrFail($id);
 

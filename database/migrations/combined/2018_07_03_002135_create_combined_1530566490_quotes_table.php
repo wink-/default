@@ -12,18 +12,18 @@ class CreateCombined1530566490QuotesTable extends Migration
      */
     public function up()
     {
-        if(! Schema::hasTable('quotes')) {
+        if (! Schema::hasTable('quotes')) {
             Schema::create('quotes', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('partnumber')->nullable();
                 $table->string('partdescription')->nullable();
                 $table->string('specification')->nullable();
                 $table->string('material');
-                $table->enum('method', array('Barrel Plate', 'Bulk Process', 'Hand Operation', 'Lab Operation', 'Rack Plate'))->nullable();
+                $table->enum('method', ['Barrel Plate', 'Bulk Process', 'Hand Operation', 'Lab Operation', 'Rack Plate'])->nullable();
                 $table->integer('quantity_minimum')->nullable();
                 $table->integer('quantity_maximum')->nullable();
                 $table->decimal('price', 15, 2)->nullable();
-                $table->enum('units', array('each', 'M', 'pound', 'ft', 'lot', 'in', 'sets'));
+                $table->enum('units', ['each', 'M', 'pound', 'ft', 'lot', 'in', 'sets']);
                 $table->integer('quantity_price_break')->nullable();
                 $table->decimal('price_break', 15, 2)->nullable();
                 $table->string('thickness_minimum')->nullable();

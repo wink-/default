@@ -108,10 +108,12 @@ class PermissionsController extends Controller
         if (! Gate::allows('permission_view')) {
             return abort(401);
         }
-        $roles = \App\Role::whereHas('permission',
-                    function ($query) use ($id) {
+        $roles = \App\Role::whereHas(
+            'permission',
+            function ($query) use ($id) {
                         $query->where('id', $id);
-                    })->get();
+            }
+        )->get();
 
         $permission = Permission::findOrFail($id);
 
@@ -154,5 +156,4 @@ class PermissionsController extends Controller
             }
         }
     }
-
 }

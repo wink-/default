@@ -33,11 +33,10 @@ class CorrectiveActionsController extends Controller
             $query = CorrectiveAction::query();
             $query->with("discrepant_material");
             $template = 'actionsTemplate';
-            if(request('show_deleted') == 1) {
-                
-        if (! Gate::allows('corrective_action_delete')) {
-            return abort(401);
-        }
+            if (request('show_deleted') == 1) {
+                if (! Gate::allows('corrective_action_delete')) {
+                    return abort(401);
+                }
                 $query->onlyTrashed();
                 $template = 'restoreTemplate';
             }
@@ -78,7 +77,7 @@ class CorrectiveActionsController extends Controller
             });
             $table->editColumn('process', function ($row) {
                 return $row->discrepant_material ? $row->discrepant_material->process_code : '';
-            });             
+            });
             $table->editColumn('description_of_non_conformance', function ($row) {
                 return $row->description_of_non_conformance ? $row->description_of_non_conformance : '';
             });
@@ -104,7 +103,9 @@ class CorrectiveActionsController extends Controller
                 return $row->completed_at ? $row->completed_at : '';
             });
             $table->editColumn('supporting_document', function ($row) {
-                if($row->supporting_document) { return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->supporting_document) .'" target="_blank">Download file</a>'; };
+                if ($row->supporting_document) {
+                    return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->supporting_document) .'" target="_blank">Download file</a>';
+                };
             });
 
             $table->rawColumns(['actions','massDelete','complete','supporting_document', 'part_number']);
@@ -148,7 +149,7 @@ class CorrectiveActionsController extends Controller
         $corrective_action = CorrectiveAction::create($request->all());
 
 
-        if($request->hasFile('supporting_document')) {
+        if ($request->hasFile('supporting_document')) {
             $request = $this->saveFiles($request, '/quality/corrective_actions', 'car_support_form_'.$corrective_action->id.'.'.$request->supporting_document->extension());
         }
 
