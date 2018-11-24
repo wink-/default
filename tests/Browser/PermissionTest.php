@@ -13,7 +13,7 @@ class PermissionTest extends DuskTestCase
     public function testCreatePermission()
     {
         $admin = \App\User::find(1);
-        $permission = factory('App\Permission')->make();
+        $permission = factory(\App\Permission::class)->make();
 
         
 
@@ -31,8 +31,8 @@ class PermissionTest extends DuskTestCase
     public function testEditPermission()
     {
         $admin = \App\User::find(1);
-        $permission = factory('App\Permission')->create();
-        $permission2 = factory('App\Permission')->make();
+        $permission = factory(\App\Permission::class)->create();
+        $permission2 = factory(\App\Permission::class)->make();
 
         
 
@@ -50,7 +50,7 @@ class PermissionTest extends DuskTestCase
     public function testShowPermission()
     {
         $admin = \App\User::find(1);
-        $permission = factory('App\Permission')->create();
+        $permission = factory(\App\Permission::class)->create();
 
         
 

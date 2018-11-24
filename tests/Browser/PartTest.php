@@ -12,7 +12,7 @@ class PartTest extends DuskTestCase
     public function testCreatePart()
     {
         $admin = \App\User::find(1);
-        $part = factory('App\Part')->make();
+        $part = factory(\App\Part::class)->make();
 
         
 
@@ -92,8 +92,8 @@ class PartTest extends DuskTestCase
     public function testEditPart()
     {
         $admin = \App\User::find(1);
-        $part = factory('App\Part')->create();
-        $part2 = factory('App\Part')->make();
+        $part = factory(\App\Part::class)->create();
+        $part2 = factory(\App\Part::class)->make();
 
         
 
@@ -173,7 +173,7 @@ class PartTest extends DuskTestCase
     public function testShowPart()
     {
         $admin = \App\User::find(1);
-        $part = factory('App\Part')->create();
+        $part = factory(\App\Part::class)->create();
 
         
 

@@ -13,7 +13,7 @@ class QuoteTest extends DuskTestCase
     public function testCreateQuote()
     {
         $admin = \App\User::find(1);
-        $quote = factory('App\Quote')->make();
+        $quote = factory(\App\Quote::class)->make();
 
         
 
@@ -70,8 +70,8 @@ class QuoteTest extends DuskTestCase
     public function testEditQuote()
     {
         $admin = \App\User::find(1);
-        $quote = factory('App\Quote')->create();
-        $quote2 = factory('App\Quote')->make();
+        $quote = factory(\App\Quote::class)->create();
+        $quote2 = factory(\App\Quote::class)->make();
 
         
 
@@ -128,7 +128,7 @@ class QuoteTest extends DuskTestCase
     public function testShowQuote()
     {
         $admin = \App\User::find(1);
-        $quote = factory('App\Quote')->create();
+        $quote = factory(\App\Quote::class)->create();
 
         
 

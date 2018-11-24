@@ -3,10 +3,10 @@
 $factory->define(App\Workorder::class, function (Faker\Generator $faker) {
     return [
         "number" => $faker->randomNumber(2),
-        "customer_id" => factory('App\Customer')->create(),
-        "part_id" => factory('App\Part')->create(),
+        "customer_id" => factory(\App\Customer::class)->create(),
+        "part_id" => factory(\App\Part::class)->create(),
         "part_number" => $faker->name,
-        "process_id" => factory('App\Process')->create(),
+        "process_id" => factory(\App\Process::class)->create(),
         "price" => $faker->randomNumber(2),
         "price_code" => $faker->name,
         "date_received" => $faker->date("Y-m-d H:i:s", $max = 'now'),

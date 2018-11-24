@@ -13,7 +13,7 @@ class ContactTest extends DuskTestCase
     public function testCreateContact()
     {
         $admin = \App\User::find(1);
-        $contact = factory('App\Contact')->make();
+        $contact = factory(\App\Contact::class)->make();
 
         
 
@@ -41,8 +41,8 @@ class ContactTest extends DuskTestCase
     public function testEditContact()
     {
         $admin = \App\User::find(1);
-        $contact = factory('App\Contact')->create();
-        $contact2 = factory('App\Contact')->make();
+        $contact = factory(\App\Contact::class)->create();
+        $contact2 = factory(\App\Contact::class)->make();
 
         
 
@@ -71,7 +71,7 @@ class ContactTest extends DuskTestCase
     public function testShowContact()
     {
         $admin = \App\User::find(1);
-        $contact = factory('App\Contact')->create();
+        $contact = factory(\App\Contact::class)->create();
 
         
 

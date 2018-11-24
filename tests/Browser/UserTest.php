@@ -13,11 +13,11 @@ class UserTest extends DuskTestCase
     public function testCreateUser()
     {
         $admin = \App\User::find(1);
-        $user = factory('App\User')->make();
+        $user = factory(\App\User::class)->make();
 
         $relations = [
-            factory('App\Role')->create(),
-            factory('App\Role')->create(),
+            factory(\App\Role::class)->create(),
+            factory(\App\Role::class)->create(),
         ];
 
         $this->browse(function (Browser $browser) use ($admin, $user, $relations) {
@@ -41,12 +41,12 @@ class UserTest extends DuskTestCase
     public function testEditUser()
     {
         $admin = \App\User::find(1);
-        $user = factory('App\User')->create();
-        $user2 = factory('App\User')->make();
+        $user = factory(\App\User::class)->create();
+        $user2 = factory(\App\User::class)->make();
 
         $relations = [
-            factory('App\Role')->create(),
-            factory('App\Role')->create(),
+            factory(\App\Role::class)->create(),
+            factory(\App\Role::class)->create(),
         ];
 
         $this->browse(function (Browser $browser) use ($admin, $user, $user2, $relations) {
@@ -70,11 +70,11 @@ class UserTest extends DuskTestCase
     public function testShowUser()
     {
         $admin = \App\User::find(1);
-        $user = factory('App\User')->create();
+        $user = factory(\App\User::class)->create();
 
         $relations = [
-            factory('App\Role')->create(),
-            factory('App\Role')->create(),
+            factory(\App\Role::class)->create(),
+            factory(\App\Role::class)->create(),
         ];
 
         $user->role()->attach([$relations[0]->id, $relations[1]->id]);

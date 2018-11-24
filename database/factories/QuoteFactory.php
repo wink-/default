@@ -2,11 +2,11 @@
 
 $factory->define(App\Quote::class, function (Faker\Generator $faker) {
     return [
-        "customer_id" => factory('App\Customer')->create(),
-        "contact_id" => factory('App\Contact')->create(),
+        "customer_id" => factory(\App\Customer::class)->create(),
+        "contact_id" => factory(\App\Contact::class)->create(),
         "partnumber" => $faker->name,
         "partdescription" => $faker->name,
-        "process_id" => factory('App\Process')->create(),
+        "process_id" => factory(\App\Process::class)->create(),
         "specification" => $faker->name,
         "material" => $faker->name,
         "method" => collect(["Barrel Plate","Bulk Process","Hand Operation","Lab Operation","Rack Plate",])->random(),
@@ -34,7 +34,7 @@ $factory->define(App\Quote::class, function (Faker\Generator $faker) {
         "testing_note" => $faker->name,
         "notes" => $faker->name,
         "comments" => $faker->name,
-        "user_id" => factory('App\User')->create(),
+        "user_id" => factory(\App\User::class)->create(),
         "archive" => 0,
         "revision" => $faker->randomNumber(2),
     ];
