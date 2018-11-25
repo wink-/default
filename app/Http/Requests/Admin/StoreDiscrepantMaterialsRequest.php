@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,10 +24,10 @@ class StoreDiscrepantMaterialsRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity_rejected' => 'max:2147483647|nullable|numeric',
-            'rejection_date' => 'nullable|date_format:'.config('app.date_format'),
+            'quantity_rejected'          => 'max:2147483647|nullable|numeric',
+            'rejection_date'             => 'nullable|date_format:'.config('app.date_format'),
             'corrective_action_due_date' => 'nullable|date_format:'.config('app.date_format'),
-            'form' => 'nullable|mimes:pdf',
+            'form'                       => 'nullable|mimes:pdf',
         ];
     }
 }

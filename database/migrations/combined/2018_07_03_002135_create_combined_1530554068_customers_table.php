@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateCombined1530554068CustomersTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateCombined1530554068CustomersTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('customers')) {
+        if (!Schema::hasTable('customers')) {
             Schema::create('customers', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('code')->nullable();
@@ -52,7 +52,7 @@ class CreateCombined1530554068CustomersTable extends Migration
                 $table->string('ship_to_address_code')->nullable();
                 $table->string('destination_code')->nullable();
                 $table->string('carrier_code')->nullable();
-                
+
                 $table->timestamps();
                 $table->softDeletes();
 

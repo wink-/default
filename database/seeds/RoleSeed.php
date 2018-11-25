@@ -12,11 +12,11 @@ class RoleSeed extends Seeder
     public function run()
     {
         $items = [
-            
-            ['id' => 1, 'title' => 'Administrator (can create other users)',],
-            ['id' => 2, 'title' => 'Simple user',],
-            ['id' => 3, 'title' => 'Manager',],
-            ['id' => 4, 'title' => 'Supervisor',],
+
+            ['id' => 1, 'title' => 'Administrator (can create other users)'],
+            ['id' => 2, 'title' => 'Simple user'],
+            ['id' => 3, 'title' => 'Manager'],
+            ['id' => 4, 'title' => 'Supervisor'],
 
         ];
 

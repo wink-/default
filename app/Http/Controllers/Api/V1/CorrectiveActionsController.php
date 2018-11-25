@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\CorrectiveAction;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\Admin\StoreCorrectiveActionsRequest;
 use App\Http\Requests\Admin\UpdateCorrectiveActionsRequest;
-use App\Http\Controllers\Traits\FileUploadTrait;
-use Yajra\DataTables\DataTables;
 
 class CorrectiveActionsController extends Controller
 {
@@ -29,7 +27,6 @@ class CorrectiveActionsController extends Controller
         $request = $this->saveFiles($request);
         $corrective_action = CorrectiveAction::findOrFail($id);
         $corrective_action->update($request->all());
-        
 
         return $corrective_action;
     }
@@ -38,7 +35,6 @@ class CorrectiveActionsController extends Controller
     {
         $request = $this->saveFiles($request);
         $corrective_action = CorrectiveAction::create($request->all());
-        
 
         return $corrective_action;
     }
@@ -47,6 +43,7 @@ class CorrectiveActionsController extends Controller
     {
         $corrective_action = CorrectiveAction::findOrFail($id);
         $corrective_action->delete();
+
         return '';
     }
 }

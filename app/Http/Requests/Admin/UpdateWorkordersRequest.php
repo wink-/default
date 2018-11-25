@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,12 +24,12 @@ class UpdateWorkordersRequest extends FormRequest
     public function rules()
     {
         return [
-            
-            'date_received' => 'nullable|date_format:'.config('app.date_format').' H:i:s',
-            'date_required' => 'nullable|date_format:'.config('app.date_format').' H:i:s',
-            'quantity' => 'numeric',
+
+            'date_received'    => 'nullable|date_format:'.config('app.date_format').' H:i:s',
+            'date_required'    => 'nullable|date_format:'.config('app.date_format').' H:i:s',
+            'quantity'         => 'numeric',
             'quantity_shipped' => 'max:2147483647|nullable|numeric',
-            'priority' => 'max:2147483647|nullable|numeric',
+            'priority'         => 'max:2147483647|nullable|numeric',
         ];
     }
 }

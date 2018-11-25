@@ -3,8 +3,8 @@
 namespace Tests\Browser;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class RoleTest extends DuskTestCase
 {
@@ -24,7 +24,7 @@ class RoleTest extends DuskTestCase
             $browser->loginAs($admin)
                 ->visit(route('admin.roles.index'))
                 ->clickLink('Add new')
-                ->type("title", $role->title)
+                ->type('title', $role->title)
                 ->select('select[name="permission[]"]', $relations[0]->id)
                 ->select('select[name="permission[]"]', $relations[1]->id)
                 ->press('Save')
@@ -49,8 +49,8 @@ class RoleTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($admin, $role, $role2, $relations) {
             $browser->loginAs($admin)
                 ->visit(route('admin.roles.index'))
-                ->click('tr[data-entry-id="' . $role->id . '"] .btn-info')
-                ->type("title", $role2->title)
+                ->click('tr[data-entry-id="'.$role->id.'"] .btn-info')
+                ->type('title', $role2->title)
                 ->select('select[name="permission[]"]', $relations[0]->id)
                 ->select('select[name="permission[]"]', $relations[1]->id)
                 ->press('Update')
@@ -76,7 +76,7 @@ class RoleTest extends DuskTestCase
         $this->browse(function (Browser $browser) use ($admin, $role, $relations) {
             $browser->loginAs($admin)
                 ->visit(route('admin.roles.index'))
-                ->click('tr[data-entry-id="' . $role->id . '"] .btn-primary')
+                ->click('tr[data-entry-id="'.$role->id.'"] .btn-primary')
                 ->assertSeeIn("td[field-key='title']", $role->title)
                 ->assertSeeIn("tr:last-child td[field-key='permission'] span:first-child", $relations[0]->title)
                 ->assertSeeIn("tr:last-child td[field-key='permission'] span:last-child", $relations[1]->title);

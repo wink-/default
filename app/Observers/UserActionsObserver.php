@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use Auth;
 use App\UserAction;
+use Auth;
 
 class UserActionsObserver
 {
@@ -21,11 +21,10 @@ class UserActionsObserver
                 'user_id'      => Auth::user()->id,
                 'action'       => $action,
                 'action_model' => $model->getTable(),
-                'action_id'    => $model->id
+                'action_id'    => $model->id,
             ]);
         }
     }
-
 
     public function deleting($model)
     {
@@ -34,7 +33,7 @@ class UserActionsObserver
                 'user_id'      => Auth::user()->id,
                 'action'       => 'deleted',
                 'action_model' => $model->getTable(),
-                'action_id'    => $model->id
+                'action_id'    => $model->id,
             ]);
         }
     }

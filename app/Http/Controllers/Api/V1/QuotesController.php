@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Quote;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\Admin\StoreQuotesRequest;
 use App\Http\Requests\Admin\UpdateQuotesRequest;
-use App\Http\Controllers\Traits\FileUploadTrait;
-use Yajra\DataTables\DataTables;
+use App\Quote;
 
 class QuotesController extends Controller
 {
@@ -29,7 +27,6 @@ class QuotesController extends Controller
         $request = $this->saveFiles($request);
         $quote = Quote::findOrFail($id);
         $quote->update($request->all());
-        
 
         return $quote;
     }
@@ -38,7 +35,6 @@ class QuotesController extends Controller
     {
         $request = $this->saveFiles($request);
         $quote = Quote::create($request->all());
-        
 
         return $quote;
     }
@@ -47,6 +43,7 @@ class QuotesController extends Controller
     {
         $quote = Quote::findOrFail($id);
         $quote->delete();
+
         return '';
     }
 }

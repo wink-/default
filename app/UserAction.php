@@ -1,28 +1,26 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class UserAction
+ * Class UserAction.
  *
- * @package App
  * @property string $user
  * @property string $action
  * @property string $action_model
- * @property integer $action_id
-*/
+ * @property int $action_id
+ */
 class UserAction extends Model
 {
-    
     protected $table = 'pluto_user_actions';
     protected $fillable = ['action', 'action_model', 'action_id', 'user_id'];
     protected $hidden = [];
-    
-    
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setUserIdAttribute($input)
@@ -31,14 +29,15 @@ class UserAction extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setActionIdAttribute($input)
     {
         $this->attributes['action_id'] = $input ? $input : null;
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

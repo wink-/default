@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateCombined1530563905ProcessesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateCombined1530563905ProcessesTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('processes')) {
+        if (!Schema::hasTable('processes')) {
             Schema::create('processes', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('code');
@@ -22,7 +22,7 @@ class CreateCombined1530563905ProcessesTable extends Migration
                 $table->tinyInteger('compliant_reach')->nullable()->default('1');
                 $table->tinyInteger('archive')->nullable()->default('0');
                 $table->integer('revision')->nullable();
-                
+
                 $table->timestamps();
                 $table->softDeletes();
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +24,7 @@ class UpdateCustomersRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
             'code' => 'min:3|max:10|required|unique:sft_customers,code,'.$this->route('customer'),
             'name' => 'required',
         ];

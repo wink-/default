@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -23,7 +24,7 @@ class UpdateProcessesRequest extends FormRequest
     public function rules()
     {
         return [
-            
+
             'code' => 'required|unique:sft_processes,code,'.$this->route('process'),
             'name' => 'required',
         ];
