@@ -26,7 +26,7 @@ class StoreDiscrepantMaterialsRequest extends FormRequest
             'quantity_rejected' => 'max:2147483647|nullable|numeric',
             'rejection_date' => 'nullable|date_format:'.config('app.date_format'),
             'corrective_action_due_date' => 'nullable|date_format:'.config('app.date_format'),
-            'form' => 'mimes:pdf|nullable',
+            'form' => 'nullable|mimes:pdf',
         ];
     }
 }
