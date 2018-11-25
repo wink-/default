@@ -13,6 +13,9 @@
                 @can('quote_edit')
                 <a href="{{ route('admin.quotes.edit', ['id' => $quote->id]) }}" class="btn btn-info"><i class="fa fa-plus"></i> Edit</a> 
                 @endcan
+                @can('quote_create')
+                <a href="{{ route('admin.quotes.copy', ['id' => $quote->id]) }}" class="btn btn-info"><i class="fa fa-plus"></i> Copy</a> 
+                @endcan                
                 <a href="{{action('Admin\QuotesController@downloadPDF', $quote->id)}}" class="btn btn-warning"><i class="fa fa-print"></i> Print</a>            
             </div>
         </div>

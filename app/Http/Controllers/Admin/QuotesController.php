@@ -304,6 +304,30 @@ class QuotesController extends Controller
 
 
     /**
+     * Show the form for copying Quote.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function copy($id)
+    {
+        if (! Gate::allows('quote_create')) {
+            return abort(401);
+        }
+        
+        $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $contacts = \App\Contact::get()->pluck('last_name', 'id')->prepend(trans('global.app_please_select'), '');
+        $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
+        $enum_method = Quote::$enum_method;
+        $enum_units = Quote::$enum_units;
+            
+        $quote = Quote::findOrFail($id)->replicate();
+
+
+        return view('admin.quotes.copy', compact('quote', 'enum_method', 'enum_units', 'customers', 'contacts', 'processes'));
+    }
+
+    /**
      * Show the form for editing Quote.
      *
      * @param  int  $id

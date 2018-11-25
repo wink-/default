@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('quotes_mass_destroy', ['uses' => 'Admin\QuotesController@massDestroy', 'as' => 'quotes.mass_destroy']);
     Route::post('quotes_restore/{id}', ['uses' => 'Admin\QuotesController@restore', 'as' => 'quotes.restore']);
     Route::delete('quotes_perma_del/{id}', ['uses' => 'Admin\QuotesController@perma_del', 'as' => 'quotes.perma_del']);
+    Route::get('quotes/{id}/copy', ['uses' => 'Admin\QuotesController@copy', 'as' => 'quotes.copy']);
     
     Route::resource('parts', 'Admin\PartsController');
     Route::post('parts_mass_destroy', ['uses' => 'Admin\PartsController@massDestroy', 'as' => 'parts.mass_destroy']);
