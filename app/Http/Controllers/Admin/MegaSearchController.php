@@ -46,7 +46,8 @@ class MegaSearchController extends Controller
                 }
                 $results_formated['fields_formated'] = $fields_formated;
 
-                $results_formated['url'] = url('/admin/' . str_plural(snake_case($modelString)) . '/' . $result->id . '/edit');
+                //$results_formated['url'] = url('/admin/' . str_plural(snake_case($modelString)) . '/' . $result->id . '/edit');
+                $results_formated['url'] = url('/admin/' . str_plural(snake_case($modelString)) . '/' . $result->id);
 
                 $return[] = $results_formated;
             }
