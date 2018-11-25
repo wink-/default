@@ -1,13 +1,13 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Quote
+ * Class Quote.
  *
- * @package App
  * @property string $customer
  * @property string $contact
  * @property string $partnumber
@@ -16,12 +16,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $specification
  * @property string $material
  * @property enum $method
- * @property integer $quantity_minimum
- * @property integer $quantity_maximum
+ * @property int $quantity_minimum
+ * @property int $quantity_maximum
  * @property decimal $price
  * @property enum $units
  * @property decimal $minimum_lot_charge
- * @property integer $quantity_price_break
+ * @property int $quantity_price_break
  * @property decimal $price_break
  * @property string $thickness_minimum
  * @property string $thickness_maximum
@@ -43,8 +43,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property text $comments
  * @property string $user
  * @property tinyInteger $archive
- * @property integer $revision
-*/
+ * @property int $revision
+ */
 class Quote extends Model
 {
     use SoftDeletes;
@@ -56,20 +56,21 @@ class Quote extends Model
     public static $searchable = [
         'partnumber',
     ];
-    
+
     public static function boot()
     {
         parent::boot();
 
-        Quote::observe(new \App\Observers\UserActionsObserver);
+        self::observe(new \App\Observers\UserActionsObserver());
     }
 
-    public static $enum_method = ["Rack Plate" => "Rack Plate", "Barrel Plate" => "Barrel Plate", "Bulk Process" => "Bulk Process", "Hand Operation" => "Hand Operation", "Lab Operation" => "Lab Operation"];
+    public static $enum_method = ['Rack Plate' => 'Rack Plate', 'Barrel Plate' => 'Barrel Plate', 'Bulk Process' => 'Bulk Process', 'Hand Operation' => 'Hand Operation', 'Lab Operation' => 'Lab Operation'];
 
-    public static $enum_units = ["each" => "Each", "thousand" => "M", "pound" => "Pound", "ft" => "Foot", "lot" => "Lot", "in" => "Inch", "sets" => "Sets"];
+    public static $enum_units = ['each' => 'Each', 'thousand' => 'M', 'pound' => 'Pound', 'ft' => 'Foot', 'lot' => 'Lot', 'in' => 'Inch', 'sets' => 'Sets'];
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setCustomerIdAttribute($input)
@@ -78,7 +79,8 @@ class Quote extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setContactIdAttribute($input)
@@ -87,7 +89,8 @@ class Quote extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setProcessIdAttribute($input)
@@ -96,7 +99,8 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setQuantityMinimumAttribute($input)
@@ -105,7 +109,8 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setQuantityMaximumAttribute($input)
@@ -114,7 +119,8 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setPriceAttribute($input)
@@ -123,7 +129,8 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setMinimumLotChargeAttribute($input)
@@ -132,7 +139,8 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setQuantityPriceBreakAttribute($input)
@@ -141,7 +149,8 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setPriceBreakAttribute($input)
@@ -150,7 +159,8 @@ class Quote extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setUserIdAttribute($input)
@@ -159,29 +169,30 @@ class Quote extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setRevisionAttribute($input)
     {
         $this->attributes['revision'] = $input ? $input : null;
     }
-    
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_id')->withTrashed();
     }
-    
+
     public function contact()
     {
         return $this->belongsTo(Contact::class, 'contact_id')->withTrashed();
     }
-    
+
     public function process()
     {
         return $this->belongsTo(Process::class, 'process_id')->withTrashed();
     }
-    
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

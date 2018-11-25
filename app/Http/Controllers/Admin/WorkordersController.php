@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
-use App\Workorder;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreWorkordersRequest;
 use App\Http\Requests\Admin\UpdateWorkordersRequest;
+use App\Workorder;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class WorkordersController extends Controller
@@ -20,17 +19,17 @@ class WorkordersController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('workorder_access')) {
+        if (!Gate::allows('workorder_access')) {
             return abort(401);
         }
-      
+
         if (request()->ajax()) {
             $query = Workorder::query();
-            $query->with("customer");
-            $query->with("part");
-            $query->with("process");
+            $query->with('customer');
+            $query->with('part');
+            $query->with('process');
             $template = 'actionsTemplate';
-            
+
             $query->select([
                 'sft_work_orders.id',
                 'sft_work_orders.number',
@@ -76,7 +75,7 @@ class WorkordersController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'workorder_';
+                $gateKey = 'workorder_';
                 $routeKey = 'admin.workorders';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -103,10 +102,10 @@ class WorkordersController extends Controller
                 return $row->price_code ? $row->price_code : '';
             });
             $table->editColumn('date_received', function ($row) {
-                return $row->date_received ? date("Y-m-d", strtotime($row->date_received)) : '';
+                return $row->date_received ? date('Y-m-d', strtotime($row->date_received)) : '';
             });
             $table->editColumn('date_required', function ($row) {
-                return $row->date_required ? date("Y-m-d", strtotime($row->date_required)) : '';
+                return $row->date_required ? date('Y-m-d', strtotime($row->date_required)) : '';
             });
             $table->editColumn('customer_purchase_order', function ($row) {
                 return $row->customer_purchase_order ? $row->customer_purchase_order : '';
@@ -151,25 +150,25 @@ class WorkordersController extends Controller
                 return $row->priority ? $row->priority : '';
             });
             $table->editColumn('rework', function ($row) {
-                return \Form::checkbox("rework", 1, $row->rework == 1, ["disabled"]);
+                return \Form::checkbox('rework', 1, $row->rework == 1, ['disabled']);
             });
             $table->editColumn('hot', function ($row) {
-                return \Form::checkbox("hot", 1, $row->hot == 1, ["disabled"]);
+                return \Form::checkbox('hot', 1, $row->hot == 1, ['disabled']);
             });
             $table->editColumn('started', function ($row) {
-                return \Form::checkbox("started", 1, $row->started == 1, ["disabled"]);
+                return \Form::checkbox('started', 1, $row->started == 1, ['disabled']);
             });
             $table->editColumn('completed', function ($row) {
-                return \Form::checkbox("completed", 1, $row->completed == 1, ["disabled"]);
+                return \Form::checkbox('completed', 1, $row->completed == 1, ['disabled']);
             });
             $table->editColumn('shipped', function ($row) {
-                return \Form::checkbox("shipped", 1, $row->shipped == 1, ["disabled"]);
+                return \Form::checkbox('shipped', 1, $row->shipped == 1, ['disabled']);
             });
             $table->editColumn('cod', function ($row) {
-                return \Form::checkbox("cod", 1, $row->cod == 1, ["disabled"]);
+                return \Form::checkbox('cod', 1, $row->cod == 1, ['disabled']);
             });
             $table->editColumn('invoiced', function ($row) {
-                return \Form::checkbox("invoiced", 1, $row->invoiced == 1, ["disabled"]);
+                return \Form::checkbox('invoiced', 1, $row->invoiced == 1, ['disabled']);
             });
             $table->editColumn('note', function ($row) {
                 return $row->note ? $row->note : '';
@@ -178,13 +177,14 @@ class WorkordersController extends Controller
                 return $row->session_id ? $row->session_id : '';
             });
             $table->editColumn('archive', function ($row) {
-                return \Form::checkbox("archive", 1, $row->archive == 1, ["disabled"]);
+                return \Form::checkbox('archive', 1, $row->archive == 1, ['disabled']);
             });
             $table->editColumn('revision', function ($row) {
                 return $row->revision ? $row->revision : '';
             });
 
-            $table->rawColumns(['actions','massDelete','rework','hot','started','completed','shipped','cod','invoiced','archive']);
+            $table->rawColumns(['actions', 'massDelete', 'rework', 'hot', 'started', 'completed', 'shipped', 'cod', 'invoiced', 'archive']);
+
             return $table->make(true);
         }
 
@@ -198,10 +198,10 @@ class WorkordersController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('workorder_create')) {
+        if (!Gate::allows('workorder_create')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('code', 'id')->prepend(trans('global.app_please_select'), '');
         $parts = \App\Part::get()->pluck('number', 'id')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('code', 'id')->prepend(trans('global.app_please_select'), '');
@@ -212,34 +212,33 @@ class WorkordersController extends Controller
     /**
      * Store a newly created Workorder in storage.
      *
-     * @param  \App\Http\Requests\StoreWorkordersRequest  $request
+     * @param \App\Http\Requests\StoreWorkordersRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreWorkordersRequest $request)
     {
-        if (! Gate::allows('workorder_create')) {
+        if (!Gate::allows('workorder_create')) {
             return abort(401);
         }
         $workorder = Workorder::create($request->all());
 
-
-
         return redirect()->route('admin.workorders.index');
     }
-
 
     /**
      * Show the form for editing Workorder.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if (! Gate::allows('workorder_edit')) {
+        if (!Gate::allows('workorder_edit')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('code', 'id')->prepend(trans('global.app_please_select'), '');
         $parts = \App\Part::get()->pluck('number', 'id')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('code', 'id')->prepend(trans('global.app_please_select'), '');
@@ -252,33 +251,32 @@ class WorkordersController extends Controller
     /**
      * Update Workorder in storage.
      *
-     * @param  \App\Http\Requests\UpdateWorkordersRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdateWorkordersRequest $request
+     * @param int                                        $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateWorkordersRequest $request, $id)
     {
-        if (! Gate::allows('workorder_edit')) {
+        if (!Gate::allows('workorder_edit')) {
             return abort(401);
         }
         $workorder = Workorder::findOrFail($id);
         $workorder->update($request->all());
 
-
-
         return redirect()->route('admin.workorders.index');
     }
-
 
     /**
      * Display Workorder.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if (! Gate::allows('workorder_view')) {
+        if (!Gate::allows('workorder_view')) {
             return abort(401);
         }
         $workorder = Workorder::findOrFail($id);
@@ -286,16 +284,16 @@ class WorkordersController extends Controller
         return view('admin.workorders.show', compact('workorder'));
     }
 
-
     /**
      * Remove Workorder from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (! Gate::allows('workorder_delete')) {
+        if (!Gate::allows('workorder_delete')) {
             return abort(401);
         }
         $workorder = Workorder::findOrFail($id);
@@ -311,7 +309,7 @@ class WorkordersController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('workorder_delete')) {
+        if (!Gate::allows('workorder_delete')) {
             return abort(401);
         }
         if ($request->input('ids')) {

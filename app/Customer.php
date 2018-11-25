@@ -1,13 +1,13 @@
 <?php
+
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Customer
+ * Class Customer.
  *
- * @package App
  * @property string $code
  * @property string $name
  * @property string $physical_address
@@ -41,11 +41,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $tax_id
  * @property tinyInteger $cod
  * @property tinyInteger $archive
- * @property integer $revision
+ * @property int $revision
  * @property string $ship_to_address_code
  * @property string $destination_code
  * @property string $carrier_code
-*/
+ */
 class Customer extends Model
 {
     use SoftDeletes;
@@ -56,16 +56,17 @@ class Customer extends Model
         'code',
         'name',
     ];
-    
+
     public static function boot()
     {
         parent::boot();
 
-        Customer::observe(new \App\Observers\UserActionsObserver);
+        self::observe(new \App\Observers\UserActionsObserver());
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setRevisionAttribute($input)

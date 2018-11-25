@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Process;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreProcessesRequest;
 use App\Http\Requests\Admin\UpdateProcessesRequest;
-use Yajra\DataTables\DataTables;
+use App\Process;
 
 class ProcessesController extends Controller
 {
@@ -25,7 +23,6 @@ class ProcessesController extends Controller
     {
         $process = Process::findOrFail($id);
         $process->update($request->all());
-        
 
         return $process;
     }
@@ -33,7 +30,6 @@ class ProcessesController extends Controller
     public function store(StoreProcessesRequest $request)
     {
         $process = Process::create($request->all());
-        
 
         return $process;
     }
@@ -42,6 +38,7 @@ class ProcessesController extends Controller
     {
         $process = Process::findOrFail($id);
         $process->delete();
+
         return '';
     }
 }

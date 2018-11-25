@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Part;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StorePartsRequest;
 use App\Http\Requests\Admin\UpdatePartsRequest;
-use Yajra\DataTables\DataTables;
+use App\Part;
 
 class PartsController extends Controller
 {
@@ -25,7 +23,6 @@ class PartsController extends Controller
     {
         $part = Part::findOrFail($id);
         $part->update($request->all());
-        
 
         return $part;
     }
@@ -33,7 +30,6 @@ class PartsController extends Controller
     public function store(StorePartsRequest $request)
     {
         $part = Part::create($request->all());
-        
 
         return $part;
     }
@@ -42,6 +38,7 @@ class PartsController extends Controller
     {
         $part = Part::findOrFail($id);
         $part->delete();
+
         return '';
     }
 }

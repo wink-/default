@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -29,7 +30,7 @@ class StorePartsRequest extends FormRequest
             'quality_check_4' => 'max:2147483647|nullable|numeric',
             'quality_check_5' => 'max:2147483647|nullable|numeric',
             'quality_check_6' => 'max:2147483647|nullable|numeric',
-            'revision' => 'max:2147483647|nullable|numeric',
+            'revision'        => 'max:2147483647|nullable|numeric',
         ];
     }
 }

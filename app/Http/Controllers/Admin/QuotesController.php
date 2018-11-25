@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Carbon\Carbon;
-use App\Quote;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\QuoteUploadTrait;
 use App\Http\Requests\Admin\StoreQuotesRequest;
 use App\Http\Requests\Admin\UpdateQuotesRequest;
+use App\Quote;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 //use App\Http\Controllers\Traits\FileUploadTrait;
-use App\Http\Controllers\Traits\QuoteUploadTrait;
-use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Gate;
 use PDF;
+use Yajra\DataTables\DataTables;
 
 class QuotesController extends Controller
 {
     //use FileUploadTrait;
     use QuoteUploadTrait;
+
     /**
      * Display a listing of Quote.
      *
@@ -26,21 +27,19 @@ class QuotesController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('quote_access')) {
+        if (!Gate::allows('quote_access')) {
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Quote::query();
-            $query->with("customer");
-            $query->with("contact");
-            $query->with("process");
-            $query->with("user");
+            $query->with('customer');
+            $query->with('contact');
+            $query->with('process');
+            $query->with('user');
             $template = 'actionsTemplate';
             if (request('show_deleted') == 1) {
-                if (! Gate::allows('quote_delete')) {
+                if (!Gate::allows('quote_delete')) {
                     return abort(401);
                 }
                 $query->onlyTrashed();
@@ -94,7 +93,7 @@ class QuotesController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'quote_';
+                $gateKey = 'quote_';
                 $routeKey = 'admin.quotes';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -166,27 +165,27 @@ class QuotesController extends Controller
                 return $row->bake_notes ? $row->bake_notes : '';
             });
             $table->editColumn('blasting', function ($row) {
-                return \Form::checkbox("blasting", 1, $row->blasting == 1, ["disabled"]);
+                return \Form::checkbox('blasting', 1, $row->blasting == 1, ['disabled']);
             });
             $table->editColumn('blast_notes', function ($row) {
                 return $row->blast_notes ? $row->blast_notes : '';
             });
             $table->editColumn('masking', function ($row) {
-                return \Form::checkbox("masking", 1, $row->masking == 1, ["disabled"]);
+                return \Form::checkbox('masking', 1, $row->masking == 1, ['disabled']);
             });
             $table->editColumn('mask_notes', function ($row) {
                 return $row->mask_notes ? $row->mask_notes : '';
             });
             $table->editColumn('testing', function ($row) {
-                return \Form::checkbox("testing", 1, $row->testing == 1, ["disabled"]);
+                return \Form::checkbox('testing', 1, $row->testing == 1, ['disabled']);
             });
             $table->editColumn('testing_note', function ($row) {
                 return $row->testing_note ? $row->testing_note : '';
             });
             $table->editColumn('print', function ($row) {
                 if ($row->print) {
-                    return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print) .'" target="_blank">Download file</a>';
-                };
+                    return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print).'" target="_blank">Download file</a>';
+                }
             });
             $table->editColumn('notes', function ($row) {
                 return $row->notes ? $row->notes : '';
@@ -198,7 +197,7 @@ class QuotesController extends Controller
                 return $row->user ? $row->user->name : '';
             });
             $table->editColumn('archive', function ($row) {
-                return \Form::checkbox("archive", 1, $row->archive == 1, ["disabled"]);
+                return \Form::checkbox('archive', 1, $row->archive == 1, ['disabled']);
             });
             $table->editColumn('revision', function ($row) {
                 return $row->revision ? $row->revision : '';
@@ -207,7 +206,7 @@ class QuotesController extends Controller
                 return $row->created_at->format('Y-m-d');
             });
 
-            $table->rawColumns(['actions','massDelete','blasting','masking','testing','print','archive']);
+            $table->rawColumns(['actions', 'massDelete', 'blasting', 'masking', 'testing', 'print', 'archive']);
 
             return $table->make(true);
         }
@@ -216,7 +215,7 @@ class QuotesController extends Controller
         $quoted = [$quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_min'),
                    $quotes->sum('value_min'),
                    $quotes->where('created_at', '>', Carbon::now()->startOfDay())->sum('value_max'),
-                   $quotes->sum('value_max')];
+                   $quotes->sum('value_max'), ];
 
         return view('admin.quotes.index', compact('quoted'));
     }
@@ -228,56 +227,57 @@ class QuotesController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('quote_create')) {
+        if (!Gate::allows('quote_create')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $contacts = \App\Contact::get()->pluck('full_name', 'id')->prepend('Please Select');
         $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
-            
+
         return view('admin.quotes.create', compact('enum_method', 'enum_units', 'customers', 'contacts', 'processes'));
     }
 
     /**
      * Store a newly created Quote in storage.
      *
-     * @param  \App\Http\Requests\StoreQuotesRequest  $request
+     * @param \App\Http\Requests\StoreQuotesRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreQuotesRequest $request)
     {
-        if (! Gate::allows('quote_create')) {
+        if (!Gate::allows('quote_create')) {
             return abort(401);
         }
         switch ($request->units) {
-            case "each":
+            case 'each':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "sets":
+            case 'sets':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "pound":
+            case 'pound':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "foot":
+            case 'foot':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "inch":
+            case 'inch':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "thousand":
+            case 'thousand':
                 $value_min = $request->quantity_minimum * $request->price * 0.001;
                 $value_max = $request->quantity_maximum * $request->price * 0.001;
                 break;
-            case "lot":
+            case 'lot':
                 $value_min = $request->price;
                 $value_max = $request->price;
                 break;
@@ -302,27 +302,26 @@ class QuotesController extends Controller
         return redirect()->route('admin.quotes.print', ['id' => $quote->id]);
     }
 
-
     /**
      * Show the form for copying Quote.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function copy($id)
     {
-        if (! Gate::allows('quote_create')) {
+        if (!Gate::allows('quote_create')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $contacts = \App\Contact::get()->pluck('last_name', 'id')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
-            
-        $quote = Quote::findOrFail($id)->replicate();
 
+        $quote = Quote::findOrFail($id)->replicate();
 
         return view('admin.quotes.copy', compact('quote', 'enum_method', 'enum_units', 'customers', 'contacts', 'processes'));
     }
@@ -330,21 +329,22 @@ class QuotesController extends Controller
     /**
      * Show the form for editing Quote.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if (! Gate::allows('quote_edit')) {
+        if (!Gate::allows('quote_edit')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $contacts = \App\Contact::get()->pluck('last_name', 'id')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('name', 'id')->prepend(trans('global.app_please_select'), '');
         $enum_method = Quote::$enum_method;
         $enum_units = Quote::$enum_units;
-            
+
         $quote = Quote::findOrFail($id);
 
         return view('admin.quotes.edit', compact('quote', 'enum_method', 'enum_units', 'customers', 'contacts', 'processes'));
@@ -353,41 +353,42 @@ class QuotesController extends Controller
     /**
      * Update Quote in storage.
      *
-     * @param  \App\Http\Requests\UpdateQuotesRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdateQuotesRequest $request
+     * @param int                                    $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateQuotesRequest $request, $id)
     {
-        if (! Gate::allows('quote_edit')) {
+        if (!Gate::allows('quote_edit')) {
             return abort(401);
         }
         switch ($request->units) {
-            case "each":
+            case 'each':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "sets":
+            case 'sets':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "pound":
+            case 'pound':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "foot":
+            case 'foot':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "inch":
+            case 'inch':
                 $value_min = $request->quantity_minimum * $request->price;
                 $value_max = $request->quantity_maximum * $request->price;
                 break;
-            case "thousand":
+            case 'thousand':
                 $value_min = $request->quantity_minimum * $request->price * 0.001;
                 $value_max = $request->quantity_maximum * $request->price * 0.001;
                 break;
-            case "lot":
+            case 'lot':
                 $value_min = $request->price;
                 $value_max = $request->price;
                 break;
@@ -411,23 +412,21 @@ class QuotesController extends Controller
         $quote->update($request->all());
         $request = $this->saveFiles($request, $quote->id);
 
-
-
         //return redirect()->route('admin.quotes.index');
         //return redirect()->route('admin.quotes.show', ['id' => $quote->id]);
         return redirect()->route('admin.quotes.print', ['id' => $quote->id]);
     }
 
-
     /**
      * Display Quote.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if (! Gate::allows('quote_view')) {
+        if (!Gate::allows('quote_view')) {
             return abort(401);
         }
         $quote = Quote::findOrFail($id);
@@ -438,27 +437,30 @@ class QuotesController extends Controller
     /**
      * Generate a downloadable PDF for the quote.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function downloadPDF($id)
     {
         $quote = Quote::find($id);
-        PDF::setOptions(['defaultPaperSize' => "letter"]);
+        PDF::setOptions(['defaultPaperSize' => 'letter']);
         $pdf = PDF::loadView('admin.quotes.pdf', compact('quote'));
+
         return view('admin.quotes.pdf', compact('quote'));
-      //return $pdf->download('Surface Finish Quote '.$quote->id.'.pdf');
+        //return $pdf->download('Surface Finish Quote '.$quote->id.'.pdf');
     }
 
     /**
      * Remove Quote from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (! Gate::allows('quote_delete')) {
+        if (!Gate::allows('quote_delete')) {
             return abort(401);
         }
         $quote = Quote::findOrFail($id);
@@ -474,7 +476,7 @@ class QuotesController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('quote_delete')) {
+        if (!Gate::allows('quote_delete')) {
             return abort(401);
         }
         if ($request->input('ids')) {
@@ -486,16 +488,16 @@ class QuotesController extends Controller
         }
     }
 
-
     /**
      * Restore Quote from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function restore($id)
     {
-        if (! Gate::allows('quote_delete')) {
+        if (!Gate::allows('quote_delete')) {
             return abort(401);
         }
         $quote = Quote::onlyTrashed()->findOrFail($id);
@@ -507,12 +509,13 @@ class QuotesController extends Controller
     /**
      * Permanently delete Quote from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function perma_del($id)
     {
-        if (! Gate::allows('quote_delete')) {
+        if (!Gate::allows('quote_delete')) {
             return abort(401);
         }
         $quote = Quote::onlyTrashed()->findOrFail($id);

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Part;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StorePartsRequest;
 use App\Http\Requests\Admin\UpdatePartsRequest;
+use App\Part;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class PartsController extends Controller
@@ -19,18 +19,16 @@ class PartsController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('part_access')) {
+        if (!Gate::allows('part_access')) {
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = Part::query();
-            $query->with("customer");
-            $query->with("process");
+            $query->with('customer');
+            $query->with('process');
             $template = 'actionsTemplate';
-            
+
             $query->select([
                 'sft_parts.id',
                 'sft_parts.number',
@@ -79,7 +77,7 @@ class PartsController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'part_';
+                $gateKey = 'part_';
                 $routeKey = 'admin.parts';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -106,13 +104,13 @@ class PartsController extends Controller
                 return $row->price_code ? $row->price_code : '';
             });
             $table->editColumn('certify', function ($row) {
-                return \Form::checkbox("certify", 1, $row->certify == 1, ["disabled"]);
+                return \Form::checkbox('certify', 1, $row->certify == 1, ['disabled']);
             });
             $table->editColumn('specification', function ($row) {
                 return $row->specification ? $row->specification : '';
             });
             $table->editColumn('bake', function ($row) {
-                return \Form::checkbox("bake", 1, $row->bake == 1, ["disabled"]);
+                return \Form::checkbox('bake', 1, $row->bake == 1, ['disabled']);
             });
             $table->editColumn('procedure_code', function ($row) {
                 return $row->procedure_code ? $row->procedure_code : '';
@@ -190,13 +188,13 @@ class PartsController extends Controller
                 return $row->quality_check_6 ? $row->quality_check_6 : '';
             });
             $table->editColumn('archive', function ($row) {
-                return \Form::checkbox("archive", 1, $row->archive == 1, ["disabled"]);
+                return \Form::checkbox('archive', 1, $row->archive == 1, ['disabled']);
             });
             $table->editColumn('revision', function ($row) {
                 return $row->revision ? $row->revision : '';
             });
 
-            $table->rawColumns(['actions','massDelete','certify','bake','archive']);
+            $table->rawColumns(['actions', 'massDelete', 'certify', 'bake', 'archive']);
 
             return $table->make(true);
         }
@@ -211,10 +209,10 @@ class PartsController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('part_create')) {
+        if (!Gate::allows('part_create')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('code', 'code')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('code', 'code')->prepend(trans('global.app_please_select'), '');
 
@@ -224,35 +222,34 @@ class PartsController extends Controller
     /**
      * Store a newly created Part in storage.
      *
-     * @param  \App\Http\Requests\StorePartsRequest  $request
+     * @param \App\Http\Requests\StorePartsRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StorePartsRequest $request)
     {
-        if (! Gate::allows('part_create')) {
+        if (!Gate::allows('part_create')) {
             return abort(401);
         }
 
         $part = Part::create($request->all());
 
-
-
         return redirect()->route('admin.parts.index');
     }
-
 
     /**
      * Show the form for editing Part.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if (! Gate::allows('part_edit')) {
+        if (!Gate::allows('part_edit')) {
             return abort(401);
         }
-        
+
         $customers = \App\Customer::get()->pluck('code', 'code')->prepend(trans('global.app_please_select'), '');
         $processes = \App\Process::get()->pluck('code', 'code')->prepend(trans('global.app_please_select'), '');
 
@@ -264,33 +261,32 @@ class PartsController extends Controller
     /**
      * Update Part in storage.
      *
-     * @param  \App\Http\Requests\UpdatePartsRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdatePartsRequest $request
+     * @param int                                   $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdatePartsRequest $request, $id)
     {
-        if (! Gate::allows('part_edit')) {
+        if (!Gate::allows('part_edit')) {
             return abort(401);
         }
         $part = Part::findOrFail($id);
         $part->update($request->all());
 
-
-
         return redirect()->route('admin.parts.index');
     }
-
 
     /**
      * Display Part.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if (! Gate::allows('part_view')) {
+        if (!Gate::allows('part_view')) {
             return abort(401);
         }
         $discrepant_materials = \App\DiscrepantMaterial::where('process_id', $id)->get();
@@ -299,16 +295,16 @@ class PartsController extends Controller
         return view('admin.parts.show', compact('part', 'discrepant_materials'));
     }
 
-
     /**
      * Remove Part from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (! Gate::allows('part_delete')) {
+        if (!Gate::allows('part_delete')) {
             return abort(401);
         }
         $part = Part::findOrFail($id);
@@ -324,7 +320,7 @@ class PartsController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('part_delete')) {
+        if (!Gate::allows('part_delete')) {
             return abort(401);
         }
         if ($request->input('ids')) {

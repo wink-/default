@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Customer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCustomersRequest;
 use App\Http\Requests\Admin\UpdateCustomersRequest;
-use Yajra\DataTables\DataTables;
 
 class CustomersController extends Controller
 {
@@ -25,7 +23,6 @@ class CustomersController extends Controller
     {
         $customer = Customer::findOrFail($id);
         $customer->update($request->all());
-        
 
         return $customer;
     }
@@ -33,7 +30,6 @@ class CustomersController extends Controller
     public function store(StoreCustomersRequest $request)
     {
         $customer = Customer::create($request->all());
-        
 
         return $customer;
     }
@@ -42,6 +38,7 @@ class CustomersController extends Controller
     {
         $customer = Customer::findOrFail($id);
         $customer->delete();
+
         return '';
     }
 }

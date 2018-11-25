@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers\Admin;
 
-use DB;
-use Flash;
-use App\Workorder;
-use App\Process;
 use App\Customer;
 use App\DiscrepantMaterial;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Traits\FileUploadTrait;
 use App\Http\Requests\Admin\StoreDiscrepantMaterialsRequest;
 use App\Http\Requests\Admin\UpdateDiscrepantMaterialsRequest;
-use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Process;
+use App\Workorder;
+use DB;
+use Flash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class DiscrepantMaterialsController extends Controller
@@ -27,17 +27,15 @@ class DiscrepantMaterialsController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('quality_access')) {
+        if (!Gate::allows('quality_access')) {
             return abort(401);
         }
 
-
-        
         if (request()->ajax()) {
             $query = DiscrepantMaterial::query();
             $template = 'actionsTemplate';
             if (request('show_deleted') == 1) {
-                if (! Gate::allows('quality_delete')) {
+                if (!Gate::allows('quality_delete')) {
                     return abort(401);
                 }
                 $query->onlyTrashed();
@@ -64,7 +62,7 @@ class DiscrepantMaterialsController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'quality_';
+                $gateKey = 'quality_';
                 $routeKey = 'admin.discrepant_materials';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -100,7 +98,7 @@ class DiscrepantMaterialsController extends Controller
                 return $row->corrective_action_due_date ? $row->corrective_action_due_date : '';
             });
 
-            $table->rawColumns(['actions','massDelete','form']);
+            $table->rawColumns(['actions', 'massDelete', 'form']);
 
             return $table->make(true);
         }
@@ -115,24 +113,25 @@ class DiscrepantMaterialsController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('quality_create')) {
+        if (!Gate::allows('quality_create')) {
             return abort(401);
         }
-        
+
         $enum_rejection_type = DiscrepantMaterial::$enum_rejection_type;
-            
+
         return view('admin.discrepant_materials.create', compact('enum_rejection_type'));
     }
 
     /**
      * Store a newly created DiscrepantMaterial in storage.
      *
-     * @param  \App\Http\Requests\StoreDiscrepantMaterialsRequest  $request
+     * @param \App\Http\Requests\StoreDiscrepantMaterialsRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreDiscrepantMaterialsRequest $request)
     {
-        if (! Gate::allows('quality_create')) {
+        if (!Gate::allows('quality_create')) {
             return abort(401);
         }
         $wo = Workorder::where('number', '=', $request->workorder)->first();
@@ -141,15 +140,14 @@ class DiscrepantMaterialsController extends Controller
         }
 
         if (!$wo) {
-            Flash::error('Workorder '.$request->workorder. ' Not Found');
+            Flash::error('Workorder '.$request->workorder.' Not Found');
+
             return redirect(route('admin.discrepant_materials.create'));
         }
 
         $customer = Customer::where('code', '=', $wo->customer_code)->first();
         $process = Process::where('code', '=', $wo->process_code)->first();
-  
 
-        
         // Build the request to fill in the table
         $request->request->add(['workorder_id' => $wo->id]);
         $request->request->add(['customer_id' => $customer->id]);
@@ -158,7 +156,6 @@ class DiscrepantMaterialsController extends Controller
         $request->request->add(['process_code' => $wo->process_code]);
         $request->request->add(['part_id' => $wo->part_id]);
         $request->request->add(['part_number' => $wo->part_number]);
-
 
         $discrepant_material = DiscrepantMaterial::create($request->all());
 
@@ -167,8 +164,8 @@ class DiscrepantMaterialsController extends Controller
         }
 
         foreach ($request->input('picture_id', []) as $index => $id) {
-            $model          = config('laravel-medialibrary.media_model');
-            $file           = $model::find($id);
+            $model = config('laravel-medialibrary.media_model');
+            $file = $model::find($id);
             $file->model_id = $discrepant_material->id;
             $file->save();
         }
@@ -176,22 +173,21 @@ class DiscrepantMaterialsController extends Controller
         return redirect()->route('admin.discrepant_materials.index');
     }
 
-
     /**
      * Show the form for editing DiscrepantMaterial.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if (! Gate::allows('quality_edit')) {
+        if (!Gate::allows('quality_edit')) {
             return abort(401);
         }
-        
 
         $enum_rejection_type = DiscrepantMaterial::$enum_rejection_type;
-            
+
         $discrepant_material = DiscrepantMaterial::findOrFail($id);
 
         return view('admin.discrepant_materials.edit', compact('discrepant_material', 'enum_rejection_type'));
@@ -200,13 +196,14 @@ class DiscrepantMaterialsController extends Controller
     /**
      * Update DiscrepantMaterial in storage.
      *
-     * @param  \App\Http\Requests\UpdateDiscrepantMaterialsRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdateDiscrepantMaterialsRequest $request
+     * @param int                                                 $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateDiscrepantMaterialsRequest $request, $id)
     {
-        if (! Gate::allows('quality_edit')) {
+        if (!Gate::allows('quality_edit')) {
             return abort(401);
         }
         $wo = Workorder::where('number', '=', $request->workorder)->first();
@@ -215,14 +212,13 @@ class DiscrepantMaterialsController extends Controller
         }
 
         if (!$wo) {
-            Flash::error('Workorder '.$request->workorder. ' Not Found');
+            Flash::error('Workorder '.$request->workorder.' Not Found');
+
             return redirect(route('admin.discrepant_materials.create'));
         }
         $customer = Customer::where('code', '=', $wo->customer_code)->first();
         $process = Process::where('code', '=', $wo->process_code)->first();
-  
 
-        
         // Build the request to fill in the table
         $request->request->add(['workorder_id' => $wo->id]);
         $request->request->add(['customer_id' => $customer->id]);
@@ -231,7 +227,6 @@ class DiscrepantMaterialsController extends Controller
         $request->request->add(['process_code' => $wo->process_code]);
         $request->request->add(['part_id' => $wo->part_id]);
         $request->request->add(['part_number' => $wo->part_number]);
-        
 
         $discrepant_material = DiscrepantMaterial::findOrFail($id);
         $discrepant_material->update($request->all());
@@ -239,11 +234,10 @@ class DiscrepantMaterialsController extends Controller
             $request = $this->saveFiles($request, '/dmr', 'customer_dmr_form_'.$discrepant_material->id.'.'.$request->form->extension());
         }
 
-
         $media = [];
         foreach ($request->input('picture_id', []) as $index => $id) {
-            $model          = config('laravel-medialibrary.media_model');
-            $file           = $model::find($id);
+            $model = config('laravel-medialibrary.media_model');
+            $file = $model::find($id);
             $file->model_id = $discrepant_material->id;
             $file->save();
             $media[] = $file->toArray();
@@ -253,16 +247,16 @@ class DiscrepantMaterialsController extends Controller
         return redirect()->route('admin.discrepant_materials.index');
     }
 
-
     /**
      * Display DiscrepantMaterial.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if (! Gate::allows('quality_view')) {
+        if (!Gate::allows('quality_view')) {
             return abort(401);
         }
         $discrepant_material = DiscrepantMaterial::findOrFail($id);
@@ -270,16 +264,16 @@ class DiscrepantMaterialsController extends Controller
         return view('admin.discrepant_materials.show', compact('discrepant_material'));
     }
 
-
     /**
      * Remove DiscrepantMaterial from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (! Gate::allows('quality_delete')) {
+        if (!Gate::allows('quality_delete')) {
             return abort(401);
         }
         $discrepant_material = DiscrepantMaterial::findOrFail($id);
@@ -295,7 +289,7 @@ class DiscrepantMaterialsController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('quality_delete')) {
+        if (!Gate::allows('quality_delete')) {
             return abort(401);
         }
         if ($request->input('ids')) {
@@ -307,16 +301,16 @@ class DiscrepantMaterialsController extends Controller
         }
     }
 
-
     /**
      * Restore DiscrepantMaterial from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function restore($id)
     {
-        if (! Gate::allows('quality_delete')) {
+        if (!Gate::allows('quality_delete')) {
             return abort(401);
         }
         $discrepant_material = DiscrepantMaterial::onlyTrashed()->findOrFail($id);
@@ -328,12 +322,13 @@ class DiscrepantMaterialsController extends Controller
     /**
      * Permanently delete DiscrepantMaterial from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function perma_del($id)
     {
-        if (! Gate::allows('quality_delete')) {
+        if (!Gate::allows('quality_delete')) {
             return abort(401);
         }
         $discrepant_material = DiscrepantMaterial::onlyTrashed()->findOrFail($id);

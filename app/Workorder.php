@@ -1,14 +1,14 @@
 <?php
+
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Workorder
+ * Class Workorder.
  *
- * @package App
- * @property integer $number
+ * @property int $number
  * @property string $customer
  * @property string $part
  * @property string $part_number
@@ -19,18 +19,18 @@ use Carbon\Carbon;
  * @property string $date_required
  * @property string $customer_purchase_order
  * @property string $customer_packing_list
- * @property double $quantity
+ * @property float $quantity
  * @property string $unit_code
- * @property integer $quantity_shipped
- * @property integer $our_last_packing_list
+ * @property int $quantity_shipped
+ * @property int $our_last_packing_list
  * @property string $destination_code
  * @property string $carrier_code
  * @property string $freight_code
  * @property string $date_shipped
- * @property integer $invoice_number
+ * @property int $invoice_number
  * @property string $invoice_date
  * @property decimal $invoice_amount
- * @property integer $priority
+ * @property int $priority
  * @property tinyInteger $rework
  * @property tinyInteger $hot
  * @property tinyInteger $started
@@ -41,8 +41,8 @@ use Carbon\Carbon;
  * @property text $note
  * @property string $session_id
  * @property tinyInteger $archive
- * @property integer $revision
-*/
+ * @property int $revision
+ */
 class Workorder extends Model
 {
     protected $dates = ['date_required', 'invoice_date', 'created_at', 'updated_at'];
@@ -54,16 +54,17 @@ class Workorder extends Model
     public static $searchable = [
         'number',
     ];
-    
+
     public static function boot()
     {
         parent::boot();
 
-        Workorder::observe(new \App\Observers\UserActionsObserver);
+        self::observe(new \App\Observers\UserActionsObserver());
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setNumberAttribute($input)
@@ -72,7 +73,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setCustomerIdAttribute($input)
@@ -81,7 +83,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setPartIdAttribute($input)
@@ -90,7 +93,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setProcessIdAttribute($input)
@@ -99,7 +103,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setPriceAttribute($input)
@@ -108,67 +113,72 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setDateReceivedAttribute($input)
     {
         if ($input != null && $input != '') {
-            $this->attributes['date_received'] = Carbon::createFromFormat(config('app.date_format') . ' H:i:s', $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_received'] = Carbon::createFromFormat(config('app.date_format').' H:i:s', $input)->format('Y-m-d H:i:s');
         } else {
             $this->attributes['date_received'] = null;
         }
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
      */
     public function getDateReceivedAttribute($input)
     {
-        $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format') . ' H:i:s');
+        $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format').' H:i:s');
 
         if ($input != $zeroDate && $input != null) {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->format(config('app.date_format') . ' H:i:s');
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->format(config('app.date_format').' H:i:s');
         } else {
             return '';
         }
     }
-    
+
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setDateRequiredAttribute($input)
     {
         if ($input != null && $input != '') {
-            $this->attributes['date_required'] = Carbon::createFromFormat(config('app.date_format') . ' H:i:s', $input)->format('Y-m-d H:i:s');
+            $this->attributes['date_required'] = Carbon::createFromFormat(config('app.date_format').' H:i:s', $input)->format('Y-m-d H:i:s');
         } else {
             $this->attributes['date_required'] = null;
         }
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
      */
     public function getDateRequiredAttribute($input)
     {
-        $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format') . ' H:i:s');
+        $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format').' H:i:s');
 
         if ($input != $zeroDate && $input != null) {
-            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->format(config('app.date_format') . ' H:i:s');
+            return Carbon::createFromFormat('Y-m-d H:i:s', $input)->format(config('app.date_format').' H:i:s');
         } else {
             return '';
         }
     }
-    
+
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setQuantityAttribute($input)
@@ -181,7 +191,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setQuantityShippedAttribute($input)
@@ -190,7 +201,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setOurLastPackingListAttribute($input)
@@ -199,7 +211,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setDateShippedAttribute($input)
@@ -212,7 +225,8 @@ class Workorder extends Model
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
@@ -229,7 +243,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setInvoiceNumberAttribute($input)
@@ -238,7 +253,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setInvoiceDateAttribute($input)
@@ -251,7 +267,8 @@ class Workorder extends Model
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
@@ -268,7 +285,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setInvoiceAmountAttribute($input)
@@ -277,7 +295,8 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setPriorityAttribute($input)
@@ -286,24 +305,25 @@ class Workorder extends Model
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setRevisionAttribute($input)
     {
         $this->attributes['revision'] = $input ? $input : null;
     }
-    
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_code', 'code')->withTrashed();
     }
-    
+
     public function part()
     {
         return $this->belongsTo(Part::class, 'part_id');
     }
-    
+
     public function process()
     {
         return $this->belongsTo(Process::class, 'process_code', 'code')->withTrashed();

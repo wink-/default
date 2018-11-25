@@ -1,16 +1,16 @@
 <?php
+
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
 use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
 
 /**
- * Class DiscrepantMaterial
+ * Class DiscrepantMaterial.
  *
- * @package App
  * @property string $workorder
  * @property string $part
  * @property string $part_number
@@ -18,13 +18,13 @@ use Spatie\MediaLibrary\HasMedia\Interfaces\HasMedia;
  * @property string $customer_code
  * @property string $process
  * @property string $process_code
- * @property integer $quantity_rejected
+ * @property int $quantity_rejected
  * @property text $reason_for_rejection
  * @property string $rejection_date
  * @property enum $rejection_type
  * @property string $corrective_action_due_date
  * @property string $form
-*/
+ */
 class DiscrepantMaterial extends Model implements HasMedia
 {
     use SoftDeletes, HasMediaTrait;
@@ -34,18 +34,19 @@ class DiscrepantMaterial extends Model implements HasMedia
     protected $hidden = [];
     public static $searchable = [
     ];
-    
+
     public static function boot()
     {
         parent::boot();
 
-        DiscrepantMaterial::observe(new \App\Observers\UserActionsObserver);
+        self::observe(new \App\Observers\UserActionsObserver());
     }
 
-    public static $enum_rejection_type = ["external" => "External", "internal" => "Internal"];
+    public static $enum_rejection_type = ['external' => 'External', 'internal' => 'Internal'];
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setWorkorderIdAttribute($input)
@@ -54,7 +55,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setPartIdAttribute($input)
@@ -63,7 +65,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setCustomerIdAttribute($input)
@@ -72,7 +75,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setProcessIdAttribute($input)
@@ -81,7 +85,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Set attribute to money format
+     * Set attribute to money format.
+     *
      * @param $input
      */
     public function setQuantityRejectedAttribute($input)
@@ -90,7 +95,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setRejectionDateAttribute($input)
@@ -102,9 +108,9 @@ class DiscrepantMaterial extends Model implements HasMedia
         }
     }
 
-
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
@@ -121,7 +127,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setCorrectiveActionDueDateAttribute($input)
@@ -134,7 +141,8 @@ class DiscrepantMaterial extends Model implements HasMedia
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
@@ -150,22 +158,21 @@ class DiscrepantMaterial extends Model implements HasMedia
         }
     }
 
-    
     public function workorder()
     {
         return $this->belongsTo(Workorder::class, 'workorder', 'number');
     }
-    
+
     public function part()
     {
         return $this->belongsTo(Part::class, 'part_id');
     }
-    
+
     public function customer()
     {
         return $this->belongsTo(Customer::class, 'customer_code', 'code')->withTrashed();
     }
-    
+
     public function process()
     {
         return $this->belongsTo(Process::class, 'process_code', 'code')->withTrashed();

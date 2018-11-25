@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateCombined1530566490QuotesTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateCombined1530566490QuotesTable extends Migration
      */
     public function up()
     {
-        if (! Schema::hasTable('quotes')) {
+        if (!Schema::hasTable('quotes')) {
             Schema::create('quotes', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('partnumber')->nullable();
@@ -46,7 +46,7 @@ class CreateCombined1530566490QuotesTable extends Migration
                 $table->text('comments')->nullable();
                 $table->tinyInteger('archive')->nullable()->default('0');
                 $table->integer('revision')->nullable();
-                
+
                 $table->timestamps();
                 $table->softDeletes();
 

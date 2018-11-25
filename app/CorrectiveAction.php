@@ -1,14 +1,14 @@
 <?php
+
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class CorrectiveAction
+ * Class CorrectiveAction.
  *
- * @package App
  * @property string $discrepant_material
  * @property text $description_of_non_conformance
  * @property text $containment
@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property tinyInteger $complete
  * @property string $completed_at
  * @property string $supporting_document
-*/
+ */
 class CorrectiveAction extends Model
 {
     use SoftDeletes;
@@ -28,18 +28,17 @@ class CorrectiveAction extends Model
     protected $hidden = [];
     public static $searchable = [
     ];
-    
 
-    
     public static function boot()
     {
         parent::boot();
 
-        CorrectiveAction::observe(new \App\Observers\UserActionsObserver);
+        self::observe(new \App\Observers\UserActionsObserver());
     }
 
     /**
-     * Set to null if empty
+     * Set to null if empty.
+     *
      * @param $input
      */
     public function setDiscrepantMaterialIdAttribute($input)
@@ -48,7 +47,8 @@ class CorrectiveAction extends Model
     }
 
     /**
-     * Set attribute to date format
+     * Set attribute to date format.
+     *
      * @param $input
      */
     public function setCompletedAtAttribute($input)
@@ -61,7 +61,8 @@ class CorrectiveAction extends Model
     }
 
     /**
-     * Get attribute from date format
+     * Get attribute from date format.
+     *
      * @param $input
      *
      * @return string
@@ -76,8 +77,6 @@ class CorrectiveAction extends Model
             return '';
         }
     }
-    
-   
 
     public function discrepant_material()
     {

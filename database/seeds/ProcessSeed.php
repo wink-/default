@@ -12,8 +12,8 @@ class ProcessSeed extends Seeder
     public function run()
     {
         $items = [
-            
-            ['id' => 1, 'code' => 'BlAn', 'name' => 'Black Anodize', 'minimum_lot_charge' => '65.00', 'compliant_rohs' => 1, 'compliant_reach' => 1, 'archive' => 0, 'revision' => null,],
+
+            ['id' => 1, 'code' => 'BlAn', 'name' => 'Black Anodize', 'minimum_lot_charge' => '65.00', 'compliant_rohs' => 1, 'compliant_reach' => 1, 'archive' => 0, 'revision' => null],
 
         ];
 

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Customer;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Gate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCustomersRequest;
 use App\Http\Requests\Admin\UpdateCustomersRequest;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Yajra\DataTables\DataTables;
 
 class CustomersController extends Controller
@@ -19,15 +19,15 @@ class CustomersController extends Controller
      */
     public function index()
     {
-        if (! Gate::allows('customer_access')) {
+        if (!Gate::allows('customer_access')) {
             return abort(401);
         }
-        
+
         if (request()->ajax()) {
             $query = Customer::query();
             $template = 'actionsTemplate';
             if (request('show_deleted') == 1) {
-                if (! Gate::allows('customer_delete')) {
+                if (!Gate::allows('customer_delete')) {
                     return abort(401);
                 }
                 $query->onlyTrashed();
@@ -74,7 +74,6 @@ class CustomersController extends Controller
                 'sft_customers.carrier_code',
             ]);
 
-            
             $table = Datatables::of($query);
 
             $table->setRowAttr([
@@ -83,7 +82,7 @@ class CustomersController extends Controller
             $table->addColumn('massDelete', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
             $table->editColumn('actions', function ($row) use ($template) {
-                $gateKey  = 'customer_';
+                $gateKey = 'customer_';
                 $routeKey = 'admin.customers';
 
                 return view($template, compact('row', 'gateKey', 'routeKey'));
@@ -182,10 +181,10 @@ class CustomersController extends Controller
                 return $row->tax_id ? $row->tax_id : '';
             });
             $table->editColumn('cod', function ($row) {
-                return \Form::checkbox("cod", 1, $row->cod == 1, ["disabled"]);
+                return \Form::checkbox('cod', 1, $row->cod == 1, ['disabled']);
             });
             $table->editColumn('archive', function ($row) {
-                return \Form::checkbox("archive", 1, $row->archive == 1, ["disabled"]);
+                return \Form::checkbox('archive', 1, $row->archive == 1, ['disabled']);
             });
             $table->editColumn('revision', function ($row) {
                 return $row->revision ? $row->revision : '';
@@ -200,7 +199,7 @@ class CustomersController extends Controller
                 return $row->carrier_code ? $row->carrier_code : '';
             });
 
-            $table->rawColumns(['actions','massDelete','cod','archive']);
+            $table->rawColumns(['actions', 'massDelete', 'cod', 'archive']);
 
             return $table->make(true);
         }
@@ -215,40 +214,40 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        if (! Gate::allows('customer_create')) {
+        if (!Gate::allows('customer_create')) {
             return abort(401);
         }
+
         return view('admin.customers.create');
     }
 
     /**
      * Store a newly created Customer in storage.
      *
-     * @param  \App\Http\Requests\StoreCustomersRequest  $request
+     * @param \App\Http\Requests\StoreCustomersRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCustomersRequest $request)
     {
-        if (! Gate::allows('customer_create')) {
+        if (!Gate::allows('customer_create')) {
             return abort(401);
         }
         $customer = Customer::create($request->all());
 
-
-
         return redirect()->route('admin.customers.index');
     }
-
 
     /**
      * Show the form for editing Customer.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        if (! Gate::allows('customer_edit')) {
+        if (!Gate::allows('customer_edit')) {
             return abort(401);
         }
         $customer = Customer::findOrFail($id);
@@ -259,33 +258,32 @@ class CustomersController extends Controller
     /**
      * Update Customer in storage.
      *
-     * @param  \App\Http\Requests\UpdateCustomersRequest  $request
-     * @param  int  $id
+     * @param \App\Http\Requests\UpdateCustomersRequest $request
+     * @param int                                       $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCustomersRequest $request, $id)
     {
-        if (! Gate::allows('customer_edit')) {
+        if (!Gate::allows('customer_edit')) {
             return abort(401);
         }
         $customer = Customer::findOrFail($id);
         $customer->update($request->all());
 
-
-
         return redirect()->route('admin.customers.index');
     }
-
 
     /**
      * Display Customer.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        if (! Gate::allows('customer_view')) {
+        if (!Gate::allows('customer_view')) {
             return abort(401);
         }
         $contacts = \App\Contact::where('customer_id', $id)->get();
@@ -297,16 +295,16 @@ class CustomersController extends Controller
         return view('admin.customers.show', compact('customer', 'contacts', 'quotes', 'discrepant_materials'));
     }
 
-
     /**
      * Remove Customer from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        if (! Gate::allows('customer_delete')) {
+        if (!Gate::allows('customer_delete')) {
             return abort(401);
         }
         $customer = Customer::findOrFail($id);
@@ -322,7 +320,7 @@ class CustomersController extends Controller
      */
     public function massDestroy(Request $request)
     {
-        if (! Gate::allows('customer_delete')) {
+        if (!Gate::allows('customer_delete')) {
             return abort(401);
         }
         if ($request->input('ids')) {
@@ -334,16 +332,16 @@ class CustomersController extends Controller
         }
     }
 
-
     /**
      * Restore Customer from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function restore($id)
     {
-        if (! Gate::allows('customer_delete')) {
+        if (!Gate::allows('customer_delete')) {
             return abort(401);
         }
         $customer = Customer::onlyTrashed()->findOrFail($id);
@@ -355,12 +353,13 @@ class CustomersController extends Controller
     /**
      * Permanently delete Customer from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function perma_del($id)
     {
-        if (! Gate::allows('customer_delete')) {
+        if (!Gate::allows('customer_delete')) {
             return abort(401);
         }
         $customer = Customer::onlyTrashed()->findOrFail($id);
