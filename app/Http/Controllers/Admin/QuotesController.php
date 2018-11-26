@@ -409,7 +409,6 @@ class QuotesController extends Controller
         $request->request->add(['user_id' => Auth::User()->id]);
 
         $quote = Quote::findOrFail($id);
-        dd($request);
         $quote->update($request->all());
         $request = $this->saveFiles($request, $quote->id);
 
