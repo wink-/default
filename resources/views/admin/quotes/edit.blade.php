@@ -377,10 +377,11 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('print', trans('global.quotes.fields.print').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('print', old('print')) !!}
-                    @if ($quote->print)
-                        <a href="{{ asset(env('UPLOAD_PATH').'/' . $quote->print) }}" target="_blank">Download file</a>
-                    @endif
+                      @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
+                        <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
+                      @else
+                        No Print
+                      @endif
                     {!! Form::file('print', ['class' => 'form-control']) !!}
                     {!! Form::hidden('print_max_size', 12) !!}
                     <p class="help-block"></p>
