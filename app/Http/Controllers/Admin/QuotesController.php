@@ -77,7 +77,7 @@ class QuotesController extends Controller
                 'sft_quotes.mask_notes',
                 'sft_quotes.testing',
                 'sft_quotes.testing_note',
-                'sft_quotes.print',
+/*                'sft_quotes.print',*/
                 'sft_quotes.notes',
                 'sft_quotes.comments',
                 'sft_quotes.user_id',
@@ -182,11 +182,11 @@ class QuotesController extends Controller
             $table->editColumn('testing_note', function ($row) {
                 return $row->testing_note ? $row->testing_note : '';
             });
-            $table->editColumn('print', function ($row) {
+/*            $table->editColumn('print', function ($row) {
                 if ($row->print) {
                     return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print).'" target="_blank">Download file</a>';
                 }
-            });
+            });*/
             $table->editColumn('notes', function ($row) {
                 return $row->notes ? $row->notes : '';
             });
@@ -409,6 +409,7 @@ class QuotesController extends Controller
         $request->request->add(['user_id' => Auth::User()->id]);
 
         $quote = Quote::findOrFail($id);
+        dd($request);
         $quote->update($request->all());
         $request = $this->saveFiles($request, $quote->id);
 

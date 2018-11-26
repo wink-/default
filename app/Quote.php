@@ -51,7 +51,7 @@ class Quote extends Model
 
     protected $table = 'sft_quotes';
 
-    protected $fillable = ['partnumber', 'partdescription', 'specification', 'material', 'method', 'quantity_minimum', 'quantity_maximum', 'price', 'units', 'minimum_lot_charge', 'quantity_price_break', 'price_break', 'thickness_minimum', 'thickness_maximum', 'weight', 'surface_area', 'baking_time_pre', 'baking_temp_pre', 'baking_time_post', 'baking_temp_post', 'bake_notes', 'blasting', 'blast_notes', 'masking', 'mask_notes', 'testing', 'testing_note', 'print', 'notes', 'comments', 'archive', 'revision', 'customer_id', 'contact_id', 'process_id', 'user_id', 'value_min', 'value_max'];
+    protected $fillable = ['partnumber', 'partdescription', 'specification', 'material', 'method', 'quantity_minimum', 'quantity_maximum', 'price', 'units', 'minimum_lot_charge', 'quantity_price_break', 'price_break', 'thickness_minimum', 'thickness_maximum', 'weight', 'surface_area', 'baking_time_pre', 'baking_temp_pre', 'baking_time_post', 'baking_temp_post', 'bake_notes', 'blasting', 'blast_notes', 'masking', 'mask_notes', 'testing', 'testing_note', 'notes', 'comments', 'archive', 'revision', 'customer_id', 'contact_id', 'process_id', 'user_id', 'value_min', 'value_max'];
     protected $hidden = [];
     public static $searchable = [
         'partnumber',
