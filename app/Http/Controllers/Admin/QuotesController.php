@@ -182,11 +182,11 @@ class QuotesController extends Controller
             $table->editColumn('test_notes', function ($row) {
                 return $row->test_notes ? $row->test_notes : '';
             });
-/*            $table->editColumn('print', function ($row) {
-                if ($row->print) {
-                    return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print).'" target="_blank">Download file</a>';
-                }
-            });*/
+            /*            $table->editColumn('print', function ($row) {
+                            if ($row->print) {
+                                return '<a href="'.asset(env('UPLOAD_PATH').'/'.$row->print).'" target="_blank">Download file</a>';
+                            }
+                        });*/
             $table->editColumn('notes', function ($row) {
                 return $row->notes ? $row->notes : '';
             });

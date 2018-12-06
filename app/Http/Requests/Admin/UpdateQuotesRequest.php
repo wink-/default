@@ -25,15 +25,15 @@ class UpdateQuotesRequest extends FormRequest
     {
         return [
 
-            'customer_id'      => 'required',
+            'customer_id'       => 'required',
             'part_number'       => 'required',
-            'process_id'       => 'required',
-            'material'         => 'required',
-            'method'           => 'required',
-            'quantity_minimum' => 'min:1|max:2147483647|required|numeric',
-            'quantity_maximum' => 'min:1|max:2147483647|nullable|numeric',
-            'price'            => 'required',
-            'units'            => 'required',
+            'process_id'        => 'required',
+            'material'          => 'required',
+            'method'            => 'required',
+            'quantity_minimum'  => 'min:1|max:2147483647|required|numeric',
+            'quantity_maximum'  => 'min:1|max:2147483647|nullable|numeric',
+            'price'             => 'required',
+            'units'             => 'required',
             //'mininum_lot_charge' => 'required',
             'quantity_price_break' => 'max:2147483647|nullable|numeric',
             'print'                => 'nullable|mimes:pdf',
