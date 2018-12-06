@@ -26,7 +26,7 @@ class UpdateQuotesRequest extends FormRequest
         return [
 
             'customer_id'      => 'required',
-            'partnumber'       => 'required',
+            'part_number'       => 'required',
             'process_id'       => 'required',
             'material'         => 'required',
             'method'           => 'required',

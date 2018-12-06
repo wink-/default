@@ -51,10 +51,10 @@ class Quote extends Model
 
     protected $table = 'sft_quotes';
 
-    protected $fillable = ['partnumber', 'partdescription', 'specification', 'material', 'method', 'quantity_minimum', 'quantity_maximum', 'price', 'units', 'minimum_lot_charge', 'quantity_price_break', 'price_break', 'thickness_minimum', 'thickness_maximum', 'weight', 'surface_area', 'baking_time_pre', 'baking_temp_pre', 'baking_time_post', 'baking_temp_post', 'bake_notes', 'blasting', 'blast_notes', 'masking', 'mask_notes', 'testing', 'testing_note', 'notes', 'comments', 'archive', 'revision', 'customer_id', 'contact_id', 'process_id', 'user_id', 'value_min', 'value_max'];
+    protected $fillable = ['part_number', 'part_description', 'specification', 'material', 'method', 'quantity_minimum', 'quantity_maximum', 'price', 'units', 'minimum_lot_charge', 'quantity_price_break', 'price_break', 'thickness_minimum', 'thickness_maximum', 'weight', 'surface_area', 'baking_time_pre', 'baking_temp_pre', 'baking_time_post', 'baking_temp_post', 'bake_notes', 'blasting', 'blast_notes', 'masking', 'mask_notes', 'testing', 'test_notes', 'notes', 'comments', 'archive', 'revision', 'customer_id', 'contact_id', 'process_id', 'user_id', 'value_min', 'value_max'];
     protected $hidden = [];
     public static $searchable = [
-        'partnumber',
+        'part_number',
     ];
 
     public static function boot()
@@ -66,7 +66,7 @@ class Quote extends Model
 
     public static $enum_method = ['Rack Plate' => 'Rack Plate', 'Barrel Plate' => 'Barrel Plate', 'Bulk Process' => 'Bulk Process', 'Hand Operation' => 'Hand Operation', 'Lab Operation' => 'Lab Operation'];
 
-    public static $enum_units = ['each' => 'Each', 'thousand' => 'M', 'pound' => 'Pound', 'ft' => 'Foot', 'lot' => 'Lot', 'in' => 'Inch', 'sets' => 'Sets'];
+    public static $enum_units = ['each' => 'Each', 'thousand' => 'M', 'pound' => 'Pound', 'ft' => 'Foot', 'lot' => 'Lot', 'inch' => 'Inch', 'sets' => 'Sets'];
 
     /**
      * Set to null if empty.

@@ -64,9 +64,9 @@
                     <table class="table table-bordered table-condensed">
                         <tr>
                             <th>Part Number</th>
-                            <td field-key='partnumber'>{{ $quote->partnumber }}</td>
+                            <td field-key='part_number'>{{ $quote->part_number }}</td>
                             <th>Part Description</th>
-                            <td field-key='partdescription'>{{ $quote->partdescription }}</td>
+                            <td field-key='part_description'>{{ $quote->part_description }}</td>
                         </tr>
 
                         <tr>
@@ -150,9 +150,9 @@
                         <tr>
                             <th>Testing</th>
                             <td field-key='testing'>{{ $quote->testing == 1 ? 'Included' : 'None' }}</td>
-                            @isset($quote->testing_note)
+                            @isset($quote->test_notes)
                             <th>Testing Note</th>
-                            <td field-key='testing_note'>{{ $quote->testing_note }}</td>
+                            <td field-key='test_notes'>{{ $quote->test_notes }}</td>
                             @endisset
                         </tr>
                     

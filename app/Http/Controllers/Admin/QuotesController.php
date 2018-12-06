@@ -49,8 +49,8 @@ class QuotesController extends Controller
                 'sft_quotes.id',
                 'sft_quotes.customer_id',
                 'sft_quotes.contact_id',
-                'sft_quotes.partnumber',
-                'sft_quotes.partdescription',
+                'sft_quotes.part_number',
+                'sft_quotes.part_description',
                 'sft_quotes.process_id',
                 'sft_quotes.specification',
                 'sft_quotes.material',
@@ -76,7 +76,7 @@ class QuotesController extends Controller
                 'sft_quotes.masking',
                 'sft_quotes.mask_notes',
                 'sft_quotes.testing',
-                'sft_quotes.testing_note',
+                'sft_quotes.test_notes',
 /*                'sft_quotes.print',*/
                 'sft_quotes.notes',
                 'sft_quotes.comments',
@@ -104,11 +104,11 @@ class QuotesController extends Controller
             $table->editColumn('contact.last_name', function ($row) {
                 return $row->contact ? $row->contact->last_name : '';
             });
-            $table->editColumn('partnumber', function ($row) {
-                return $row->partnumber ? $row->partnumber : '';
+            $table->editColumn('part_number', function ($row) {
+                return $row->part_number ? $row->part_number : '';
             });
-            $table->editColumn('partdescription', function ($row) {
-                return $row->partdescription ? $row->partdescription : '';
+            $table->editColumn('part_description', function ($row) {
+                return $row->part_description ? $row->part_description : '';
             });
             $table->editColumn('process.name', function ($row) {
                 return $row->process ? $row->process->name : '';
@@ -179,8 +179,8 @@ class QuotesController extends Controller
             $table->editColumn('testing', function ($row) {
                 return \Form::checkbox('testing', 1, $row->testing == 1, ['disabled']);
             });
-            $table->editColumn('testing_note', function ($row) {
-                return $row->testing_note ? $row->testing_note : '';
+            $table->editColumn('test_notes', function ($row) {
+                return $row->test_notes ? $row->test_notes : '';
             });
 /*            $table->editColumn('print', function ($row) {
                 if ($row->print) {

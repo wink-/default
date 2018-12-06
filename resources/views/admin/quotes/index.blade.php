@@ -62,7 +62,7 @@
                 @endcan
                 {data: 'id', name: 'id'},
                 {data: 'customer.name', name: 'customer.name'},
-                {data: 'partnumber', name: 'partnumber'},
+                {data: 'part_number', name: 'part_number'},
                 {data: 'process.name', name: 'process.name'},
                 {data: 'quantity_minimum', name: 'quantity_minimum'},
                 {data: 'quantity_maximum', name: 'quantity_maximum'},

@@ -36,24 +36,24 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('partnumber', 'Part Number*', ['class' => 'control-label']) !!}
-                    {!! Form::text('partnumber', old('partnumber'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('part_number', 'Part Number*', ['class' => 'control-label']) !!}
+                    {!! Form::text('part_number', old('part_number'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('partnumber'))
+                    @if($errors->has('part_number'))
                         <p class="help-block">
-                            {{ $errors->first('partnumber') }}
+                            {{ $errors->first('part_number') }}
                         </p>
                     @endif
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('partdescription', 'Part Description', ['class' => 'control-label']) !!}
-                    {!! Form::text('partdescription', old('partdescription'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::label('part_description', 'Part Description', ['class' => 'control-label']) !!}
+                    {!! Form::text('part_description', old('part_description'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('partdescription'))
+                    @if($errors->has('part_description'))
                         <p class="help-block">
-                            {{ $errors->first('partdescription') }}
+                            {{ $errors->first('part_description') }}
                         </p>
                     @endif
                 </div>
@@ -363,12 +363,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('testing_note', 'Test Notes', ['class' => 'control-label']) !!}
-                    {!! Form::text('testing_note', old('testing_note'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::label('test_notes', 'Test Notes', ['class' => 'control-label']) !!}
+                    {!! Form::text('test_notes', old('test_notes'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('testing_note'))
+                    @if($errors->has('test_notes'))
                         <p class="help-block">
-                            {{ $errors->first('testing_note') }}
+                            {{ $errors->first('test_notes') }}
                         </p>
                     @endif
                 </div>

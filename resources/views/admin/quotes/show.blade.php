@@ -33,12 +33,12 @@
                             <td field-key='contact'>{{ $quote->contact->first_name ?? '' }} {{ $quote->contact->last_name ?? '' }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.quotes.fields.partnumber')</th>
-                            <td field-key='partnumber'>{{ $quote->partnumber }}</td>
+                            <th>@lang('global.quotes.fields.part-number')</th>
+                            <td field-key='part_number'>{{ $quote->part_number }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.quotes.fields.partdescription')</th>
-                            <td field-key='partdescription'>{{ $quote->partdescription }}</td>
+                            <th>@lang('global.quotes.fields.part-description')</th>
+                            <td field-key='part_description'>{{ $quote->part_description }}</td>
                         </tr>
                         <tr>
                             <th>@lang('global.quotes.fields.process')</th>
@@ -141,8 +141,8 @@
                             <td field-key='testing'>{{ Form::checkbox("testing", 1, $quote->testing == 1 ? true : false, ["disabled"]) }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('global.quotes.fields.testing-note')</th>
-                            <td field-key='testing_note'>{{ $quote->testing_note }}</td>
+                            <th>@lang('global.quotes.fields.test-notes')</th>
+                            <td field-key='test_notes'>{{ $quote->test_notes }}</td>
                         </tr>
                         <tr>
                             <th>Print</th>
