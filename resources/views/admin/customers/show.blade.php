@@ -263,7 +263,7 @@
             @foreach ($quotes as $quote)
                 <tr data-entry-id="{{ $quote->id }}">
                     <td field-key='customer'>{{ $quote->customer->name ?? '' }}</td>
-                                <td field-key='partnumber'>{{ $quote->partnumber }}</td>
+                                <td field-key='part_number'>{{ $quote->part_number }}</td>
                                 <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>

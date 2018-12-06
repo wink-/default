@@ -78,7 +78,7 @@
     <thead>
         <tr>
             <th>@lang('global.quotes.fields.customer')</th>
-                        <th>@lang('global.quotes.fields.partnumber')</th>
+                        <th>@lang('global.quotes.fields.part-number')</th>
                         <th>@lang('global.quotes.fields.process')</th>
                         <th>@lang('global.quotes.fields.quantity-minimum')</th>
                         <th>@lang('global.quotes.fields.quantity-maximum')</th>
@@ -97,7 +97,7 @@
             @foreach ($quotes as $quote)
                 <tr data-entry-id="{{ $quote->id }}">
                     <td field-key='customer'>{{ $quote->customer->name ?? '' }}</td>
-                                <td field-key='partnumber'>{{ $quote->partnumber }}</td>
+                                <td field-key='part_number'>{{ $quote->part_number }}</td>
                                 <td field-key='process'>{{ $quote->process->name ?? '' }}</td>
                                 <td field-key='quantity_minimum'>{{ $quote->quantity_minimum }}</td>
                                 <td field-key='quantity_maximum'>{{ $quote->quantity_maximum }}</td>

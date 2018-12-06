@@ -37,24 +37,24 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('partnumber', trans('global.quotes.fields.partnumber').'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('partnumber', old('partnumber'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('part_number', trans('global.quotes.fields.part-number').'*', ['class' => 'control-label']) !!}
+                    {!! Form::text('part_number', old('part_number'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('partnumber'))
+                    @if($errors->has('part_number'))
                         <p class="help-block">
-                            {{ $errors->first('partnumber') }}
+                            {{ $errors->first('part_number') }}
                         </p>
                     @endif
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('partdescription', trans('global.quotes.fields.partdescription').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('partdescription', old('partdescription'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::label('part_description', trans('global.quotes.fields.part-description').'', ['class' => 'control-label']) !!}
+                    {!! Form::text('part_description', old('part_description'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('partdescription'))
+                    @if($errors->has('part_description'))
                         <p class="help-block">
-                            {{ $errors->first('partdescription') }}
+                            {{ $errors->first('part_description') }}
                         </p>
                     @endif
                 </div>
@@ -364,12 +364,12 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('testing_note', trans('global.quotes.fields.testing-note').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('testing_note', old('testing_note'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    {!! Form::label('test_notes', trans('global.quotes.fields.test-notes').'', ['class' => 'control-label']) !!}
+                    {!! Form::text('test_notes', old('test_notes'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('testing_note'))
+                    @if($errors->has('test_notes'))
                         <p class="help-block">
-                            {{ $errors->first('testing_note') }}
+                            {{ $errors->first('test_notes') }}
                         </p>
                     @endif
                 </div>
@@ -377,10 +377,11 @@
             <div class="row">
                 <div class="col-xs-12 form-group">
                     {!! Form::label('print', trans('global.quotes.fields.print').'', ['class' => 'control-label']) !!}
-                    {!! Form::hidden('print', old('print')) !!}
-                    @if ($quote->print)
-                        <a href="{{ asset(env('UPLOAD_PATH').'/' . $quote->print) }}" target="_blank">Download file</a>
-                    @endif
+                      @if(file_exists( public_path().'/quotes/'.$quote->id.'.pdf' ))
+                        <a href="{{ asset(env('UPLOAD_PATH').'/quotes/' . $quote->id.'.pdf') }}" target="_blank">Download file</a>
+                      @else
+                        No Print
+                      @endif
                     {!! Form::file('print', ['class' => 'form-control']) !!}
                     {!! Form::hidden('print_max_size', 12) !!}
                     <p class="help-block"></p>
