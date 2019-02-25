@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class MegaSearchController extends Controller
@@ -41,12 +42,12 @@ class MegaSearchController extends Controller
                 $results_formated['fields'] = $fields;
                 $fields_formated = [];
                 foreach ($fields as $field) {
-                    $fields_formated[$field] = title_case(str_replace('_', ' ', $field));
+                    $fields_formated[$field] = Str::title(str_replace('_', ' ', $field));
                 }
                 $results_formated['fields_formated'] = $fields_formated;
 
-                //$results_formated['url'] = url('/admin/' . str_plural(snake_case($modelString)) . '/' . $result->id . '/edit');
-                $results_formated['url'] = url('/admin/'.str_plural(snake_case($modelString)).'/'.$result->id);
+                //$results_formated['url'] = url('/admin/' . Str::plural(Str::snake($modelString)) . '/' . $result->id . '/edit');
+                $results_formated['url'] = url('/admin/'.Str::plural(Str::snake($modelString)).'/'.$result->id);
 
                 $return[] = $results_formated;
             }
