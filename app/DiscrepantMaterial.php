@@ -30,7 +30,9 @@ class DiscrepantMaterial extends Model implements HasMedia
     use SoftDeletes, HasMediaTrait;
     protected $table = 'pluto_discrepant_materials';
     protected $fillable = ['part_number', 'customer_code', 'process_code', 'quantity_rejected', 'reason_for_rejection', 'rejection_date', 'rejection_type', 'corrective_action_due_date', 'form', 'workorder_id', 'part_id', 'customer_id', 'process_id', 'workorder', 'corrective_action_completed'];
-    //protected $dates = ['created_at', 'updated_at', 'deleted_at', 'corrective_action_due_date', 'rejection_date'];
+    //protected $dates = [
+        'created_at', 'updated_at', 'corrective_action_due_date', 'rejection_date'
+    ];
     protected $hidden = [];
     public static $searchable = [
     ];
